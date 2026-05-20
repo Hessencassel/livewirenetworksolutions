@@ -1,26 +1,33 @@
 :root {
-  --bg: #f6f4ee;
-  --bg-elev: #fbfaf6;
+  --bg: #ffffff;
+  --bg-elev: #f3f4f6;
   --paper: #ffffff;
-  --ink: #1f2a30;
-  --ink-soft: #4a575e;
-  --ink-muted: #7b8890;
-  --rule: #d9d4c7;
-  --rule-soft: #ece7da;
-  --sage: #8ea88a;
-  --sage-deep: #5f7a5e;
-  --sage-tint: #e3ebdf;
-  --slate: #3d4f57;
-  --slate-deep: #2c3a42;
-  --copper: #c2754a;
-  --copper-hover: #b16a42;
-  --copper-soft: #f3e3d6;
-  --shadow: 0 1px 2px rgba(31,42,48,.04), 0 8px 24px rgba(31,42,48,.06);
-  --shadow-lg: 0 2px 4px rgba(31,42,48,.05), 0 24px 60px rgba(31,42,48,.10);
-  --radius: 14px;
-  --radius-sm: 8px;
+  --ink: #111827; /* Near black */
+  --ink-soft: #4b5563; /* Technical gray */
+  --ink-muted: #9ca3af;
+  --rule: #d1d5db;
+  --rule-soft: #e5e7eb;
+  
+  /* OD Green styling for network elements */
+  --sage: #4b5320; 
+  --sage-deep: #3e451b;
+  --sage-tint: #f0f2eb;
+  
+  /* Gunmetal for the primary brand */
+  --slate: #1f2937;
+  --slate-deep: #0f172a;
+  
+  /* High-viz Burnt Orange for physical security/alerts */
+  --copper: #c84b31; 
+  --copper-hover: #a33b25;
+  --copper-soft: #fdf3f1;
+  
+  --shadow: 0 2px 4px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.06);
+  --shadow-lg: 0 4px 6px rgba(0,0,0,.1), 0 24px 60px rgba(0,0,0,.15);
+  --radius: 8px; /* Sharper corners, less rounded */
+  --radius-sm: 4px;
   --max: 1180px;
-  --focus: 0 0 0 3px rgba(194,117,74,.35);
+  --focus: 0 0 0 3px rgba(200, 75, 49, .35);
 }
 
 * { box-sizing: border-box; }
