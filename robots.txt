@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://livewirenetworksolutions.netlify.app/sitemap.xml
