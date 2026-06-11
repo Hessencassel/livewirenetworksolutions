@@ -1,730 +1,1273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Livewire Network Solutions — Camera and network security for homes and businesses in Fort Wayne and Northeast Indiana. No monitoring contracts. Senior engineers on every job." />
-<meta name="theme-color" content="#0b0d10" />
-<meta property="og:title" content="Livewire Network Solutions — Camera &amp; Network Security · Fort Wayne, IN" />
-<meta property="og:description" content="Camera and network security for homes and businesses in Fort Wayne. No monitoring contracts. Senior engineers on every job." />
-<meta property="og:type" content="website" />
-<title>Livewire Network Solutions — Camera &amp; Network Security · Fort Wayne, IN</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300d4a8'%3E%3Cpath d='M13 2 4 14h7l-2 8 10-13h-7l1-7z'/%3E%3C/svg%3E" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LiveWire Network Solutions | Network Security, Wi-Fi Infrastructure & Firewall Services in Fort Wayne</title>
+
+  <meta name="description" content="LiveWire Network Solutions builds secure networks, firewalls, VLANs, and Wi-Fi infrastructure for Fort Wayne businesses. Expert network design, clean documentation, and reliable systems." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #071014;
+      --bg-soft: #0d1b22;
+      --panel: #10242d;
+      --panel-light: #17313c;
+      --text: #f4f7f8;
+      --muted: #b7c4c9;
+      --accent: #21d4a3;
+      --accent-dark: #13a77e;
+      --line: rgba(255,255,255,0.12);
+      --warning: #ffd166;
+      --max: 1160px;
+      --radius: 18px;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      background: #03090c;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .top-bar .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.55rem 0;
+      flex-wrap: wrap;
+    }
+
+    .top-bar strong {
+      color: var(--text);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7,16,20,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #4cc9f0);
+      color: #051014;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 0 28px rgba(33,212,163,0.25);
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 46px;
+      padding: 0.8rem 1.15rem;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: 0.2s ease;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #04100d;
+    }
+
+    .btn-primary:hover {
+      background: #5ce6c0;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border-color: var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .mobile-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 0.55rem 0.7rem;
+      font-size: 1rem;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 6.5rem 0 4.5rem;
+      background:
+        radial-gradient(circle at top right, rgba(33,212,163,0.34), transparent 22%),
+        radial-gradient(circle at 12% 22%, rgba(13,126,101,0.16), transparent 18%),
+        linear-gradient(180deg, #040a10 0%, #08131b 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 100% 32px, 32px 100%;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-pulse-line {
+      position: absolute;
+      left: -30%;
+      top: 48%;
+      width: 32%;
+      height: 2px;
+      background: rgba(33,212,163,0.22);
+      box-shadow: 0 0 22px rgba(33,212,163,0.45);
+      z-index: 0;
+      animation: heroPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes heroPulse {
+      0% { left: -30%; opacity: 0; }
+      20% { opacity: 0.8; }
+      50% { left: 55%; opacity: 0.3; }
+      100% { left: 105%; opacity: 0; }
+    }
+
+    .hero-pulse-line {
+      position: absolute;
+      left: -30%;
+      top: 48%;
+      width: 32%;
+      height: 2px;
+      background: rgba(33,212,163,0.22);
+      box-shadow: 0 0 22px rgba(33,212,163,0.45);
+      z-index: 0;
+      animation: heroPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes heroPulse {
+      0% { left: -30%; opacity: 0; }
+      20% { opacity: 0.8; }
+      50% { left: 55%; opacity: 0.3; }
+      100% { left: 105%; opacity: 0; }
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.45rem, 5vw, 4.8rem);
+      max-width: 780px;
+      letter-spacing: -0.055em;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3.5vw, 3.1rem);
+      letter-spacing: -0.04em;
+      text-shadow: 0 0 20px rgba(33,212,163,0.16);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 720px;
+      margin: 1.35rem 0 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-top: 2.2rem;
+      max-width: 780px;
+    }
+
+    .trust-pill {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+      padding: 0.75rem 0.9rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .trust-pill strong {
+      color: var(--text);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, var(--panel), #0a171d);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 1rem;
+    }
+
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .check-list li {
+      display: flex;
+      gap: 0.65rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .check-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .check {
+      color: var(--accent);
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 2rem;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.1rem;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.45rem;
+    }
+
+    .card.highlight {
+      background: linear-gradient(180deg, var(--panel-light), var(--panel));
+      border-color: rgba(33,212,163,0.45);
+      box-shadow: 0 0 32px rgba(33,212,163,0.08);
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      color: #06130f;
+      background: var(--accent);
+      border-radius: 999px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 900;
+      margin-bottom: 0.9rem;
+    }
+
+    .service-list {
+      margin: 1.2rem 0 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+
+    .service-list li {
+      margin: 0.45rem 0;
+    }
+
+    .dark-band {
+      background: #061015;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fit-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .fit-box {
+      border-left: 4px solid var(--accent);
+      background: rgba(255,255,255,0.04);
+      padding: 1rem 1.2rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .fit-box p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .process {
+      counter-reset: steps;
+    }
+
+    .process .card {
+      position: relative;
+    }
+
+    .process .card::before {
+      counter-increment: steps;
+      content: counter(steps);
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: #04100d;
+      font-weight: 900;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .proof-placeholder {
+      min-height: 240px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(7,16,20,0.84), rgba(7,16,20,0.84)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 12px);
+      border: 1px dashed rgba(255,255,255,0.24);
+      border-radius: var(--radius);
+      color: var(--muted);
+      padding: 1.2rem;
+    }
+
+    .warning-box {
+      background: rgba(255, 209, 102, 0.1);
+      border: 1px solid rgba(255, 209, 102, 0.35);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      color: #ffe4a3;
+      font-size: 0.95rem;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    .contact-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .contact-panel p,
+    .contact-panel li {
+      color: var(--muted);
+    }
+
+    .contact-list {
+      padding-left: 1.1rem;
+    }
+
+    .hero-bg-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.86;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 2.2rem;
+      max-width: 780px;
+    }
+
+    .trust-pill {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      padding: 1rem 1.05rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      display: grid;
+      gap: 0.35rem;
+      align-items: baseline;
+    }
+
+    .trust-pill strong.counter {
+      color: var(--accent);
+      font-size: 1.45rem;
+      line-height: 1.05;
+      font-weight: 900;
+      display: block;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #4cc9f0);
+      color: #051014;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 0 32px rgba(33,212,163,0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      animation: brandPulse 2.8s ease-in-out infinite;
+    }
+
+    .brand-mark:hover {
+      transform: rotate(6deg) scale(1.06);
+      box-shadow: 0 0 40px rgba(33,212,163,0.55), inset 0 0 10px rgba(33,212,163,0.35);
+    }
+
+    @keyframes brandPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 24px rgba(33,212,163,0.18), 0 0 0 0 rgba(33,212,163,0.12); }
+      50% { transform: scale(1.03); box-shadow: 0 0 32px rgba(33,212,163,0.26), 0 0 24px 8px rgba(33,212,163,0.06); }
+    }
+
+    .card,
+    .hero-card,
+    .fit-box,
+    .proof-placeholder,
+    .contact-panel {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .card::before,
+    .hero-card::before,
+    .fit-box::before,
+    .proof-placeholder::before,
+    .contact-panel::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: rgba(33,212,163,0);
+      transition: background 0.28s ease, box-shadow 0.28s ease;
+      pointer-events: none;
+    }
+
+    .card:hover::before,
+    .hero-card:hover::before,
+    .fit-box:hover::before,
+    .proof-placeholder:hover::before,
+    .contact-panel:hover::before {
+      background: rgba(33,212,163,0.95);
+      box-shadow: 0 0 18px rgba(33,212,163,0.45);
+    }
+
+    .card:hover,
+    .hero-card:hover,
+    .fit-box:hover,
+    .proof-placeholder:hover,
+    .contact-panel:hover {
+      transform: translateY(-6px);
+      border-color: rgba(33,212,163,0.55);
+      box-shadow: 0 24px 60px rgba(33,212,163,0.14);
+    }
+
+    form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    label {
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #08161c;
+      color: var(--text);
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(33,212,163,0.12);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .fit-grid,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-row {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-toggle {
+        display: inline-block;
+      }
+
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 0 0.3rem;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<a class="skip-link" href="#main">Skip to main content</a>
-
-<!-- Utility bar -->
-<div class="utility-bar">
-  <div class="container">
-    <span class="status"><span class="status-dot" aria-hidden="true"></span> Now scheduling new installations</span>
-    <div class="utility-links">
-      <a href="tel:+12605550142">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.91.37 1.81.72 2.66a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.42-1.42a2 2 0 0 1 2.11-.45c.85.35 1.75.6 2.66.72A2 2 0 0 1 22 16.92z"/></svg>
-        (260) 555-0142
-      </a>
-      <span class="sep" aria-hidden="true">·</span>
-      <span>Fort Wayne, IN</span>
+  <div class="top-bar">
+    <div class="container">
+      <div><strong>Fort Wayne & Northeast Indiana</strong> camera systems, Wi-Fi, cabling, and small business networks.</div>
+      <div>Call: <strong><a href="tel:+12600000000">(260) 000-0000</a></strong></div>
     </div>
   </div>
-</div>
 
-<header class="site" id="top">
-  <div class="container nav">
-    <a class="brand" href="#top" aria-label="Livewire Network Solutions home">
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-2 8 10-13h-7l1-7z"/></svg>
-      </span>
-      <span class="brand-text">
-        <span class="brand-name">Livewire</span>
-        <span class="brand-sub">Network Solutions</span>
-      </span>
-    </a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="LiveWire Network Solutions home">
+        <div class="brand-mark">LW</div>
+        <div>
+          LiveWire Network Solutions
+          <span>Camera Systems · Wi-Fi · Network Security</span>
+        </div>
+      </a>
 
-    <nav aria-label="Primary">
-      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu" id="menu-toggle" aria-label="Toggle navigation menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <ul id="primary-menu">
-        <li><a href="#difference">The difference</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#technology">Technology</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+      <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Open navigation menu">Menu</button>
 
-    <a class="btn btn-primary nav-cta" href="#contact">Free assessment →</a>
-  </div>
-</header>
+      <nav id="navMenu">
+        <a href="#services">Services</a>
+        <a href="#fit">Who We Help</a>
+        <a href="#process">Process</a>
+        <a href="#proof">Proof</a>
+        <a href="#contact" class="btn btn-primary">Free Assessment</a>
+      </nav>
+    </div>
+  </header>
 
-<main id="main">
+  <main id="top">
 
-  <!-- HERO -->
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="hero-grid-bg" aria-hidden="true"></div>
-    <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
-    <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
+    <section class="hero">
+      <canvas id="heroCanvas" class="hero-bg-canvas" aria-hidden="true"></canvas>
+      <div class="hero-pulse-line" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Network Infrastructure · Wi-Fi · Security · Cameras</div>
 
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <div class="eyebrow">
-            <span class="dot" aria-hidden="true"></span>
-            Fort Wayne &amp; Northeast Indiana
-          </div>
-          <h1 id="hero-heading">
-            Cameras and networks <span class="accent">that hold up.</span>
-          </h1>
-          <p class="lede">
-            Livewire is a small crew of senior engineers who design and install camera and network security for homes and businesses across Northeast Indiana. No monitoring contracts. No subcontractors. No tier-one ticket queues.
+          <h1>Your network is your business. We build it right.</h1>
+
+          <p>
+            LiveWire Network Solutions helps Fort Wayne businesses get firewall setup, VLAN segmentation, clean documentation, and reliable Wi-Fi infrastructure — with secure systems that scale and no mystery equipment.
           </p>
+
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Request a free assessment</a>
-            <a class="btn btn-outline" href="#difference">See what's different</a>
+            <a href="#contact" class="btn btn-primary">Schedule a Free Assessment</a>
+            <a href="#services" class="btn btn-secondary">View Services</a>
           </div>
-          <ul class="hero-meta" aria-label="At a glance">
-            <li><strong>60+ yrs</strong><span>Combined experience</span></li>
-            <li><strong>No contracts</strong><span>Own your system outright</span></li>
-            <li><strong>Senior-led</strong><span>On every job</span></li>
-          </ul>
+
+          <div class="trust-row">
+            <div class="trust-pill"><strong class="counter" data-target="100" data-suffix="+">0</strong><span>No required monitoring contracts</span></div>
+            <div class="trust-pill"><strong class="counter" data-target="150" data-suffix="+">0</strong><span>You own the equipment</span></div>
+            <div class="trust-pill"><strong class="counter" data-target="250" data-suffix="+">0</strong><span>Clean documented installs</span></div>
+          </div>
         </div>
 
-        <aside class="hero-card" aria-label="What we cover">
-          <div class="hero-card-header">
-            <span class="hero-card-dot" aria-hidden="true"></span>
-            <span>Two specialties · one crew</span>
-          </div>
-
-          <div class="hero-card-item">
-            <div class="ic ic-camera" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7 16 12 23 17V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-            </div>
-            <div>
-              <h2>Camera Security</h2>
-              <p>IP surveillance, NVR systems, doorbells, and remote viewing — designed for footage you'll actually use.</p>
-            </div>
-          </div>
-
-          <div class="hero-card-divider" aria-hidden="true"></div>
-
-          <div class="hero-card-item">
-            <div class="ic ic-network" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-            </div>
-            <div>
-              <h2>Network Security</h2>
-              <p>Firewalls, segmentation, Wi-Fi, and structured cabling — built right and documented properly.</p>
-            </div>
-          </div>
+        <aside class="hero-card">
+          <h3>What makes LiveWire different?</h3>
+          <ul class="check-list">
+            <li><span class="check">✓</span><span>Camera installs designed around the network, not guessed after the fact.</span></li>
+            <li><span class="check">✓</span><span>Wi-Fi, switches, firewalls, VLANs, and remote access configured correctly.</span></li>
+            <li><span class="check">✓</span><span>Clear documentation so you are not locked into us or anyone else.</span></li>
+            <li><span class="check">✓</span><span>Local service from experienced engineers, not a rotating call center.</span></li>
+          </ul>
         </aside>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- VENDOR STRIP -->
-  <div class="vendors" aria-label="Platforms we deploy">
-    <div class="container">
-      <span class="vendors-label">Multi-vendor by design · we deploy what fits, not what we sell most of</span>
-      <div class="vendors-list">
-        <span class="vendor">Ubiquiti</span>
-        <span class="vendor-sep" aria-hidden="true"></span>
-        <span class="vendor">Cisco</span>
-        <span class="vendor-sep" aria-hidden="true"></span>
-        <span class="vendor">Palo Alto</span>
-        <span class="vendor-sep" aria-hidden="true"></span>
-        <span class="vendor">Fortinet</span>
-        <span class="vendor-sep" aria-hidden="true"></span>
-        <span class="vendor">SonicWall</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- THE DIFFERENCE -->
-  <section id="difference" aria-labelledby="diff-heading">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="tag">What's different</span>
-          <h2 id="diff-heading">Built to sit in the gap nobody else fills.</h2>
-        </div>
-        <p>
-          Most shops in Fort Wayne are either camera-first installers who treat the network as an afterthought, or IT shops who treat cameras as a side service. We're built for the work that lives in the middle — and we run our business differently because of it.
-        </p>
-      </div>
-
-      <div class="diff-grid">
-        <article class="diff-card">
-          <div class="diff-num" aria-hidden="true">01</div>
-          <h3>No required monitoring contracts</h3>
-          <p>Most security companies tie you into 36-month monitoring agreements with hidden auto-renewals. We sell you a system you own outright — recordings stay on your NVR, alerts go to your phone, and if you want professional monitoring later, you can add it. Or not. Your call.</p>
-        </article>
-
-        <article class="diff-card">
-          <div class="diff-num" aria-hidden="true">02</div>
-          <h3>Cameras AND networks. One discipline.</h3>
-          <p>Modern IP cameras are network devices. Most installers don't VLAN-segment them, don't harden the NVR, and don't set up remote access properly — so the system that looked great on installation day becomes a security risk later. We engineer both halves at once because we have to.</p>
-        </article>
-
-        <article class="diff-card">
-          <div class="diff-num" aria-hidden="true">03</div>
-          <h3>Senior engineer on every job</h3>
-          <p>No junior installers under a senior who shows up for the sales call and disappears. The person who quotes your project is the person doing the work. 60+ years of combined enterprise IT and security experience, on your job site.</p>
-        </article>
-
-        <article class="diff-card">
-          <div class="diff-num" aria-hidden="true">04</div>
-          <h3>Vendor-neutral, no margin games</h3>
-          <p>Most companies push the one brand they get the best margin on. We're fluent across five firewall platforms and multiple camera systems. We recommend what fits your environment and budget — not what pays us the most.</p>
-        </article>
-
-        <article class="diff-card">
-          <div class="diff-num" aria-hidden="true">05</div>
-          <h3>Documentation you actually get</h3>
-          <p>Network diagrams, camera placement maps, equipment list with model and serial numbers, credentials, warranty info. Everything in a binder — physical and digital — handed to you at walk-through. The next technician will thank us.</p>
-        </article>
-
-        <article class="diff-card">
-          <div class="diff-num" aria-hidden="true">06</div>
-          <h3>90-day follow-up included</h3>
-          <p>Most shops vanish once the invoice is paid. We come back at 90 days for a free system check — verify recordings, review storage usage, tune alert sensitivity, and answer anything you've thought of since. Included in every install.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES (Two Pillars) -->
-  <section id="services" aria-labelledby="services-heading">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="tag">Services</span>
-          <h2 id="services-heading">Two specialties. Done well.</h2>
-        </div>
-        <p>
-          We deliberately focus on camera security and network security — and nothing else. That's why we can do them at a level most generalists can't.
-        </p>
-      </div>
-
-      <div class="pillars">
-
-        <article class="pillar pillar-camera">
-          <header class="pillar-head">
-            <div class="pillar-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7 16 12 23 17V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-            </div>
-            <div>
-              <span class="pillar-tag">Pillar 1</span>
-              <h3>Camera Security</h3>
-              <p>Surveillance that catches what you need it to — proper camera selection, placement, recording, and remote viewing.</p>
-            </div>
-          </header>
-
-          <ul class="pillar-list">
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>IP camera systems</strong>
-                <span>2K and 4K cameras with proper night vision and weatherproofing for homes, shops, and outbuildings.</span>
-              </div>
-            </li>
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>NVR &amp; storage</strong>
-                <span>Local recording sized to your retention needs. No mandatory cloud subscriptions, no recordings hostage to a service.</span>
-              </div>
-            </li>
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>Doorbell &amp; entry cameras</strong>
-                <span>Front-door, gate, and entry coverage that lives in the same app as everything else.</span>
-              </div>
-            </li>
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>Remote viewing &amp; alerts</strong>
-                <span>Mobile and desktop apps configured properly, with sensible motion zones — not 200 notifications a day.</span>
-              </div>
-            </li>
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>Existing system upgrades</strong>
-                <span>Replace failing cameras, expand coverage, or migrate to a better platform — without ripping out everything.</span>
-              </div>
-            </li>
-          </ul>
-
-          <div class="pillar-foot">
-            <span>Residential &amp; commercial</span>
-            <a href="#contact">Get a quote →</a>
-          </div>
-        </article>
-
-        <article class="pillar pillar-network">
-          <header class="pillar-head">
-            <div class="pillar-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-            </div>
-            <div>
-              <span class="pillar-tag">Pillar 2</span>
-              <h3>Network Security</h3>
-              <p>Wi-Fi, firewalls, switching, and cabling that hold up under real use — and are documented well enough for the next tech.</p>
-            </div>
-          </header>
-
-          <ul class="pillar-list">
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>Firewalls &amp; threat protection</strong>
-                <span>Multi-vendor expertise across Palo Alto, Fortinet, SonicWall, and Cisco — proper rules, NAT, and threat prevention.</span>
-              </div>
-            </li>
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>Wi-Fi design &amp; install</strong>
-                <span>Whole-home and whole-building wireless that reaches every corner. Ubiquiti UniFi and Cisco Meraki specialists.</span>
-              </div>
-            </li>
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>Network segmentation</strong>
-                <span>VLANs and access controls that separate guest, IoT, staff, cameras, and POS — so one device can't take down the rest.</span>
-              </div>
-            </li>
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>Structured cabling</strong>
-                <span>Clean Cat6 / Cat6A and fiber runs, labeled and tested. The kind of work an electrician compliments.</span>
-              </div>
-            </li>
-            <li>
-              <span class="li-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div>
-                <strong>VPN &amp; remote access</strong>
-                <span>Site-to-site and client VPNs that actually stay up — IPSec, SSL, and ZTNA done right.</span>
-              </div>
-            </li>
-          </ul>
-
-          <div class="pillar-foot">
-            <span>Residential &amp; commercial</span>
-            <a href="#contact">Get a quote →</a>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- TECHNOLOGY -->
-  <section id="technology" aria-labelledby="tech-heading">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="tag">Technology</span>
-          <h2 id="tech-heading">The platforms we deploy.</h2>
-        </div>
-        <p>
-          We're multi-vendor on purpose. We recommend what fits your environment and budget — not whatever pays the biggest referral fee.
-        </p>
-      </div>
-
-      <div class="vendor-grid">
-        <article class="vendor-card">
-          <div class="vendor-mark">UI</div>
-          <h3>Ubiquiti</h3>
-          <p class="vendor-role">Wi-Fi · Switching · Cameras</p>
-          <p>Our go-to for small business and residential. UniFi keeps Wi-Fi, switches, cameras, and door access in one app — without per-device licensing.</p>
-          <div class="vendor-tags">
-            <span>UniFi Network</span>
-            <span>UniFi Protect</span>
-            <span>UniFi Access</span>
-          </div>
-        </article>
-
-        <article class="vendor-card">
-          <div class="vendor-mark">CI</div>
-          <h3>Cisco</h3>
-          <p class="vendor-role">Switching · Routing · Wi-Fi</p>
-          <p>Enterprise-grade for multi-site businesses where uptime and SLA matter. Strong fit for Meraki's cloud-managed simplicity at scale.</p>
-          <div class="vendor-tags">
-            <span>Catalyst</span>
-            <span>Meraki</span>
-            <span>ISR / ASR</span>
-          </div>
-        </article>
-
-        <article class="vendor-card">
-          <div class="vendor-mark">PA</div>
-          <h3>Palo Alto</h3>
-          <p class="vendor-role">Next-gen firewalls</p>
-          <p>When threat prevention has to be best-in-class. We deploy and tune Palo Alto for organizations that take security seriously.</p>
-          <div class="vendor-tags">
-            <span>PA-Series</span>
-            <span>Panorama</span>
-            <span>GlobalProtect</span>
-          </div>
-        </article>
-
-        <article class="vendor-card">
-          <div class="vendor-mark">FN</div>
-          <h3>Fortinet</h3>
-          <p class="vendor-role">Firewalls · Secure SD-WAN</p>
-          <p>Excellent price-to-performance for SMBs that need real next-gen firewall features without enterprise pricing.</p>
-          <div class="vendor-tags">
-            <span>FortiGate</span>
-            <span>FortiAP</span>
-            <span>FortiSwitch</span>
-          </div>
-        </article>
-
-        <article class="vendor-card">
-          <div class="vendor-mark">SW</div>
-          <h3>SonicWall</h3>
-          <p class="vendor-role">Firewalls for small business</p>
-          <p>Solid, dependable firewalling for small offices and retail. We're well-versed in SonicOS — proper policy, content filtering, VPN.</p>
-          <div class="vendor-tags">
-            <span>TZ-Series</span>
-            <span>NSa-Series</span>
-            <span>Capture Client</span>
-          </div>
-        </article>
-
-        <article class="vendor-card vendor-card-cta">
-          <div class="vendor-mark vendor-mark-plus">+</div>
-          <h3>Not sure which fits?</h3>
-          <p class="vendor-role">We'll help you decide</p>
-          <p>Every environment is different. We assess your space, traffic, and budget — then recommend the platform that fits, not the one we'd rather sell.</p>
-          <a class="vendor-link" href="#contact">Talk to an engineer →</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHO WE SERVE -->
-  <section id="serve" aria-labelledby="serve-heading">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="tag">Who we serve</span>
-          <h2 id="serve-heading">Small business — and the homes of the people who run them.</h2>
-        </div>
-        <p>
-          Same standards, same crew, residential or commercial. We work with owners, families, and property managers who want it set up properly the first time.
-        </p>
-      </div>
-
-      <div class="serve-grid">
-        <div class="serve-card serve-commercial">
-          <div class="serve-card-head">
-            <div class="serve-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 13v.01M9 17v.01"/></svg>
-            </div>
-            <div>
-              <span class="serve-tag">Commercial</span>
-              <h3>Small business &amp; commercial</h3>
-            </div>
-          </div>
-          <p>From a single retail location to a small office park — simple, documented, and easy for the next person to support.</p>
-          <ul>
-            <li>Retail shops &amp; restaurants</li>
-            <li>Professional offices (legal, medical, dental)</li>
-            <li>Warehouses &amp; light industrial</li>
-            <li>Auto shops &amp; service businesses</li>
-            <li>Property managers &amp; multi-unit landlords</li>
-          </ul>
-        </div>
-
-        <div class="serve-card serve-residential">
-          <div class="serve-card-head">
-            <div class="serve-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
-            <div>
-              <span class="serve-tag">Residential</span>
-              <h3>Homes &amp; properties</h3>
-            </div>
-          </div>
-          <p>Real Wi-Fi coverage, real camera footage, and clean wiring — explained in plain language.</p>
-          <ul>
-            <li>Whole-home Wi-Fi &amp; networking</li>
-            <li>Home camera &amp; doorbell systems</li>
-            <li>Garage &amp; outbuilding coverage</li>
-            <li>New construction pre-wire</li>
-            <li>Smart-home integration</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" aria-labelledby="about-heading">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="tag">About Livewire</span>
-          <h2 id="about-heading">Enterprise depth. SMB pricing. Local accountability.</h2>
-        </div>
-        <p>
-          Livewire was founded by technicians who spent careers building and securing networks for large organizations — and got tired of watching small businesses and homeowners get either overcharged or underserved.
-        </p>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-body">
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Core Services</div>
+          <h2>Start with the three services customers actually need.</h2>
           <p>
-            We bring more than <strong>60 years of combined experience</strong> from enterprise IT and security environments — the kind of work where downtime costs real money and a camera system either holds up or it doesn't. That's the bar we hold ourselves to on every job, whether it's a single home or a busy storefront.
+            We keep the offer simple: cameras that record, Wi-Fi that reaches, and networks that are secure enough
+            for real business use.
           </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card highlight">
+            <span class="tag">Most Popular</span>
+            <h3>Secure Small Business Networks</h3>
+            <p>
+              For businesses that need more than a basic router from a big-box store.
+            </p>
+            <ul class="service-list">
+              <li>Firewall setup or replacement</li>
+              <li>Guest, camera, and business VLANs</li>
+              <li>VPN or secure remote access</li>
+              <li>POS and office network separation</li>
+              <li>Network diagrams and admin handoff</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Whole-Building Wi-Fi</h3>
+            <p>
+              For homes, offices, garages, barns, outbuildings, and small businesses with weak or unreliable coverage.
+            </p>
+            <ul class="service-list">
+              <li>Access point planning</li>
+              <li>Switch and cabling cleanup</li>
+              <li>Guest Wi-Fi setup</li>
+              <li>Coverage improvements</li>
+              <li>Secure passwords and documentation</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Business Camera Systems</h3>
+            <p>
+              For offices, shops, restaurants, warehouses, farms, churches, and property managers that need reliable footage.
+            </p>
+            <ul class="service-list">
+              <li>Camera placement planning</li>
+              <li>NVR setup and remote viewing</li>
+              <li>Clean cable routes and labeling</li>
+              <li>Network separation for camera traffic</li>
+              <li>Basic user training and handoff</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="fit" class="dark-band">
+      <div class="container fit-grid">
+        <div class="section-head">
+          <div class="eyebrow">Best Fit</div>
+          <h2>Built for small businesses and serious property owners.</h2>
           <p>
-            What you get is straightforward: an honest assessment, a written quote with no mystery line items, a clean install you can be proud of, and someone who answers the phone when you call. We don't subcontract the work, we don't disappear after the invoice is paid, and we don't lock you into monitoring contracts.
+            We are not trying to be a national alarm company. We are local, practical, and focused on systems that work.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="fit-box">
+            <h3>Small Businesses</h3>
+            <p>Restaurants, offices, warehouses, retail shops, auto shops, medical offices, and professional services.</p>
+          </div>
+
+          <div class="fit-box">
+            <h3>Property Managers</h3>
+            <p>Multi-building sites, storage areas, parking lots, maintenance buildings, and shared office spaces.</p>
+          </div>
+
+          <div class="fit-box">
+            <h3>Residential Properties</h3>
+            <p>Large homes, detached garages, barns, long driveways, rural properties, and weak Wi-Fi areas.</p>
+          </div>
+
+          <div class="fit-box">
+            <h3>Existing Messes</h3>
+            <p>Half-working cameras, unlabeled cables, bad Wi-Fi, exposed passwords, and networks nobody documented.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Why It Matters</div>
+          <h2>A camera system is only as good as the network behind it.</h2>
+          <p>
+            Many camera installs fail because the installer treats the network as an afterthought. We plan the cameras,
+            cabling, switches, storage, remote access, and security together from the start.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>No Contract Trap</h3>
+            <p>
+              We do not require a long-term monitoring contract. You own the system, the equipment, and the documentation.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Clean Handoff</h3>
+            <p>
+              You receive camera locations, equipment details, network notes, passwords, and warranty information.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Engineer-Led Setup</h3>
+            <p>
+              Cameras, Wi-Fi, firewalls, and VLANs are configured with reliability and security in mind.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="dark-band process">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Simple Process</div>
+          <h2>Clear steps. No pressure. No mystery quote.</h2>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Free Assessment</h3>
+            <p>
+              We walk the site, discuss your problem areas, check network conditions, and identify the right approach.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Written Quote</h3>
+            <p>
+              You get a clear scope with recommended equipment, labor, options, and what is included in the handoff.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Clean Installation</h3>
+            <p>
+              We install, configure, label, test, document, and show you how to use the system before we leave.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Proof & Trust</div>
+          <h2>Add real project proof before heavy advertising.</h2>
+          <p>
+            Replace these placeholders with actual install photos, rack cleanup photos, sample diagrams, and short project examples.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="proof-placeholder">
+            <div>
+              <strong>Project Photo Placeholder</strong><br />
+              Add a clean camera install, rack cleanup, or access point photo.
+            </div>
+          </div>
+
+          <div class="proof-placeholder">
+            <div>
+              <strong>Sample Documentation Placeholder</strong><br />
+              Add a camera map, network diagram, or handoff binder photo.
+            </div>
+          </div>
+
+          <div class="proof-placeholder">
+            <div>
+              <strong>Case Study Placeholder</strong><br />
+              Example: “Local shop improved parking lot camera coverage and guest Wi-Fi.”
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.2rem;" class="warning-box">
+          <strong>Important:</strong> Only use claims like “licensed,” “insured,” “bonded,” or “certified” after you verify they are accurate for your business, location, and services.
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="dark-band">
+      <div class="container contact-wrap">
+        <div class="contact-panel">
+          <div class="eyebrow">Free Assessment</div>
+          <h2>Tell us what is not working.</h2>
+          <p>
+            Slow network? Bad Wi-Fi? No firewall? Cameras on the wrong VLAN? We fix it.
           </p>
 
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-v">60<small>+</small></div>
-              <div class="stat-l">Years combined<br>experience</div>
-            </div>
-            <div class="stat">
-              <div class="stat-v">500<small>+</small></div>
-              <div class="stat-l">Drops &amp; installs<br>completed</div>
-            </div>
-            <div class="stat">
-              <div class="stat-v">100%</div>
-              <div class="stat-l">In-house<br>crew</div>
-            </div>
-            <div class="stat">
-              <div class="stat-v">1-Yr</div>
-              <div class="stat-l">Workmanship<br>warranty</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="principles">
-          <h3>How we work</h3>
-          <ol>
-            <li>
-              <span class="num" aria-hidden="true">01</span>
-              <div>
-                <h4>Free on-site assessment</h4>
-                <p>We walk the space, ask the right questions, and listen. No high-pressure sales.</p>
-              </div>
-            </li>
-            <li>
-              <span class="num" aria-hidden="true">02</span>
-              <div>
-                <h4>Written, itemized quote</h4>
-                <p>Equipment, labor, and timeline spelled out. Options at different price points.</p>
-              </div>
-            </li>
-            <li>
-              <span class="num" aria-hidden="true">03</span>
-              <div>
-                <h4>Clean, documented install</h4>
-                <p>Labeled cables, neat racks, and a wiring diagram you can hand to the next tech.</p>
-              </div>
-            </li>
-            <li>
-              <span class="num" aria-hidden="true">04</span>
-              <div>
-                <h4>90-day follow-up</h4>
-                <p>Free system check at 90 days — verify, tune, train, answer questions. Included.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA BANNER -->
-  <section class="cta-section" aria-labelledby="cta-heading">
-    <div class="container">
-      <div class="cta-banner">
-        <div>
-          <span class="tag">Ready when you are</span>
-          <h2 id="cta-heading">Free on-site assessment. No contracts. No pressure.</h2>
-          <p>We'll walk your space, listen to what you need, and put together a clear written quote. Most assessments scheduled within the same week.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="btn btn-primary btn-lg" href="#contact">Schedule mine</a>
-          <a class="btn btn-outline btn-lg" href="tel:+12605550142">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.91.37 1.81.72 2.66a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.42-1.42a2 2 0 0 1 2.11-.45c.85.35 1.75.6 2.66.72A2 2 0 0 1 22 16.92z"/></svg>
-            (260) 555-0142
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" aria-labelledby="contact-heading">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="tag">Get in touch</span>
-          <h2 id="contact-heading">Tell us about your space and what you're trying to solve.</h2>
-        </div>
-        <p>
-          Send a note or give us a call. We respond to every inquiry within one business day and will let you know honestly whether we're a fit before scheduling anything.
-        </p>
-      </div>
-
-      <div class="contact-grid">
-        <div class="contact-info">
           <ul class="contact-list">
-            <li>
-              <span class="k">Phone</span>
-              <a class="v" href="tel:+12605550142">(260) 555-0142</a>
-            </li>
-            <li>
-              <span class="k">Email</span>
-              <a class="v" href="mailto:hello@livewirenetworksolutions.com">hello@livewirenetworksolutions.com</a>
-            </li>
-            <li>
-              <span class="k">Hours</span>
-              <span class="v">Mon – Fri · 8a – 6p<br>Sat by appointment</span>
-            </li>
-            <li>
-              <span class="k">Service area</span>
-              <span class="v">Fort Wayne &amp; surrounding<br>Northeast Indiana</span>
-            </li>
+            <li>Fort Wayne and Northeast Indiana service area</li>
+            <li>Business and serious residential projects</li>
+            <li>No required monitoring contracts</li>
+            <li>Written quote before work begins</li>
           </ul>
-          <div class="badges">
-            <span class="badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Licensed &amp; insured
-            </span>
-            <span class="badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              Locally owned
-            </span>
-            <span class="badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              No contracts
-            </span>
-          </div>
+
+          <p>
+            <strong>Phone:</strong> <a href="tel:+12600000000">(260) 000-0000</a><br />
+            <strong>Email:</strong> <a href="mailto:info@livewirenetworksolutions.com">info@livewirenetworksolutions.com</a>
+          </p>
         </div>
 
-        <form class="contact" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
-          <input type="hidden" name="form-name" value="contact" />
-          <p class="hp"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
-
-          <fieldset class="field">
-            <legend>Project type</legend>
-            <div class="radio-group">
-              <label><input type="radio" name="project_type" value="Residential" checked /><span>Residential</span></label>
-              <label><input type="radio" name="project_type" value="Commercial" /><span>Commercial</span></label>
-              <label><input type="radio" name="project_type" value="Not sure" /><span>Not sure</span></label>
-            </div>
-          </fieldset>
-
-          <div class="row-2">
-            <div class="field">
+        <div class="contact-panel">
+          <!-- 
+            Replace action="#" with your real form endpoint.
+            Examples:
+            Squarespace form block, Formspree, Netlify Forms, HubSpot, or custom backend.
+          -->
+          <form action="#" method="post">
+            <div>
               <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your full name" autocomplete="name" required />
+              <input id="name" name="name" type="text" autocomplete="name" required />
             </div>
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" placeholder="(___) ___-____" autocomplete="tel" />
-            </div>
-          </div>
 
-          <div class="row-2">
-            <div class="field">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required />
             </div>
-            <div class="field">
-              <label for="interest">Interest</label>
-              <select id="interest" name="interest">
-                <option>Camera security</option>
-                <option>Network security / Wi-Fi</option>
-                <option>Firewall</option>
-                <option>Structured cabling</option>
-                <option>Full system / not sure yet</option>
+
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+
+            <div>
+              <label for="project">What do you need help with?</label>
+              <select id="project" name="project" required>
+                <option value="">Select one</option>
+                <option>Business camera system</option>
+                <option>Whole-building Wi-Fi</option>
+                <option>Secure small business network</option>
+                <option>Cabling or cleanup</option>
+                <option>Existing system troubleshooting</option>
+                <option>Not sure yet</option>
               </select>
             </div>
-          </div>
 
-          <div class="field">
-            <label for="msg">A few details</label>
-            <textarea id="msg" name="message" placeholder="A sentence or two about the space and what you'd like to solve." required></textarea>
-          </div>
+            <div>
+              <label for="details">Project details</label>
+              <textarea id="details" name="details" placeholder="Tell us about the building, problem areas, number of cameras, Wi-Fi issues, or existing equipment."></textarea>
+            </div>
 
-          <button class="btn btn-primary btn-block" type="submit">
-            Request my free assessment
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
+            <button class="btn btn-primary" type="submit">Request Free Assessment</button>
 
-</main>
-
-<footer>
-  <div class="container">
-    <div class="foot-main">
-      <div class="foot-brand-block">
-        <div class="foot-brand">
-          <span class="foot-brand-mark" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-2 8 10-13h-7l1-7z"/></svg>
-          </span>
-          Livewire Network Solutions
+            <p class="form-note">
+              No spam. No sales pressure. We will respond within one business day.
+            </p>
+          </form>
         </div>
-        <p>Camera and network security for homes and small businesses across Northeast Indiana. No contracts. Senior engineers on every job.</p>
       </div>
+    </section>
 
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
       <div>
-        <h5>Services</h5>
-        <ul>
-          <li><a href="#services">Camera Security</a></li>
-          <li><a href="#services">Network Security</a></li>
-          <li><a href="#services">Wi-Fi &amp; Cabling</a></li>
-          <li><a href="#services">Firewalls</a></li>
-        </ul>
+        © <span id="year"></span> LiveWire Network Solutions. All rights reserved.
       </div>
-
       <div>
-        <h5>Platforms</h5>
-        <ul>
-          <li><a href="#technology">Ubiquiti</a></li>
-          <li><a href="#technology">Cisco</a></li>
-          <li><a href="#technology">Palo Alto · Fortinet</a></li>
-          <li><a href="#technology">SonicWall</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h5>Contact</h5>
-        <ul>
-          <li><a href="tel:+12605550142">(260) 555-0142</a></li>
-          <li><a href="mailto:hello@livewirenetworksolutions.com">hello@livewirenetworksolutions.com</a></li>
-          <li>Fort Wayne, IN</li>
-        </ul>
+        Fort Wayne, Indiana · Camera Systems · Wi-Fi · Network Security
       </div>
     </div>
-    <div class="copyright">
-      <span>© <span id="year">2026</span> Livewire Network Solutions. All rights reserved.</span>
-      <span>Locally owned · Northeast Indiana</span>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('navMenu');
+      nav.classList.toggle('open');
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const lenis = new Lenis({
+      duration: 1.25,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+      smoothWheel: true,
+      smoothTouch: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const target = document.querySelector(link.hash);
+        if (target) {
+          event.preventDefault();
+          lenis.scrollTo(target, { offset: -84, duration: 1.2 });
+        }
+      });
+    });
+
+    const heroHeadline = document.querySelector('.hero h1');
+    const heroSplit = new SplitText(heroHeadline, { type: 'chars', charsClass: 'char' });
+    gsap.set(heroSplit.chars, { opacity: 0, y: 40, rotationX: 20, transformOrigin: '0% 50% -50px' });
+
+    const heroTimeline = gsap.timeline();
+    heroTimeline
+      .from('.hero .eyebrow', { opacity: 0, y: 16, duration: 0.65, ease: 'power3.out' })
+      .to(heroSplit.chars, { opacity: 1, y: 0, rotationX: 0, duration: 0.8, ease: 'power3.out', stagger: 0.02 }, '-=0.35')
+      .from('.hero p', { opacity: 0, y: 24, duration: 0.75, ease: 'power3.out' }, '-=0.45')
+      .from('.hero-actions', { opacity: 0, y: 24, duration: 0.75, ease: 'power3.out' }, '-=0.55')
+      .from('.trust-pill', { opacity: 0, y: 24, duration: 0.75, ease: 'power3.out', stagger: 0.08 }, '-=0.65')
+      .from('.hero-card', { opacity: 0, y: 32, duration: 0.85, ease: 'power3.out' }, '-=0.8');
+
+    const heroCounters = gsap.utils.toArray('.hero .counter');
+    heroCounters.forEach((counter) => {
+      const target = parseInt(counter.dataset.target || '0', 10);
+      const suffix = counter.dataset.suffix || '';
+      gsap.fromTo({ value: 0 }, { value: target, duration: 1.2, ease: 'power3.out', onUpdate() {
+        counter.textContent = Math.floor(this.targets()[0].value).toLocaleString() + suffix;
+      } });
+    });
+
+    const headings = gsap.utils.toArray('section h2');
+    headings.forEach((heading) => {
+      const split = new SplitText(heading, { type: 'chars', charsClass: 'char' });
+      gsap.set(split.chars, { opacity: 0, y: 30, rotationX: 20, transformOrigin: '0% 50% -50px' });
+      gsap.to(split.chars, {
+        opacity: 1,
+        y: 0,
+        rotationX: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.03,
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 95%',
+          once: true,
+        },
+      });
+    });
+
+    const revealBlocks = gsap.utils.toArray('.card, .fit-box, .proof-placeholder, .contact-panel');
+    revealBlocks.forEach((block) => {
+      gsap.from(block, {
+        opacity: 0,
+        y: 28,
+        duration: 0.85,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: block,
+          start: 'top 95%',
+          once: true,
+        },
+      });
+    });
+
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+    let canvasWidth = 0;
+    let canvasHeight = 0;
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvasWidth = rect.width;
+      canvasHeight = rect.height;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function createParticles() {
+      particles.length = 0;
+      const count = Math.max(24, Math.min(40, Math.floor(canvasWidth / 30)));
+      for (let i = 0; i < count; i += 1) {
+        particles.push({
+          x: Math.random() * canvasWidth,
+          y: Math.random() * canvasHeight,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          radius: 1.2 + Math.random() * 1.8,
+          phase: Math.random() * Math.PI * 2,
+        });
+      }
+    }
+
+    function drawBackground() {
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+      ctx.strokeStyle = 'rgba(33,212,163,0.12)';
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < particles.length; i += 1) {
+        const p = particles[i];
+        for (let j = i + 1; j < particles.length; j += 1) {
+          const q = particles[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 120) {
+            ctx.globalAlpha = 1 - dist / 120;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      particles.forEach((particle) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.phase += 0.04;
+        const pulse = 0.3 + Math.sin(particle.phase) * 0.3;
+        const radius = particle.radius * pulse;
+
+        if (particle.x < -20) particle.x = canvasWidth + 20;
+        if (particle.x > canvasWidth + 20) particle.x = -20;
+        if (particle.y < -20) particle.y = canvasHeight + 20;
+        if (particle.y > canvasHeight + 20) particle.y = -20;
+
+        ctx.globalAlpha = 0.9;
+        ctx.fillStyle = 'rgba(33,212,163,0.14)';
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+    }
+
+    function animateCanvas() {
+      drawBackground();
+      requestAnimationFrame(animateCanvas);
+    }
+
+    function initCanvas() {
+      resizeCanvas();
+      createParticles();
+      animateCanvas();
+    }
+
+    initCanvas();
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createParticles();
+    });
+  </script>
+
 </body>
 </html>
