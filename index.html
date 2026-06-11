@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>LiveWire Network Solutions | Network Security, Wi-Fi Infrastructure & Firewall Services in Fort Wayne</title>
+  <title>LiveWire Network Solutions | Network Security • Wi-Fi • Optimization • Camera Systems in Fort Wayne</title>
 
-  <meta name="description" content="LiveWire Network Solutions builds secure networks, firewalls, VLANs, and Wi-Fi infrastructure for Fort Wayne businesses. Expert network design, clean documentation, and reliable systems." />
+  <meta name="description" content="LiveWire Network Solutions delivers network security, Wi-Fi, optimization, and camera systems for Fort Wayne businesses. Expert audits, firewall tuning, clean documentation, and reliable infrastructure." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -319,6 +319,13 @@
       color: var(--text);
     }
 
+    .trust-pill .check {
+      color: var(--accent);
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
     .hero-card {
       background: linear-gradient(180deg, var(--panel), #0a171d);
       border: 1px solid var(--line);
@@ -467,29 +474,6 @@
       margin-bottom: 1rem;
     }
 
-    .proof-placeholder {
-      min-height: 240px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      background:
-        linear-gradient(rgba(7,16,20,0.84), rgba(7,16,20,0.84)),
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 12px);
-      border: 1px dashed rgba(255,255,255,0.24);
-      border-radius: var(--radius);
-      color: var(--muted);
-      padding: 1.2rem;
-    }
-
-    .warning-box {
-      background: rgba(255, 209, 102, 0.1);
-      border: 1px solid rgba(255, 209, 102, 0.35);
-      border-radius: var(--radius);
-      padding: 1rem 1.2rem;
-      color: #ffe4a3;
-      font-size: 0.95rem;
-    }
-
     .contact-wrap {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
@@ -561,11 +545,11 @@
       align-items: baseline;
     }
 
-    .trust-pill strong.counter {
+    .trust-pill .check {
       color: var(--accent);
-      font-size: 1.45rem;
-      line-height: 1.05;
-      font-weight: 900;
+      font-size: 1.25rem;
+      line-height: 1;
+      font-weight: 700;
       display: block;
     }
 
@@ -596,7 +580,6 @@
     .card,
     .hero-card,
     .fit-box,
-    .proof-placeholder,
     .contact-panel {
       position: relative;
       overflow: hidden;
@@ -606,7 +589,6 @@
     .card::before,
     .hero-card::before,
     .fit-box::before,
-    .proof-placeholder::before,
     .contact-panel::before {
       content: '';
       position: absolute;
@@ -622,7 +604,6 @@
     .card:hover::before,
     .hero-card:hover::before,
     .fit-box:hover::before,
-    .proof-placeholder:hover::before,
     .contact-panel:hover::before {
       background: rgba(33,212,163,0.95);
       box-shadow: 0 0 18px rgba(33,212,163,0.45);
@@ -631,7 +612,6 @@
     .card:hover,
     .hero-card:hover,
     .fit-box:hover,
-    .proof-placeholder:hover,
     .contact-panel:hover {
       transform: translateY(-6px);
       border-color: rgba(33,212,163,0.55);
@@ -679,6 +659,194 @@
       margin: 0;
     }
 
+    /* Stats Strip Section */
+    .stats-strip {
+      background: #061015;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 3rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      color: var(--accent);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    /* FAQ/Accordion Section */
+    .faq-section {
+      padding: 4.5rem 0;
+    }
+
+    .faq-grid {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      margin-bottom: 0.9rem;
+      overflow: hidden;
+      transition: border-color 0.28s ease;
+    }
+
+    .faq-item.open {
+      border-color: rgba(33, 212, 163, 0.45);
+      box-shadow: 0 0 20px rgba(33, 212, 163, 0.08);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      padding: 1.3rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-family: inherit;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+      transition: color 0.2s ease;
+    }
+
+    .accordion-trigger:hover {
+      color: var(--accent);
+    }
+
+    .accordion-trigger::after {
+      content: '';
+      flex: 0 0 auto;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+      font-weight: 900;
+    }
+
+    .faq-item.open .accordion-trigger::after {
+      transform: rotate(180deg);
+    }
+
+    .accordion-trigger::after {
+      content: '↓';
+      font-size: 1.1rem;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .accordion-content.open {
+      max-height: 500px;
+      padding: 0 1.3rem 1.3rem;
+    }
+
+    .accordion-content p {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Timeline Section */
+    .timeline-section {
+      position: relative;
+      padding: 4.5rem 0;
+    }
+
+    .timeline-container {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, rgba(33, 212, 163, 0.2) 0%, var(--accent) 50%, rgba(33, 212, 163, 0.2) 100%);
+      z-index: 0;
+    }
+
+    .timeline-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+      margin-top: 4rem;
+    }
+
+    .timeline-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--accent), #5ce6c0);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #04100d;
+      box-shadow: 0 0 32px rgba(33, 212, 163, 0.25);
+      border: 3px solid var(--bg);
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-icon {
+      font-size: 2.4rem;
+    }
+
+    .timeline-step h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-step p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
     footer {
       padding: 2rem 0;
       border-top: 1px solid var(--line);
@@ -693,12 +861,118 @@
       flex-wrap: wrap;
     }
 
+    .success-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      background: linear-gradient(180deg, rgba(13, 27, 34, 0.98), rgba(7, 16, 20, 0.98));
+      border: 1px solid rgba(33, 212, 163, 0.45);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      text-align: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      max-width: 420px;
+      width: 90%;
+    }
+
+    .success-message.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .success-message h3 {
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      font-size: 1.4rem;
+    }
+
+    .success-message p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .success-message::before {
+      content: '✓';
+      display: block;
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* Problems Section */
+    .problems-section {
+      background: rgba(20, 10, 5, 0.4);
+    }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.3rem;
+    }
+
+    .problem-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--warning);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .problem-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 209, 102, 0.55);
+      box-shadow: 0 24px 60px rgba(255, 209, 102, 0.08);
+    }
+
+    .problem-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .problem-card h3 {
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0 0 0.8rem;
+      line-height: 1.3;
+    }
+
+    .problem-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .problems-cta {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+
+    .problems-cta p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+
     @media (max-width: 900px) {
       .hero-grid,
       .grid-3,
       .grid-2,
       .fit-grid,
-      .contact-wrap {
+      .contact-wrap,
+      .stats-grid,
+      .timeline-steps,
+      .problems-grid {
         grid-template-columns: 1fr;
       }
 
@@ -725,6 +999,14 @@
       .nav {
         flex-wrap: wrap;
       }
+
+      .timeline-line {
+        display: none;
+      }
+
+      .timeline-step {
+        margin-top: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -733,8 +1015,8 @@
 
   <div class="top-bar">
     <div class="container">
-      <div><strong>Fort Wayne & Northeast Indiana</strong> camera systems, Wi-Fi, cabling, and small business networks.</div>
-      <div>Call: <strong><a href="tel:+12600000000">(260) 000-0000</a></strong></div>
+      <div><strong>Fort Wayne & Northeast Indiana</strong> network security, Wi-Fi, optimization, and camera systems.</div>
+      <div>Call: <strong><a href="tel:+12604085500">260-408-5500</a></strong></div>
     </div>
   </div>
 
@@ -744,7 +1026,7 @@
         <div class="brand-mark">LW</div>
         <div>
           LiveWire Network Solutions
-          <span>Camera Systems · Wi-Fi · Network Security</span>
+          <span>Network Security • Wi-Fi • Optimization • Cameras</span>
         </div>
       </a>
 
@@ -754,7 +1036,7 @@
         <a href="#services">Services</a>
         <a href="#fit">Who We Help</a>
         <a href="#process">Process</a>
-        <a href="#proof">Proof</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact" class="btn btn-primary">Free Assessment</a>
       </nav>
     </div>
@@ -767,7 +1049,7 @@
       <div class="hero-pulse-line" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Network Infrastructure · Wi-Fi · Security · Cameras</div>
+          <div class="eyebrow">Network Security • Wi-Fi • Optimization • Cameras</div>
 
           <h1>Your network is your business. We build it right.</h1>
 
@@ -781,9 +1063,9 @@
           </div>
 
           <div class="trust-row">
-            <div class="trust-pill"><strong class="counter" data-target="100" data-suffix="+">0</strong><span>No required monitoring contracts</span></div>
-            <div class="trust-pill"><strong class="counter" data-target="150" data-suffix="+">0</strong><span>You own the equipment</span></div>
-            <div class="trust-pill"><strong class="counter" data-target="250" data-suffix="+">0</strong><span>Clean documented installs</span></div>
+            <div class="trust-pill"><span class="check">✓</span><span>No monitoring contracts</span></div>
+            <div class="trust-pill"><span class="check">✓</span><span>You own the equipment</span></div>
+            <div class="trust-pill"><span class="check">✓</span><span>Clean documented installs</span></div>
           </div>
         </div>
 
@@ -796,6 +1078,87 @@
             <li><span class="check">✓</span><span>Local service from experienced engineers, not a rotating call center.</span></li>
           </ul>
         </aside>
+      </div>
+    </section>
+
+    <section class="stats-strip">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number stat-counter" data-target="15" data-suffix="+">0</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number stat-counter" data-target="50" data-suffix="+">0</span>
+            <span class="stat-label">Business Installs</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">Zero</span>
+            <span class="stat-label">Monitoring Contracts Required</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" style="color: var(--muted); font-weight: 600;">Local</span>
+            <span class="stat-label">Fort Wayne Based</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="problems-section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Common Problems We Fix</div>
+          <h2>Does any of this sound familiar?</h2>
+        </div>
+
+        <div class="problems-grid">
+          <article class="problem-card">
+            <span class="problem-icon">⚠️</span>
+            <h3>Your guest Wi-Fi is on the same network as your registers</h3>
+            <p>Most small business routers put everything on one network. That means a customer on your guest Wi-Fi can potentially see your point-of-sale system.</p>
+          </article>
+
+          <article class="problem-card">
+            <span class="problem-icon">🔓</span>
+            <h3>You have no firewall — just a router from the internet provider</h3>
+            <p>ISP-provided routers have almost no security configuration. They are not firewalls. Your business data is not protected.</p>
+          </article>
+
+          <article class="problem-card">
+            <span class="problem-icon">🔐</span>
+            <h3>Nobody knows the camera password</h3>
+            <p>The installer set it up, left, and now nobody has the credentials. The cameras work until they don't — and then nobody can get in to fix them.</p>
+          </article>
+
+          <article class="problem-card">
+            <span class="problem-icon">📶</span>
+            <h3>Wi-Fi dead zones are killing productivity</h3>
+            <p>One router in the back office does not cover a 4,000 square foot building. Your employees know every dead spot by heart.</p>
+          </article>
+
+          <article class="problem-card">
+            <span class="problem-icon">👻</span>
+            <h3>You have no idea what is on your network</h3>
+            <p>Old devices, vendor tablets, employee phones, and forgotten equipment all share your business connection with zero visibility or control.</p>
+          </article>
+
+          <article class="problem-card">
+            <span class="problem-icon">📋</span>
+            <h3>Your last IT person left and took the knowledge with them</h3>
+            <p>No documentation, no passwords written down, no network map. Starting from scratch every time something breaks.</p>
+          </article>
+
+          <article class="problem-card">
+            <span class="problem-icon">🐢</span>
+            <h3>Everything works — but everything feels slow</h3>
+            <p>Slow networks are not always a hardware problem. Misconfigured routing, bloated firewall rules, and unmanaged traffic can cut your network performance in half. We find it and fix it.</p>
+          </article>
+        </div>
+
+        <div class="problems-cta">
+          <p>If you recognized even one of these, it is worth a conversation.</p>
+          <a href="#contact" class="btn btn-primary">Request Free Assessment</a>
+        </div>
       </div>
     </section>
 
@@ -838,6 +1201,13 @@
               <li>Coverage improvements</li>
               <li>Secure passwords and documentation</li>
             </ul>
+          </article>
+
+          <article class="card">
+            <h3>Network Optimization</h3>
+            <p>
+              Your network may already have the hardware to perform better. We audit traffic, eliminate bottlenecks, tune firewall rules, clean up routing, and document everything — no new equipment required.
+            </p>
           </article>
 
           <article class="card">
@@ -927,73 +1297,84 @@
       </div>
     </section>
 
-    <section id="process" class="dark-band process">
+    <section id="process" class="dark-band timeline-section">
       <div class="container">
         <div class="section-head">
           <div class="eyebrow">Simple Process</div>
           <h2>Clear steps. No pressure. No mystery quote.</h2>
         </div>
 
-        <div class="grid-3">
-          <div class="card">
-            <h3>Free Assessment</h3>
-            <p>
-              We walk the site, discuss your problem areas, check network conditions, and identify the right approach.
-            </p>
-          </div>
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          <div class="timeline-steps">
+            <div class="timeline-step">
+              <div class="step-number"><span class="step-icon">📋</span></div>
+              <h3>Free Assessment</h3>
+              <p>
+                We walk the site, discuss your problem areas, check network conditions, and identify the right approach.
+              </p>
+            </div>
 
-          <div class="card">
-            <h3>Written Quote</h3>
-            <p>
-              You get a clear scope with recommended equipment, labor, options, and what is included in the handoff.
-            </p>
-          </div>
+            <div class="timeline-step">
+              <div class="step-number"><span class="step-icon">📊</span></div>
+              <h3>Written Quote</h3>
+              <p>
+                You get a clear scope with recommended equipment, labor, options, and what is included in the handoff.
+              </p>
+            </div>
 
-          <div class="card">
-            <h3>Clean Installation</h3>
-            <p>
-              We install, configure, label, test, document, and show you how to use the system before we leave.
-            </p>
+            <div class="timeline-step">
+              <div class="step-number"><span class="step-icon">✓</span></div>
+              <h3>Clean Installation</h3>
+              <p>
+                We install, configure, label, test, document, and show you how to use the system before we leave.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="proof">
-      <div class="container">
+    <section id="faq" class="faq-section">
+      <div class="container faq-grid">
         <div class="section-head">
-          <div class="eyebrow">Proof & Trust</div>
-          <h2>Add real project proof before heavy advertising.</h2>
-          <p>
-            Replace these placeholders with actual install photos, rack cleanup photos, sample diagrams, and short project examples.
-          </p>
+          <div class="eyebrow">FAQ</div>
+          <h2>Common questions about working with LiveWire.</h2>
         </div>
 
-        <div class="grid-3">
-          <div class="proof-placeholder">
-            <div>
-              <strong>Project Photo Placeholder</strong><br />
-              Add a clean camera install, rack cleanup, or access point photo.
-            </div>
-          </div>
-
-          <div class="proof-placeholder">
-            <div>
-              <strong>Sample Documentation Placeholder</strong><br />
-              Add a camera map, network diagram, or handoff binder photo.
-            </div>
-          </div>
-
-          <div class="proof-placeholder">
-            <div>
-              <strong>Case Study Placeholder</strong><br />
-              Example: “Local shop improved parking lot camera coverage and guest Wi-Fi.”
-            </div>
+        <div class="faq-item">
+          <button class="accordion-trigger" aria-expanded="false">Do you require a monitoring contract?</button>
+          <div class="accordion-content">
+            <p>No. You own the equipment and the system. We do not lock you into monthly fees.</p>
           </div>
         </div>
 
-        <div style="margin-top: 1.2rem;" class="warning-box">
-          <strong>Important:</strong> Only use claims like “licensed,” “insured,” “bonded,” or “certified” after you verify they are accurate for your business, location, and services.
+        <div class="faq-item">
+          <button class="accordion-trigger" aria-expanded="false">What areas do you serve?</button>
+          <div class="accordion-content">
+            <p>Fort Wayne and Northeast Indiana.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="accordion-trigger" aria-expanded="false">Do you work on existing systems?</button>
+          <div class="accordion-content">
+            <p>Yes. We troubleshoot, clean up, and document existing camera, Wi-Fi, and network setups.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="accordion-trigger" aria-expanded="false">What brands do you install?</button>
+          <div class="accordion-content">
+            <p>We work with business-grade equipment from Ubiquiti, Cisco, Fortinet, Hikvision, and others depending on the project.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="accordion-trigger" aria-expanded="false">How long does an install take?</button>
+          <div class="accordion-content">
+            <p>Most small business installs are completed in one day. Larger projects are scoped and scheduled in phases.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1015,7 +1396,7 @@
           </ul>
 
           <p>
-            <strong>Phone:</strong> <a href="tel:+12600000000">(260) 000-0000</a><br />
+            <strong>Phone:</strong> <a href="tel:+12604085500">260-408-5500</a><br />
             <strong>Email:</strong> <a href="mailto:info@livewirenetworksolutions.com">info@livewirenetworksolutions.com</a>
           </p>
         </div>
@@ -1026,7 +1407,9 @@
             Examples:
             Squarespace form block, Formspree, Netlify Forms, HubSpot, or custom backend.
           -->
-          <form action="#" method="post">
+          <form name="contact" method="post" netlify>
+            <input type="hidden" name="form-name" value="contact" />
+            
             <div>
               <label for="name">Name</label>
               <input id="name" name="name" type="text" autocomplete="name" required />
@@ -1072,13 +1455,18 @@
 
   </main>
 
+  <div class="success-message" id="successMessage">
+    <h3>Thank You!</h3>
+    <p>Your assessment request has been sent. We'll respond within one business day.</p>
+  </div>
+
   <footer>
     <div class="container footer-grid">
       <div>
         © <span id="year"></span> LiveWire Network Solutions. All rights reserved.
       </div>
       <div>
-        Fort Wayne, Indiana · Camera Systems · Wi-Fi · Network Security
+        Fort Wayne, Indiana · Network Security • Wi-Fi • Optimization • Cameras
       </div>
     </div>
   </footer>
@@ -1093,6 +1481,50 @@
       const nav = document.getElementById('navMenu');
       nav.classList.toggle('open');
     }
+
+    // Accordion functionality
+    document.querySelectorAll('.accordion-trigger').forEach((trigger) => {
+      trigger.addEventListener('click', function() {
+        const faqItem = this.parentElement;
+        const isOpen = faqItem.classList.contains('open');
+        
+        // Close all other open items
+        document.querySelectorAll('.faq-item.open').forEach((item) => {
+          if (item !== faqItem) {
+            item.classList.remove('open');
+            item.querySelector('.accordion-content').classList.remove('open');
+            item.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle current item
+        if (isOpen) {
+          faqItem.classList.remove('open');
+          this.nextElementSibling.classList.remove('open');
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          faqItem.classList.add('open');
+          this.nextElementSibling.classList.add('open');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Form submission handler for Netlify
+    document.querySelector('form[name="contact"]').addEventListener('submit', function(e) {
+      // Netlify will handle the actual submission
+      // Show success message after brief delay
+      setTimeout(() => {
+        const successMsg = document.getElementById('successMessage');
+        successMsg.classList.add('show');
+        
+        // Hide after 4 seconds
+        setTimeout(() => {
+          successMsg.classList.remove('show');
+          this.reset();
+        }, 4000);
+      }, 300);
+    });
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1117,6 +1549,9 @@
         if (target) {
           event.preventDefault();
           lenis.scrollTo(target, { offset: -84, duration: 1.2 });
+          // Close mobile menu after clicking
+          const nav = document.getElementById('navMenu');
+          nav.classList.remove('open');
         }
       });
     });
@@ -1136,11 +1571,40 @@
 
     const heroCounters = gsap.utils.toArray('.hero .counter');
     heroCounters.forEach((counter) => {
-      const target = parseInt(counter.dataset.target || '0', 10);
+      const target = Number(counter.dataset.target) || 0;
       const suffix = counter.dataset.suffix || '';
-      gsap.fromTo({ value: 0 }, { value: target, duration: 1.2, ease: 'power3.out', onUpdate() {
-        counter.textContent = Math.floor(this.targets()[0].value).toLocaleString() + suffix;
-      } });
+      const counterObj = { value: 0 };
+
+      gsap.to(counterObj, {
+        value: target,
+        duration: 1.2,
+        ease: 'power3.out',
+        onUpdate() {
+          counter.textContent = Math.floor(counterObj.value).toLocaleString() + suffix;
+        },
+      });
+    });
+
+    // Stats counter animation on scroll
+    const statCounters = gsap.utils.toArray('.stat-counter');
+    statCounters.forEach((counter) => {
+      const target = Number(counter.dataset.target) || 0;
+      const suffix = counter.dataset.suffix || '';
+      const counterObj = { value: 0 };
+      
+      gsap.to(counterObj, {
+        value: target,
+        duration: 2,
+        ease: 'power3.out',
+        onUpdate() {
+          counter.textContent = Math.floor(counterObj.value).toLocaleString() + suffix;
+        },
+        scrollTrigger: {
+          trigger: counter,
+          start: 'top 90%',
+          once: true,
+        },
+      });
     });
 
     const headings = gsap.utils.toArray('section h2');
@@ -1162,7 +1626,7 @@
       });
     });
 
-    const revealBlocks = gsap.utils.toArray('.card, .fit-box, .proof-placeholder, .contact-panel');
+    const revealBlocks = gsap.utils.toArray('.card, .fit-box, .contact-panel, .timeline-step, .faq-item, .problem-card');
     revealBlocks.forEach((block) => {
       gsap.from(block, {
         opacity: 0,
