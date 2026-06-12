@@ -1386,8 +1386,8 @@
       <div class="container">
         <div class="stats-grid">
           <div class="stat-item">
-            <span class="stat-number stat-counter" data-target="15" data-suffix="+">0</span>
-            <span class="stat-label">Years Experience</span>
+            <span class="stat-number stat-counter" data-target="80" data-suffix="+">0</span>
+            <span class="stat-label">Years Combined Experience</span>
           </div>
           <div class="stat-item">
             <span class="stat-number stat-counter" data-target="50" data-suffix="+">0</span>
@@ -1793,7 +1793,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
+  <!-- SplitText removed: not available on free CDN, replaced with GSAP fade animations -->
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
   <script>
@@ -1876,14 +1876,11 @@
       });
     });
 
-    const heroHeadline = document.querySelector('.hero h1');
-    const heroSplit = new SplitText(heroHeadline, { type: 'chars', charsClass: 'char' });
-    gsap.set(heroSplit.chars, { opacity: 0, y: 40, rotationX: 20, transformOrigin: '0% 50% -50px' });
-
+    // Hero timeline — no SplitText, clean GSAP fade-up animations
     const heroTimeline = gsap.timeline();
     heroTimeline
       .from('.hero .eyebrow', { opacity: 0, y: 16, duration: 0.65, ease: 'power3.out' })
-      .to(heroSplit.chars, { opacity: 1, y: 0, rotationX: 0, duration: 0.8, ease: 'power3.out', stagger: 0.02 }, '-=0.35')
+      .from('.hero h1', { opacity: 0, y: 40, duration: 0.85, ease: 'power3.out' }, '-=0.35')
       .from('.hero p', { opacity: 0, y: 24, duration: 0.75, ease: 'power3.out' }, '-=0.45')
       .from('.hero-actions', { opacity: 0, y: 24, duration: 0.75, ease: 'power3.out' }, '-=0.55')
       .from('.trust-pill', { opacity: 0, y: 24, duration: 0.75, ease: 'power3.out', stagger: 0.08 }, '-=0.65')
@@ -1905,43 +1902,39 @@
       });
     });
 
-    // Stats counter animation on scroll
-    const statCounters = gsap.utils.toArray('.stat-counter');
-    statCounters.forEach((counter) => {
-      const target = Number(counter.dataset.target) || 0;
-      const suffix = counter.dataset.suffix || '';
-      const counterObj = { value: 0 };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    // Stats counters — plain IIFE, no DOMContentLoaded needed at bottom of body
+    (function() {
+      const counters = document.querySelectorAll('.stat-counter');
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
           if (entry.isIntersecting) {
-            observer.disconnect();
-            gsap.to(counterObj, {
-              value: target,
-              duration: 2,
-              ease: 'power3.out',
-              onUpdate() {
-                counter.textContent = Math.floor(counterObj.value).toLocaleString() + suffix;
-              },
-            });
+            const el = entry.target;
+            const target = parseInt(el.getAttribute('data-target'), 10);
+            const suffix = el.getAttribute('data-suffix') || '';
+            let current = 0;
+            const increment = target / 80;
+            const timer = setInterval(function() {
+              current += increment;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              el.textContent = Math.floor(current) + suffix;
+            }, 20);
+            observer.unobserve(el);
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.2 });
+      counters.forEach(function(counter) { observer.observe(counter); });
+    })();
 
-      observer.observe(counter);
-    });
-
-    const headings = gsap.utils.toArray('section h2');
-    headings.forEach((heading) => {
-      const split = new SplitText(heading, { type: 'chars', charsClass: 'char' });
-      gsap.set(split.chars, { opacity: 0, y: 30, rotationX: 20, transformOrigin: '0% 50% -50px' });
-      gsap.to(split.chars, {
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
+    // Section headings fade-up on scroll — no SplitText
+    gsap.utils.toArray('section h2').forEach(function(heading) {
+      gsap.from(heading, {
+        opacity: 0,
+        y: 30,
         duration: 0.8,
         ease: 'power3.out',
-        stagger: 0.03,
         scrollTrigger: {
           trigger: heading,
           start: 'top 95%',
@@ -2174,56 +2167,59 @@
     });
 
     // ── Terminal Typing Animation ──
-    const TERM_LINES = [
-      { text: '> running network audit...', cls: 'terminal-cmd' },
-      { text: '[OK] Firewall rules validated — 247 rules clean', cls: 'terminal-ok' },
-      { text: '[OK] VLAN segmentation verified — 6 segments isolated', cls: 'terminal-ok' },
-      { text: '[WARN] Guest Wi-Fi on same subnet as POS — flagged', cls: 'terminal-warn' },
-      { text: '[OK] Generating documentation package...', cls: 'terminal-ok' },
-      { text: '> audit complete. 3 issues found. 3 resolved.', cls: 'terminal-cmd' },
-    ];
+    (function() {
+      var LINES = [
+        { text: '> running network audit...', cls: 'terminal-cmd' },
+        { text: '[OK] Firewall rules validated — 247 rules clean', cls: 'terminal-ok' },
+        { text: '[OK] VLAN segmentation verified — 6 segments isolated', cls: 'terminal-ok' },
+        { text: '[WARN] Guest Wi-Fi on same subnet as POS — flagged', cls: 'terminal-warn' },
+        { text: '[OK] Generating documentation package...', cls: 'terminal-ok' },
+        { text: '> audit complete. 3 issues found. 3 resolved.', cls: 'terminal-cmd' },
+      ];
 
-    const termBody = document.getElementById('terminalBody');
-    let tIdx = 0, tChar = 0, tLineEl = null, tCursorEl = null;
+      var tBody = document.getElementById('terminalBody');
+      if (!tBody) return;
 
-    function termGetCursor() {
-      if (tCursorEl) tCursorEl.remove();
-      tCursorEl = document.createElement('span');
-      tCursorEl.className = 'terminal-cursor';
-      return tCursorEl;
-    }
+      var lIdx = 0, cIdx = 0, lineEl = null, cursorEl = null, waitUntil = 0;
 
-    function termType() {
-      const line = TERM_LINES[tIdx];
-      if (tChar === 0) {
-        tLineEl = document.createElement('div');
-        tLineEl.className = 'terminal-line ' + line.cls;
-        termBody.appendChild(tLineEl);
-      }
-      if (tChar < line.text.length) {
-        tLineEl.textContent = line.text.slice(0, tChar + 1);
-        tLineEl.appendChild(termGetCursor());
-        tChar++;
-        const delay = (line.cls === 'terminal-cmd' ? 62 : 28) + Math.random() * 18;
-        setTimeout(termType, delay);
-      } else {
-        if (tCursorEl) tCursorEl.remove();
-        tChar = 0;
-        tIdx++;
-        if (tIdx >= TERM_LINES.length) {
-          setTimeout(() => {
-            termBody.innerHTML = '';
-            tIdx = 0; tChar = 0; tLineEl = null; tCursorEl = null;
-            setTimeout(termType, 700);
-          }, 2800);
-        } else {
-          const pause = TERM_LINES[tIdx - 1].cls === 'terminal-cmd' ? 950 : 380;
-          setTimeout(termType, pause);
+      setInterval(function() {
+        var now = Date.now();
+        if (now < waitUntil) return;
+
+        // All lines done — clear and loop
+        if (lIdx >= LINES.length) {
+          tBody.innerHTML = '';
+          lIdx = 0; cIdx = 0; lineEl = null; cursorEl = null;
+          waitUntil = now + 2200;
+          return;
         }
-      }
-    }
 
-    setTimeout(termType, 900);
+        var line = LINES[lIdx];
+
+        // Start a new line element
+        if (cIdx === 0) {
+          lineEl = document.createElement('div');
+          lineEl.className = 'terminal-line ' + line.cls;
+          tBody.appendChild(lineEl);
+          cursorEl = document.createElement('span');
+          cursorEl.className = 'terminal-cursor';
+        }
+
+        // Type next character
+        if (cIdx < line.text.length) {
+          cIdx++;
+          lineEl.textContent = line.text.slice(0, cIdx);
+          lineEl.appendChild(cursorEl);
+          return;
+        }
+
+        // Line finished — detach cursor, advance, pause
+        if (cursorEl && cursorEl.parentNode) cursorEl.parentNode.removeChild(cursorEl);
+        lIdx++; cIdx = 0; lineEl = null;
+        waitUntil = now + (line.cls === 'terminal-cmd' ? 900 : 360);
+
+      }, 48);
+    })();
 
     // ── Threat Alert Toast ──
     const THREAT_MSGS = [
