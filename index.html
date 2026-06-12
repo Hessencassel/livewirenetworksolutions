@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
   <style>
     :root {
@@ -513,16 +515,6 @@
 
     .contact-list {
       padding-left: 1.1rem;
-    }
-
-    .hero-bg-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.86;
     }
 
     .hero-grid {
@@ -1383,8 +1375,7 @@
 
     <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-    <section class="hero">
-      <canvas id="heroCanvas" class="hero-bg-canvas" aria-hidden="true"></canvas>
+    <section class="hero" id="vanta-hero">
       <div class="hero-pulse-line" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div>
@@ -1950,6 +1941,22 @@
     }
     requestAnimationFrame(raf);
 
+    VANTA.NET({
+      el: "#vanta-hero",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x21d4a3,
+      backgroundColor: 0x040a10,
+      points: 14.00,
+      maxDistance: 22.00,
+      spacing: 18.00
+    });
+
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener('click', (event) => {
         const target = document.querySelector(link.hash);
@@ -2043,176 +2050,6 @@
           once: true,
         },
       });
-    });
-
-    // ── Network Topology Canvas ──
-    const canvas = document.getElementById('heroCanvas');
-    const ctx = canvas.getContext('2d');
-    let canvasWidth = 0, canvasHeight = 0;
-    let topoMouseX = -9999, topoMouseY = -9999;
-
-    const TOPO_NODES = [
-      { id: 'FIREWALL',    rx: 0.54, ry: 0.09 },
-      { id: 'ROUTER',      rx: 0.64, ry: 0.28 },
-      { id: 'SWITCH',      rx: 0.64, ry: 0.52 },
-      { id: 'SERVER',      rx: 0.50, ry: 0.54 },
-      { id: 'AP',          rx: 0.80, ry: 0.44 },
-      { id: 'VLAN-10',     rx: 0.92, ry: 0.20 },
-      { id: 'VLAN-20',     rx: 0.92, ry: 0.64 },
-      { id: 'CAM',         rx: 0.78, ry: 0.78 },
-      { id: 'WORKSTATION', rx: 0.50, ry: 0.80 },
-    ];
-
-    const TOPO_EDGES = [
-      [0, 1], // FIREWALL → ROUTER
-      [1, 2], // ROUTER → SWITCH
-      [2, 3], // SWITCH → SERVER
-      [2, 4], // SWITCH → AP
-      [4, 5], // AP → VLAN-10
-      [4, 6], // AP → VLAN-20
-      [4, 7], // AP → CAM
-      [3, 8], // SERVER → WORKSTATION
-    ];
-
-    let pktEdge = 0, pktT = 0, pktLastTime = 0;
-
-    function resizeCanvas() {
-      const rect = canvas.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      canvasWidth = rect.width;
-      canvasHeight = rect.height;
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    function nodeXY(n) {
-      return { x: n.rx * canvasWidth, y: n.ry * canvasHeight };
-    }
-
-    function drawTopology(ts) {
-      const dt = Math.min((ts - pktLastTime) / 1000, 0.05);
-      pktLastTime = ts;
-
-      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-
-      // Find nearest node to mouse
-      let nearIdx = -1, nearDist = 72;
-      TOPO_NODES.forEach((n, i) => {
-        const p = nodeXY(n);
-        const d = Math.hypot(topoMouseX - p.x, topoMouseY - p.y);
-        if (d < nearDist) { nearDist = d; nearIdx = i; }
-      });
-
-      const t = ts / 1000;
-
-      // Draw edges
-      TOPO_EDGES.forEach(([ai, bi]) => {
-        const a = nodeXY(TOPO_NODES[ai]);
-        const b = nodeXY(TOPO_NODES[bi]);
-        ctx.globalAlpha = 0.3;
-        ctx.strokeStyle = '#21d4a3';
-        ctx.lineWidth = 1;
-        ctx.setLineDash([4, 6]);
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      });
-
-      // Draw nodes
-      TOPO_NODES.forEach((node, i) => {
-        const pos = nodeXY(node);
-        const isHot = i === nearIdx;
-        const pulse = 0.5 + 0.5 * Math.sin(t * 1.6 + i * 0.75);
-        const r = isHot ? 10 : 6;
-        const glowR = isHot ? 24 : 12 + pulse * 6;
-
-        // Outer glow
-        const grd = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, glowR);
-        grd.addColorStop(0, 'rgba(33,212,163,' + (isHot ? '0.38' : (0.1 + pulse * 0.1) + '') + ')');
-        grd.addColorStop(1, 'rgba(33,212,163,0)');
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = grd;
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, glowR, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Node circle
-        ctx.globalAlpha = isHot ? 1 : 0.75;
-        ctx.fillStyle = isHot ? '#21d4a3' : '#0d8c6a';
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, r, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Border ring
-        ctx.strokeStyle = '#21d4a3';
-        ctx.lineWidth = isHot ? 2 : 1;
-        ctx.globalAlpha = isHot ? 1 : 0.55;
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, r, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Label
-        ctx.globalAlpha = isHot ? 1 : 0.42;
-        ctx.fillStyle = isHot ? '#21d4a3' : '#b7c4c9';
-        ctx.font = (isHot ? 'bold ' : '') + (isHot ? '10' : '9') + 'px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(node.id, pos.x, pos.y + r + 13);
-      });
-
-      // Animate data packet along edges
-      pktT += dt * 0.68;
-      if (pktT >= 1) {
-        pktT = 0;
-        pktEdge = (pktEdge + 1) % TOPO_EDGES.length;
-      }
-
-      const [pa, pb] = TOPO_EDGES[pktEdge];
-      const posA = nodeXY(TOPO_NODES[pa]);
-      const posB = nodeXY(TOPO_NODES[pb]);
-      const px = posA.x + (posB.x - posA.x) * pktT;
-      const py = posA.y + (posB.y - posA.y) * pktT;
-
-      // Packet glow halo
-      const pGrd = ctx.createRadialGradient(px, py, 0, px, py, 16);
-      pGrd.addColorStop(0, 'rgba(33,212,163,0.85)');
-      pGrd.addColorStop(0.45, 'rgba(33,212,163,0.3)');
-      pGrd.addColorStop(1, 'rgba(33,212,163,0)');
-      ctx.globalAlpha = 1;
-      ctx.fillStyle = pGrd;
-      ctx.beginPath();
-      ctx.arc(px, py, 16, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Packet core dot
-      ctx.fillStyle = '#e0fff8';
-      ctx.globalAlpha = 0.95;
-      ctx.beginPath();
-      ctx.arc(px, py, 3.2, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(drawTopology);
-    }
-
-    function initCanvas() {
-      resizeCanvas();
-      requestAnimationFrame(drawTopology);
-    }
-
-    initCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Track mouse relative to canvas for node hover
-    document.querySelector('.hero').addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      topoMouseX = e.clientX - rect.left;
-      topoMouseY = e.clientY - rect.top;
-    });
-    document.querySelector('.hero').addEventListener('mouseleave', () => {
-      topoMouseX = -9999; topoMouseY = -9999;
     });
 
     // Cursor glow follow effect
