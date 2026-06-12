@@ -2373,13 +2373,13 @@
     }
 
     async function testDownloadSpeed() {
-      const url = 'https://speed.cloudflare.com/__down?bytes=500000&nocache=' + Math.random();
+      const url = 'https://speed.cloudflare.com/__down?bytes=5000000&nocache=' + Math.random();
       const t = performance.now();
       try {
         const res = await fetch(url, { cache: 'no-store' });
         await res.blob();
         const duration = (performance.now() - t) / 1000;
-        const mbps = ((500000 * 8) / duration / 1000000).toFixed(1);
+        const mbps = ((5000000 * 8) / duration / 1000000).toFixed(1);
         return mbps;
       } catch(e) {
         return null;
@@ -2467,13 +2467,13 @@
       }
 
       // Download speed
-      l = await addSpinnerLine('Testing download bandwidth (500KB sample)...', 200);
+      l = await addSpinnerLine('Testing download bandwidth (5MB sample)...', 200);
       const speed = await testDownloadSpeed();
       results.speed = speed;
       if (speed !== null) {
-        const spClass = parseFloat(speed) > 25 ? 'audit-ok' : parseFloat(speed) > 5 ? 'audit-warn' : 'audit-fail';
-        const spMsg = parseFloat(speed) > 25 ? 'Good' : parseFloat(speed) > 5 ? 'Moderate — may struggle with video/VOIP' : 'Slow — significant bandwidth issue';
-        updateLine(l, '[' + (parseFloat(speed) > 25 ? 'OK  ' : parseFloat(speed) > 5 ? 'WARN' : 'FAIL') + '] Download: ' + speed + ' Mbps — ' + spMsg, spClass);
+        const spClass = parseFloat(speed) > 100 ? 'audit-ok' : parseFloat(speed) > 25 ? 'audit-warn' : 'audit-fail';
+        const spMsg = parseFloat(speed) > 100 ? 'Good' : parseFloat(speed) > 25 ? 'Acceptable' : 'Slow — significant bandwidth issue';
+        updateLine(l, '[' + (parseFloat(speed) > 100 ? 'OK  ' : parseFloat(speed) > 25 ? 'WARN' : 'FAIL') + '] Download: ' + speed + ' Mbps — ' + spMsg, spClass);
       } else {
         updateLine(l, '[INFO] Speed test unavailable from this network', 'audit-info');
       }
@@ -2497,7 +2497,7 @@
         if (!results.https) issues.push('No HTTPS encryption');
         if (results.latency > 120) issues.push('High latency (' + results.latency + 'ms)');
         if (results.dns > 200) issues.push('Slow DNS resolution');
-        if (results.speed && parseFloat(results.speed) < 5) issues.push('Low bandwidth (' + results.speed + ' Mbps)');
+        if (results.speed && parseFloat(results.speed) < 25) issues.push('Low bandwidth (' + results.speed + ' Mbps)');
 
         const scoreLabel = issues.length === 0 ? 'All Clear' : issues.length <= 2 ? 'Some Issues' : 'Needs Attention';
         const scoreClass = issues.length === 0 ? 'arc-ok' : issues.length <= 2 ? 'arc-warn' : 'arc-fail';
@@ -2513,7 +2513,7 @@
           </div>
           <div class="audit-result-card">
             <div class="arc-label">Download Speed</div>
-            <div class="arc-value ${results.speed ? (parseFloat(results.speed) > 25 ? 'arc-ok' : parseFloat(results.speed) > 5 ? 'arc-warn' : 'arc-fail') : 'arc-info'}">${results.speed ? results.speed + ' Mbps' : 'N/A'}</div>
+            <div class="arc-value ${results.speed ? (parseFloat(results.speed) > 100 ? 'arc-ok' : parseFloat(results.speed) > 25 ? 'arc-warn' : 'arc-fail') : 'arc-info'}">${results.speed ? results.speed + ' Mbps' : 'N/A'}</div>
           </div>
           <div class="audit-result-card">
             <div class="arc-label">DNS Speed</div>
