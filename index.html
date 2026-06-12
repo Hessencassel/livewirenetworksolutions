@@ -38,11 +38,27 @@
     }
 
     body {
+      position: relative;
       margin: 0;
       font-family: 'Inter', Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+    }
+
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(33,212,163,0.12) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+      transform: translate3d(-150px, -150px, 0);
+      transition: transform 0.22s ease-out;
+      filter: blur(2px);
     }
 
     a {
@@ -192,6 +208,7 @@
         radial-gradient(circle at top right, rgba(33,212,163,0.34), transparent 22%),
         radial-gradient(circle at 12% 22%, rgba(13,126,101,0.16), transparent 18%),
         linear-gradient(180deg, #040a10 0%, #08131b 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
     }
 
     .hero::before {
@@ -584,6 +601,8 @@
       position: relative;
       overflow: hidden;
       transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      transform: perspective(800px) var(--card-tilt, translateY(0));
+      will-change: transform;
     }
 
     .card::before,
@@ -613,7 +632,7 @@
     .hero-card:hover,
     .fit-box:hover,
     .contact-panel:hover {
-      transform: translateY(-6px);
+      transform: perspective(800px) var(--card-tilt, translateY(-6px)) translateY(-6px);
       border-color: rgba(33,212,163,0.55);
       box-shadow: 0 24px 60px rgba(33,212,163,0.14);
     }
@@ -671,6 +690,64 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
+    }
+
+    .marquee-strip {
+      position: relative;
+      overflow: hidden;
+      background: #051014;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1.1rem 0;
+      clip-path: polygon(0 0, 100% 0, 100% 93%, 0 100%);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 4rem;
+      width: max-content;
+      animation: marqueeScroll 20s linear infinite;
+    }
+
+    .marquee-ticker {
+      display: inline-flex;
+      white-space: nowrap;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--accent);
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .marquee-strip::before,
+    .marquee-strip::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .marquee-strip::before {
+      left: 0;
+      background: linear-gradient(90deg, #051014 0%, rgba(5,16,20,0) 100%);
+    }
+
+    .marquee-strip::after {
+      right: 0;
+      background: linear-gradient(270deg, #051014 0%, rgba(5,16,20,0) 100%);
+    }
+
+    @keyframes marqueeScroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
     }
 
     .stat-item {
@@ -964,6 +1041,209 @@
       margin-bottom: 1.2rem;
     }
 
+    /* ── Network Status Badge ── */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #22c55e;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      flex-shrink: 0;
+      animation: statusDotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes statusDotPulse {
+      0%, 100% { box-shadow: 0 0 5px rgba(34,197,94,0.6); transform: scale(1); }
+      50% { box-shadow: 0 0 14px rgba(34,197,94,1); transform: scale(1.3); }
+    }
+
+    /* ── Security Shield ── */
+    .hero-shield {
+      margin-bottom: 1.5rem;
+    }
+
+    .shield-wrap {
+      position: relative;
+      display: inline-block;
+      width: 68px;
+      height: 76px;
+    }
+
+    .shield-ring-outer {
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(33,212,163,0.22);
+      border-top-color: var(--accent);
+      border-right-color: rgba(33,212,163,0.7);
+      animation: shieldSpin 5s linear infinite;
+    }
+
+    @keyframes shieldSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    .shield-svg {
+      width: 68px;
+      height: 76px;
+      animation: shieldPulse 2.8s ease-in-out infinite;
+    }
+
+    @keyframes shieldPulse {
+      0%, 100% { filter: drop-shadow(0 0 7px rgba(33,212,163,0.4)); }
+      50% { filter: drop-shadow(0 0 22px rgba(33,212,163,0.95)); }
+    }
+
+    /* ── Terminal Hero Card ── */
+    .terminal-card {
+      background: #040a0e !important;
+      border-color: rgba(33,212,163,0.28) !important;
+      padding: 0 !important;
+      font-family: 'Courier New', 'Consolas', monospace;
+    }
+
+    .terminal-bar {
+      background: #091520;
+      padding: 0.62rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.42rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .t-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .t-dot-r { background: #ff5f57; }
+    .t-dot-y { background: #febc2e; }
+    .t-dot-g { background: #28c840; }
+
+    .terminal-title {
+      margin-left: 0.45rem;
+      font-size: 0.73rem;
+      color: var(--muted);
+      font-family: 'Courier New', monospace;
+      opacity: 0.65;
+    }
+
+    .terminal-body {
+      padding: 1.05rem 1.2rem;
+      min-height: 258px;
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+
+    .terminal-line {
+      display: block;
+      white-space: pre;
+    }
+
+    .terminal-cmd  { color: var(--accent); }
+    .terminal-ok   { color: #22c55e; }
+    .terminal-warn { color: #ffd166; }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 6px;
+      height: 0.88em;
+      background: var(--accent);
+      vertical-align: text-bottom;
+      margin-left: 1px;
+      animation: termBlink 1.1s step-end infinite;
+    }
+
+    @keyframes termBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ── Threat Alert Toast ── */
+    .threat-toast {
+      position: fixed;
+      bottom: 1.6rem;
+      left: 1.6rem;
+      background: rgba(5, 10, 14, 0.97);
+      border: 1px solid rgba(220,38,38,0.38);
+      border-radius: 12px;
+      padding: 0.88rem 1.1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      max-width: 340px;
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.42s ease, transform 0.42s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.65), 0 0 22px rgba(220,38,38,0.07);
+      pointer-events: none;
+    }
+
+    .threat-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .threat-dot-pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #dc2626;
+      flex-shrink: 0;
+      margin-top: 3px;
+      animation: threatRing 1.2s ease-out infinite;
+    }
+
+    @keyframes threatRing {
+      0%   { box-shadow: 0 0 0 0 rgba(220,38,38,0.8); }
+      70%  { box-shadow: 0 0 0 7px rgba(220,38,38,0); }
+      100% { box-shadow: 0 0 0 0 rgba(220,38,38,0); }
+    }
+
+    .threat-content-wrap { min-width: 0; }
+
+    .threat-header {
+      font-size: 0.7rem;
+      font-weight: 900;
+      color: #f87171;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin-bottom: 0.28rem;
+    }
+
+    .threat-body-text {
+      font-size: 0.77rem;
+      color: var(--muted);
+      font-family: 'Courier New', monospace;
+      line-height: 1.45;
+    }
+
+    /* ── Scanline flash (GSAP-driven, no keyframes needed) ── */
+    .scanline-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(33,212,163,0.6) 20%, rgba(33,212,163,0.9) 50%, rgba(33,212,163,0.6) 80%, transparent 100%);
+      box-shadow: 0 0 28px rgba(33,212,163,0.55);
+      pointer-events: none;
+      z-index: 9998;
+    }
+
     @media (max-width: 900px) {
       .hero-grid,
       .grid-3,
@@ -1016,7 +1296,10 @@
   <div class="top-bar">
     <div class="container">
       <div><strong>Fort Wayne & Northeast Indiana</strong> network security, Wi-Fi, optimization, and camera systems.</div>
-      <div>Call: <strong><a href="tel:+12604085500">260-408-5500</a></strong></div>
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+        <div class="status-badge" aria-label="System status active"><span class="status-dot"></span>Systems Monitored: ACTIVE</div>
+        <div>Call: <strong><a href="tel:+12604085500">260-408-5500</a></strong></div>
+      </div>
     </div>
   </div>
 
@@ -1044,11 +1327,29 @@
 
   <main id="top">
 
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
     <section class="hero">
       <canvas id="heroCanvas" class="hero-bg-canvas" aria-hidden="true"></canvas>
       <div class="hero-pulse-line" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div>
+          <div class="hero-shield" aria-hidden="true">
+            <div class="shield-wrap">
+              <div class="shield-ring-outer"></div>
+              <svg viewBox="0 0 100 115" class="shield-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#21d4a3" stop-opacity="0.92"/>
+                    <stop offset="100%" stop-color="#13a77e" stop-opacity="0.52"/>
+                  </linearGradient>
+                </defs>
+                <path d="M50 6 L88 22 L88 57 Q88 85 50 108 Q12 85 12 57 L12 22 Z" fill="url(#sg)" stroke="#21d4a3" stroke-width="2.5"/>
+                <path d="M35 58 L47 70 L67 44" stroke="rgba(255,255,255,0.88)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
           <div class="eyebrow">Network Security • Wi-Fi • Optimization • Cameras</div>
 
           <h1>Your network is your business. We build it right.</h1>
@@ -1069,14 +1370,14 @@
           </div>
         </div>
 
-        <aside class="hero-card">
-          <h3>What makes LiveWire different?</h3>
-          <ul class="check-list">
-            <li><span class="check">✓</span><span>Camera installs designed around the network, not guessed after the fact.</span></li>
-            <li><span class="check">✓</span><span>Wi-Fi, switches, firewalls, VLANs, and remote access configured correctly.</span></li>
-            <li><span class="check">✓</span><span>Clear documentation so you are not locked into us or anyone else.</span></li>
-            <li><span class="check">✓</span><span>Local service from experienced engineers, not a rotating call center.</span></li>
-          </ul>
+        <aside class="hero-card terminal-card" aria-label="Live network security audit terminal">
+          <div class="terminal-bar">
+            <div class="t-dot t-dot-r"></div>
+            <div class="t-dot t-dot-y"></div>
+            <div class="t-dot t-dot-g"></div>
+            <span class="terminal-title">network@lns:~ — audit session</span>
+          </div>
+          <div class="terminal-body" id="terminalBody"></div>
         </aside>
       </div>
     </section>
@@ -1100,6 +1401,17 @@
             <span class="stat-number" style="color: var(--muted); font-weight: 600;">Local</span>
             <span class="stat-label">Fort Wayne Based</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee-strip" aria-label="Network services marquee">
+      <div class="container">
+        <div class="marquee-track" aria-hidden="true">
+          <div class="marquee-ticker">Network Security • Business Wi-Fi • Firewall Setup • VLAN Segmentation • Network Optimization • Camera Systems • Fort Wayne Local • No Monitoring Contracts •</div>
+          <div class="marquee-ticker">Network Security • Business Wi-Fi • Firewall Setup • VLAN Segmentation • Network Optimization • Camera Systems • Fort Wayne Local • No Monitoring Contracts •</div>
+          <div class="marquee-ticker">Network Security • Business Wi-Fi • Firewall Setup • VLAN Segmentation • Network Optimization • Camera Systems • Fort Wayne Local • No Monitoring Contracts •</div>
+          <div class="marquee-ticker">Network Security • Business Wi-Fi • Firewall Setup • VLAN Segmentation • Network Optimization • Camera Systems • Fort Wayne Local • No Monitoring Contracts •</div>
         </div>
       </div>
     </section>
@@ -1455,6 +1767,14 @@
 
   </main>
 
+  <div class="threat-toast" id="threatToast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="threat-dot-pulse"></div>
+    <div class="threat-content-wrap">
+      <div class="threat-header">Threat Blocked</div>
+      <div class="threat-body-text" id="threatMsg">Unauthorized port scan detected and dropped. 192.168.0.0/24 secured.</div>
+    </div>
+  </div>
+
   <div class="success-message" id="successMessage">
     <h3>Thank You!</h3>
     <p>Your assessment request has been sent. We'll respond within one business day.</p>
@@ -1591,20 +1911,24 @@
       const target = Number(counter.dataset.target) || 0;
       const suffix = counter.dataset.suffix || '';
       const counterObj = { value: 0 };
-      
-      gsap.to(counterObj, {
-        value: target,
-        duration: 2,
-        ease: 'power3.out',
-        onUpdate() {
-          counter.textContent = Math.floor(counterObj.value).toLocaleString() + suffix;
-        },
-        scrollTrigger: {
-          trigger: counter,
-          start: 'top 90%',
-          once: true,
-        },
-      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            observer.disconnect();
+            gsap.to(counterObj, {
+              value: target,
+              duration: 2,
+              ease: 'power3.out',
+              onUpdate() {
+                counter.textContent = Math.floor(counterObj.value).toLocaleString() + suffix;
+              },
+            });
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(counter);
     });
 
     const headings = gsap.utils.toArray('section h2');
@@ -1641,11 +1965,36 @@
       });
     });
 
+    // ── Network Topology Canvas ──
     const canvas = document.getElementById('heroCanvas');
     const ctx = canvas.getContext('2d');
-    const particles = [];
-    let canvasWidth = 0;
-    let canvasHeight = 0;
+    let canvasWidth = 0, canvasHeight = 0;
+    let topoMouseX = -9999, topoMouseY = -9999;
+
+    const TOPO_NODES = [
+      { id: 'FIREWALL',    rx: 0.54, ry: 0.09 },
+      { id: 'ROUTER',      rx: 0.64, ry: 0.28 },
+      { id: 'SWITCH',      rx: 0.64, ry: 0.52 },
+      { id: 'SERVER',      rx: 0.50, ry: 0.54 },
+      { id: 'AP',          rx: 0.80, ry: 0.44 },
+      { id: 'VLAN-10',     rx: 0.92, ry: 0.20 },
+      { id: 'VLAN-20',     rx: 0.92, ry: 0.64 },
+      { id: 'CAM',         rx: 0.78, ry: 0.78 },
+      { id: 'WORKSTATION', rx: 0.50, ry: 0.80 },
+    ];
+
+    const TOPO_EDGES = [
+      [0, 1], // FIREWALL → ROUTER
+      [1, 2], // ROUTER → SWITCH
+      [2, 3], // SWITCH → SERVER
+      [2, 4], // SWITCH → AP
+      [4, 5], // AP → VLAN-10
+      [4, 6], // AP → VLAN-20
+      [4, 7], // AP → CAM
+      [3, 8], // SERVER → WORKSTATION
+    ];
+
+    let pktEdge = 0, pktT = 0, pktLastTime = 0;
 
     function resizeCanvas() {
       const rect = canvas.getBoundingClientRect();
@@ -1657,79 +2006,270 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    function createParticles() {
-      particles.length = 0;
-      const count = Math.max(24, Math.min(40, Math.floor(canvasWidth / 30)));
-      for (let i = 0; i < count; i += 1) {
-        particles.push({
-          x: Math.random() * canvasWidth,
-          y: Math.random() * canvasHeight,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          radius: 1.2 + Math.random() * 1.8,
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
+    function nodeXY(n) {
+      return { x: n.rx * canvasWidth, y: n.ry * canvasHeight };
     }
 
-    function drawBackground() {
+    function drawTopology(ts) {
+      const dt = Math.min((ts - pktLastTime) / 1000, 0.05);
+      pktLastTime = ts;
+
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-      ctx.strokeStyle = 'rgba(33,212,163,0.12)';
-      ctx.lineWidth = 1;
 
-      for (let i = 0; i < particles.length; i += 1) {
-        const p = particles[i];
-        for (let j = i + 1; j < particles.length; j += 1) {
-          const q = particles[j];
-          const dx = p.x - q.x;
-          const dy = p.y - q.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 120) {
-            ctx.globalAlpha = 1 - dist / 120;
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.stroke();
-          }
-        }
+      // Find nearest node to mouse
+      let nearIdx = -1, nearDist = 72;
+      TOPO_NODES.forEach((n, i) => {
+        const p = nodeXY(n);
+        const d = Math.hypot(topoMouseX - p.x, topoMouseY - p.y);
+        if (d < nearDist) { nearDist = d; nearIdx = i; }
+      });
+
+      const t = ts / 1000;
+
+      // Draw edges
+      TOPO_EDGES.forEach(([ai, bi]) => {
+        const a = nodeXY(TOPO_NODES[ai]);
+        const b = nodeXY(TOPO_NODES[bi]);
+        ctx.globalAlpha = 0.3;
+        ctx.strokeStyle = '#21d4a3';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 6]);
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      });
+
+      // Draw nodes
+      TOPO_NODES.forEach((node, i) => {
+        const pos = nodeXY(node);
+        const isHot = i === nearIdx;
+        const pulse = 0.5 + 0.5 * Math.sin(t * 1.6 + i * 0.75);
+        const r = isHot ? 10 : 6;
+        const glowR = isHot ? 24 : 12 + pulse * 6;
+
+        // Outer glow
+        const grd = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, glowR);
+        grd.addColorStop(0, 'rgba(33,212,163,' + (isHot ? '0.38' : (0.1 + pulse * 0.1) + '') + ')');
+        grd.addColorStop(1, 'rgba(33,212,163,0)');
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, glowR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Node circle
+        ctx.globalAlpha = isHot ? 1 : 0.75;
+        ctx.fillStyle = isHot ? '#21d4a3' : '#0d8c6a';
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, r, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Border ring
+        ctx.strokeStyle = '#21d4a3';
+        ctx.lineWidth = isHot ? 2 : 1;
+        ctx.globalAlpha = isHot ? 1 : 0.55;
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, r, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Label
+        ctx.globalAlpha = isHot ? 1 : 0.42;
+        ctx.fillStyle = isHot ? '#21d4a3' : '#b7c4c9';
+        ctx.font = (isHot ? 'bold ' : '') + (isHot ? '10' : '9') + 'px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(node.id, pos.x, pos.y + r + 13);
+      });
+
+      // Animate data packet along edges
+      pktT += dt * 0.68;
+      if (pktT >= 1) {
+        pktT = 0;
+        pktEdge = (pktEdge + 1) % TOPO_EDGES.length;
       }
 
-      particles.forEach((particle) => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-        particle.phase += 0.04;
-        const pulse = 0.3 + Math.sin(particle.phase) * 0.3;
-        const radius = particle.radius * pulse;
+      const [pa, pb] = TOPO_EDGES[pktEdge];
+      const posA = nodeXY(TOPO_NODES[pa]);
+      const posB = nodeXY(TOPO_NODES[pb]);
+      const px = posA.x + (posB.x - posA.x) * pktT;
+      const py = posA.y + (posB.y - posA.y) * pktT;
 
-        if (particle.x < -20) particle.x = canvasWidth + 20;
-        if (particle.x > canvasWidth + 20) particle.x = -20;
-        if (particle.y < -20) particle.y = canvasHeight + 20;
-        if (particle.y > canvasHeight + 20) particle.y = -20;
+      // Packet glow halo
+      const pGrd = ctx.createRadialGradient(px, py, 0, px, py, 16);
+      pGrd.addColorStop(0, 'rgba(33,212,163,0.85)');
+      pGrd.addColorStop(0.45, 'rgba(33,212,163,0.3)');
+      pGrd.addColorStop(1, 'rgba(33,212,163,0)');
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = pGrd;
+      ctx.beginPath();
+      ctx.arc(px, py, 16, 0, Math.PI * 2);
+      ctx.fill();
 
-        ctx.globalAlpha = 0.9;
-        ctx.fillStyle = 'rgba(33,212,163,0.14)';
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, radius, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      });
-    }
+      // Packet core dot
+      ctx.fillStyle = '#e0fff8';
+      ctx.globalAlpha = 0.95;
+      ctx.beginPath();
+      ctx.arc(px, py, 3.2, 0, Math.PI * 2);
+      ctx.fill();
 
-    function animateCanvas() {
-      drawBackground();
-      requestAnimationFrame(animateCanvas);
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(drawTopology);
     }
 
     function initCanvas() {
       resizeCanvas();
-      createParticles();
-      animateCanvas();
+      requestAnimationFrame(drawTopology);
     }
 
     initCanvas();
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      createParticles();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Track mouse relative to canvas for node hover
+    document.querySelector('.hero').addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      topoMouseX = e.clientX - rect.left;
+      topoMouseY = e.clientY - rect.top;
+    });
+    document.querySelector('.hero').addEventListener('mouseleave', () => {
+      topoMouseX = -9999; topoMouseY = -9999;
+    });
+
+    // Cursor glow follow effect
+    const cursorGlow = document.getElementById('cursorGlow');
+    let cursorX = window.innerWidth / 2;
+    let cursorY = window.innerHeight / 2;
+    let glowX = cursorX;
+    let glowY = cursorY;
+
+    window.addEventListener('mousemove', (event) => {
+      cursorX = event.clientX;
+      cursorY = event.clientY;
+    });
+
+    function animateGlow() {
+      glowX += (cursorX - glowX) * 0.18;
+      glowY += (cursorY - glowY) * 0.18;
+      cursorGlow.style.transform = `translate3d(${glowX - 150}px, ${glowY - 150}px, 0)`;
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // 3D card tilt interaction
+    document.querySelectorAll('.card').forEach((card) => {
+      card.addEventListener('mousemove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const px = (x / rect.width - 0.5) * 2;
+        const py = (y / rect.height - 0.5) * 2;
+        const rotateY = px * 8;
+        const rotateX = -py * 8;
+        card.style.setProperty('--card-tilt', `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.removeProperty('--card-tilt');
+      });
+    });
+
+    // ── Terminal Typing Animation ──
+    const TERM_LINES = [
+      { text: '> running network audit...', cls: 'terminal-cmd' },
+      { text: '[OK] Firewall rules validated — 247 rules clean', cls: 'terminal-ok' },
+      { text: '[OK] VLAN segmentation verified — 6 segments isolated', cls: 'terminal-ok' },
+      { text: '[WARN] Guest Wi-Fi on same subnet as POS — flagged', cls: 'terminal-warn' },
+      { text: '[OK] Generating documentation package...', cls: 'terminal-ok' },
+      { text: '> audit complete. 3 issues found. 3 resolved.', cls: 'terminal-cmd' },
+    ];
+
+    const termBody = document.getElementById('terminalBody');
+    let tIdx = 0, tChar = 0, tLineEl = null, tCursorEl = null;
+
+    function termGetCursor() {
+      if (tCursorEl) tCursorEl.remove();
+      tCursorEl = document.createElement('span');
+      tCursorEl.className = 'terminal-cursor';
+      return tCursorEl;
+    }
+
+    function termType() {
+      const line = TERM_LINES[tIdx];
+      if (tChar === 0) {
+        tLineEl = document.createElement('div');
+        tLineEl.className = 'terminal-line ' + line.cls;
+        termBody.appendChild(tLineEl);
+      }
+      if (tChar < line.text.length) {
+        tLineEl.textContent = line.text.slice(0, tChar + 1);
+        tLineEl.appendChild(termGetCursor());
+        tChar++;
+        const delay = (line.cls === 'terminal-cmd' ? 62 : 28) + Math.random() * 18;
+        setTimeout(termType, delay);
+      } else {
+        if (tCursorEl) tCursorEl.remove();
+        tChar = 0;
+        tIdx++;
+        if (tIdx >= TERM_LINES.length) {
+          setTimeout(() => {
+            termBody.innerHTML = '';
+            tIdx = 0; tChar = 0; tLineEl = null; tCursorEl = null;
+            setTimeout(termType, 700);
+          }, 2800);
+        } else {
+          const pause = TERM_LINES[tIdx - 1].cls === 'terminal-cmd' ? 950 : 380;
+          setTimeout(termType, pause);
+        }
+      }
+    }
+
+    setTimeout(termType, 900);
+
+    // ── Threat Alert Toast ──
+    const THREAT_MSGS = [
+      'Unauthorized port scan detected and dropped. 192.168.0.0/24 secured.',
+      'Brute force login attempt blocked. SSH port 22 — 47 attempts dropped.',
+      'Suspicious outbound traffic blocked. 10.0.0.41 → unknown external IP.',
+      'ARP spoofing attempt detected. VLAN-10 isolation enforced automatically.',
+    ];
+    let threatIdx = 0;
+    const threatToast = document.getElementById('threatToast');
+    const threatMsg = document.getElementById('threatMsg');
+
+    function showThreat() {
+      threatMsg.textContent = THREAT_MSGS[threatIdx];
+      threatIdx = (threatIdx + 1) % THREAT_MSGS.length;
+      threatToast.classList.add('show');
+      setTimeout(() => threatToast.classList.remove('show'), 4000);
+    }
+
+    setTimeout(() => { showThreat(); setInterval(showThreat, 12000); }, 4500);
+
+    // ── Scanline Section Entry Effect ──
+    function triggerScanline(section) {
+      const bar = document.createElement('div');
+      bar.className = 'scanline-bar';
+      document.body.appendChild(bar);
+      const rect = section.getBoundingClientRect();
+      gsap.fromTo(bar,
+        { top: rect.top, opacity: 1 },
+        { top: rect.top + rect.height, opacity: 0, duration: 0.32, ease: 'none',
+          onComplete: () => bar.remove() }
+      );
+    }
+
+    document.querySelectorAll('section').forEach((section) => {
+      let fired = false;
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !fired) {
+            fired = true;
+            triggerScanline(entry.target);
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.08 });
+      obs.observe(section);
     });
   </script>
 
