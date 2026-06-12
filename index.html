@@ -2402,10 +2402,21 @@
     function getConnectionType() {
       const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
       if (conn) {
-        if (conn.effectiveType) return conn.effectiveType.toUpperCase();
-        if (conn.type) return conn.type;
+        if (conn.effectiveType) return conn.effectiveType.toLowerCase();
+        if (conn.type) return conn.type.toLowerCase();
       }
-      return 'Unknown';
+      return 'unknown';
+    }
+
+    function formatConnectionType(raw) {
+      switch (raw) {
+        case '4g':      return 'Broadband / Fiber';
+        case '3g':      return '3G Cellular — may be slow';
+        case '2g':
+        case 'slow-2g': return 'Slow Cellular — expect issues';
+        case 'wifi':    return 'Wi-Fi';
+        default:        return 'Wired or Wi-Fi';
+      }
     }
 
     async function runAudit() {
@@ -2443,8 +2454,9 @@
       await new Promise(r => setTimeout(r, 700));
       const connType = getConnectionType();
       results.connType = connType;
-      const connClass = connType === '4G' || connType === 'WIFI' || connType === 'wifi' ? 'audit-ok' : 'audit-info';
-      updateLine(l, '[INFO] Connection type: ' + connType, connClass);
+      const connLabel = formatConnectionType(connType);
+      const connClass = connType === '4g' || connType === 'wifi' ? 'audit-ok' : connType === '3g' ? 'audit-warn' : connType === '2g' || connType === 'slow-2g' ? 'audit-fail' : 'audit-info';
+      updateLine(l, '[INFO] Connection type: ' + connLabel, connClass);
 
       // Latency test
       l = await addSpinnerLine('Testing network latency (3 pings to Cloudflare)...', 200);
