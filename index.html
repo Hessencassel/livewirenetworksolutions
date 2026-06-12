@@ -448,6 +448,7 @@
       background: #061015;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
+      padding: 5rem 0;
     }
 
     .fit-grid {
@@ -1174,6 +1175,117 @@
 
 
 
+    /* ── Network Audit Tool ── */
+    .audit-wrap {
+      max-width: 820px;
+      margin: 2.5rem auto 0;
+    }
+
+    .audit-terminal {
+      background: #040d12;
+      border: 1px solid rgba(33,212,163,0.25);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(33,212,163,0.07), 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .audit-bar {
+      background: #0a1a22;
+      border-bottom: 1px solid rgba(33,212,163,0.15);
+      padding: 0.65rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .audit-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .audit-title {
+      margin-left: 0.6rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-family: 'Courier New', monospace;
+    }
+
+    .audit-body {
+      padding: 1.4rem 1.6rem;
+      min-height: 260px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.9;
+    }
+
+    .audit-line { display: block; }
+    .audit-muted { color: #5a7a88; }
+    .audit-cmd { color: var(--accent); }
+    .audit-ok { color: #22c55e; }
+    .audit-warn { color: #ffd166; }
+    .audit-fail { color: #f87171; }
+    .audit-info { color: #93c5fd; }
+
+    .audit-spinner {
+      display: inline-block;
+      animation: auditSpin 0.7s linear infinite;
+    }
+
+    @keyframes auditSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    .audit-controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.4rem;
+    }
+
+    .audit-results {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(33,212,163,0.06), rgba(76,201,240,0.04));
+      border: 1px solid rgba(33,212,163,0.2);
+      border-radius: 14px;
+      padding: 1.8rem 2rem;
+    }
+
+    .audit-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .audit-result-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      text-align: center;
+    }
+
+    .audit-result-card .arc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .audit-result-card .arc-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      font-family: 'Courier New', monospace;
+    }
+
+    .arc-ok { color: #22c55e; }
+    .arc-warn { color: #ffd166; }
+    .arc-fail { color: #f87171; }
+    .arc-info { color: var(--accent); }
+
     /* ── Scanline flash (GSAP-driven, no keyframes needed) ── */
     .scanline-bar {
       position: fixed;
@@ -1260,7 +1372,7 @@
       <nav id="navMenu">
         <a href="#services">Services</a>
         <a href="#fit">Who We Help</a>
-        <a href="#process">Process</a>
+        <a href="#audit">Network Check</a>
         <a href="#faq">FAQ</a>
         <a href="#contact" class="btn btn-primary">Free Assessment</a>
       </nav>
@@ -1583,6 +1695,45 @@
               <p>
                 We install, configure, label, test, document, and show you how to use the system before we leave.
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Network Health Check Tool ── -->
+    <section id="audit" class="dark-band">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Free Tool</div>
+          <h2>Run a free network health check.</h2>
+          <p style="color:var(--muted);font-size:1.05rem;max-width:620px;margin:1rem auto 0;">
+            This browser-based tool runs real checks on your connection — no software to install, nothing downloaded to your device. Results appear in real time below.
+          </p>
+        </div>
+
+        <div class="audit-wrap">
+          <div class="audit-terminal" id="auditTerminal">
+            <div class="audit-bar">
+              <span class="audit-dot" style="background:#ff5f57"></span>
+              <span class="audit-dot" style="background:#febc2e"></span>
+              <span class="audit-dot" style="background:#28c840"></span>
+              <span class="audit-title">network@livewire:~ — health check</span>
+            </div>
+            <div class="audit-body" id="auditBody">
+              <div class="audit-line audit-muted">Ready. Press "Run Network Check" to begin.</div>
+            </div>
+          </div>
+
+          <div class="audit-controls">
+            <button class="btn btn-primary" id="auditRunBtn" onclick="runAudit()">▶ Run Network Check</button>
+            <button class="btn btn-secondary" id="auditResetBtn" onclick="resetAudit()" style="display:none">↺ Run Again</button>
+          </div>
+
+          <div class="audit-results" id="auditResults" style="display:none">
+            <div class="audit-summary" id="auditSummary"></div>
+            <div style="text-align:center;margin-top:1.5rem;">
+              <a href="#contact" class="btn btn-primary">Get a Full On-Site Audit — Free</a>
             </div>
           </div>
         </div>
@@ -2158,6 +2309,237 @@
     })();
 
 
+
+    // ── Network Health Check Tool ──
+    const auditBody = document.getElementById('auditBody');
+    const auditRunBtn = document.getElementById('auditRunBtn');
+    const auditResetBtn = document.getElementById('auditResetBtn');
+    const auditResults = document.getElementById('auditResults');
+    const auditSummary = document.getElementById('auditSummary');
+
+    function addLine(text, cls, delay) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          const el = document.createElement('span');
+          el.className = 'audit-line ' + (cls || 'audit-muted');
+          el.textContent = text;
+          auditBody.appendChild(el);
+          auditBody.scrollTop = auditBody.scrollHeight;
+          resolve();
+        }, delay);
+      });
+    }
+
+    function updateLine(el, text, cls) {
+      el.textContent = text;
+      el.className = 'audit-line ' + cls;
+    }
+
+    function addSpinnerLine(text, delay) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          const el = document.createElement('span');
+          el.className = 'audit-line audit-cmd';
+          el.innerHTML = '<span class="audit-spinner">◌</span> ' + text;
+          auditBody.appendChild(el);
+          auditBody.scrollTop = auditBody.scrollHeight;
+          resolve(el);
+        }, delay);
+      });
+    }
+
+    async function testLatency() {
+      const times = [];
+      for (let i = 0; i < 3; i++) {
+        const t = performance.now();
+        try {
+          await fetch('https://www.cloudflare.com/cdn-cgi/trace?nocache=' + Math.random(), { mode: 'no-cors', cache: 'no-store' });
+        } catch(e) {}
+        times.push(Math.round(performance.now() - t));
+      }
+      return Math.min(...times);
+    }
+
+    async function testDNS() {
+      const t = performance.now();
+      try {
+        await fetch('https://cloudflare-dns.com/dns-query?name=google.com&type=A', {
+          headers: { 'Accept': 'application/dns-json' }
+        });
+        return Math.round(performance.now() - t);
+      } catch(e) {
+        return null;
+      }
+    }
+
+    async function testDownloadSpeed() {
+      const url = 'https://speed.cloudflare.com/__down?bytes=500000&nocache=' + Math.random();
+      const t = performance.now();
+      try {
+        const res = await fetch(url, { cache: 'no-store' });
+        await res.blob();
+        const duration = (performance.now() - t) / 1000;
+        const mbps = ((500000 * 8) / duration / 1000000).toFixed(1);
+        return mbps;
+      } catch(e) {
+        return null;
+      }
+    }
+
+    function checkHTTPS() {
+      return location.protocol === 'https:';
+    }
+
+    function checkBrowser() {
+      const ua = navigator.userAgent;
+      if (ua.includes('Chrome') && !ua.includes('Edg')) return 'Chrome';
+      if (ua.includes('Firefox')) return 'Firefox';
+      if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari';
+      if (ua.includes('Edg')) return 'Edge';
+      return 'Unknown';
+    }
+
+    function getConnectionType() {
+      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (conn) {
+        if (conn.effectiveType) return conn.effectiveType.toUpperCase();
+        if (conn.type) return conn.type;
+      }
+      return 'Unknown';
+    }
+
+    async function runAudit() {
+      auditRunBtn.style.display = 'none';
+      auditBody.innerHTML = '';
+      auditResults.style.display = 'none';
+      auditSummary.innerHTML = '';
+
+      const results = {};
+
+      await addLine('> initializing network health check...', 'audit-cmd', 0);
+      await addLine('  LiveWire Network Solutions — browser diagnostics v1.0', 'audit-muted', 300);
+      await addLine('', 'audit-muted', 500);
+
+      // HTTPS Check
+      let l = await addSpinnerLine('Checking connection security (HTTPS)...', 600);
+      await new Promise(r => setTimeout(r, 900));
+      const isHTTPS = checkHTTPS();
+      results.https = isHTTPS;
+      updateLine(l, isHTTPS
+        ? '[OK]  Connection is encrypted (HTTPS) — secure'
+        : '[FAIL] Connection is NOT encrypted — running over HTTP. Data is exposed.',
+        isHTTPS ? 'audit-ok' : 'audit-fail');
+
+      // Browser check
+      l = await addSpinnerLine('Detecting browser and device info...', 200);
+      await new Promise(r => setTimeout(r, 600));
+      const browser = checkBrowser();
+      const platform = navigator.platform || 'Unknown';
+      results.browser = browser;
+      updateLine(l, '[INFO] Browser: ' + browser + '  |  Platform: ' + platform, 'audit-info');
+
+      // Connection type
+      l = await addSpinnerLine('Detecting connection type...', 200);
+      await new Promise(r => setTimeout(r, 700));
+      const connType = getConnectionType();
+      results.connType = connType;
+      const connClass = connType === '4G' || connType === 'WIFI' || connType === 'wifi' ? 'audit-ok' : 'audit-info';
+      updateLine(l, '[INFO] Connection type: ' + connType, connClass);
+
+      // Latency test
+      l = await addSpinnerLine('Testing network latency (3 pings to Cloudflare)...', 200);
+      const latency = await testLatency();
+      results.latency = latency;
+      const latClass = latency < 50 ? 'audit-ok' : latency < 120 ? 'audit-warn' : 'audit-fail';
+      const latMsg = latency < 50 ? 'Excellent' : latency < 120 ? 'Acceptable — some lag possible' : 'High latency — network issue likely';
+      updateLine(l, '[' + (latency < 50 ? 'OK  ' : latency < 120 ? 'WARN' : 'FAIL') + '] Latency: ' + latency + 'ms — ' + latMsg, latClass);
+
+      // DNS test
+      l = await addSpinnerLine('Testing DNS resolution speed...', 200);
+      const dns = await testDNS();
+      results.dns = dns;
+      if (dns !== null) {
+        const dnsClass = dns < 80 ? 'audit-ok' : dns < 200 ? 'audit-warn' : 'audit-fail';
+        const dnsMsg = dns < 80 ? 'Fast' : dns < 200 ? 'Moderate — consider faster DNS (1.1.1.1)' : 'Slow DNS — impacts all internet activity';
+        updateLine(l, '[' + (dns < 80 ? 'OK  ' : dns < 200 ? 'WARN' : 'FAIL') + '] DNS response: ' + dns + 'ms — ' + dnsMsg, dnsClass);
+      } else {
+        updateLine(l, '[INFO] DNS test skipped — blocked by network policy', 'audit-info');
+      }
+
+      // Download speed
+      l = await addSpinnerLine('Testing download bandwidth (500KB sample)...', 200);
+      const speed = await testDownloadSpeed();
+      results.speed = speed;
+      if (speed !== null) {
+        const spClass = parseFloat(speed) > 25 ? 'audit-ok' : parseFloat(speed) > 5 ? 'audit-warn' : 'audit-fail';
+        const spMsg = parseFloat(speed) > 25 ? 'Good' : parseFloat(speed) > 5 ? 'Moderate — may struggle with video/VOIP' : 'Slow — significant bandwidth issue';
+        updateLine(l, '[' + (parseFloat(speed) > 25 ? 'OK  ' : parseFloat(speed) > 5 ? 'WARN' : 'FAIL') + '] Download: ' + speed + ' Mbps — ' + spMsg, spClass);
+      } else {
+        updateLine(l, '[INFO] Speed test unavailable from this network', 'audit-info');
+      }
+
+      // Cookie / privacy check
+      l = await addSpinnerLine('Checking browser privacy settings...', 200);
+      await new Promise(r => setTimeout(r, 500));
+      const cookiesEnabled = navigator.cookieEnabled;
+      results.cookies = cookiesEnabled;
+      updateLine(l, cookiesEnabled
+        ? '[INFO] Cookies enabled — normal for business browsing'
+        : '[INFO] Cookies disabled — enhanced privacy mode active',
+        'audit-info');
+
+      await addLine('', 'audit-muted', 200);
+      await addLine('> scan complete. Results summarized below.', 'audit-cmd', 300);
+
+      // Show summary cards
+      setTimeout(() => {
+        const issues = [];
+        if (!results.https) issues.push('No HTTPS encryption');
+        if (results.latency > 120) issues.push('High latency (' + results.latency + 'ms)');
+        if (results.dns > 200) issues.push('Slow DNS resolution');
+        if (results.speed && parseFloat(results.speed) < 5) issues.push('Low bandwidth (' + results.speed + ' Mbps)');
+
+        const scoreLabel = issues.length === 0 ? 'All Clear' : issues.length <= 2 ? 'Some Issues' : 'Needs Attention';
+        const scoreClass = issues.length === 0 ? 'arc-ok' : issues.length <= 2 ? 'arc-warn' : 'arc-fail';
+
+        auditSummary.innerHTML = `
+          <div class="audit-result-card">
+            <div class="arc-label">Overall Status</div>
+            <div class="arc-value ${scoreClass}">${scoreLabel}</div>
+          </div>
+          <div class="audit-result-card">
+            <div class="arc-label">Latency</div>
+            <div class="arc-value ${results.latency < 50 ? 'arc-ok' : results.latency < 120 ? 'arc-warn' : 'arc-fail'}">${results.latency}ms</div>
+          </div>
+          <div class="audit-result-card">
+            <div class="arc-label">Download Speed</div>
+            <div class="arc-value ${results.speed ? (parseFloat(results.speed) > 25 ? 'arc-ok' : parseFloat(results.speed) > 5 ? 'arc-warn' : 'arc-fail') : 'arc-info'}">${results.speed ? results.speed + ' Mbps' : 'N/A'}</div>
+          </div>
+          <div class="audit-result-card">
+            <div class="arc-label">DNS Speed</div>
+            <div class="arc-value ${results.dns ? (results.dns < 80 ? 'arc-ok' : results.dns < 200 ? 'arc-warn' : 'arc-fail') : 'arc-info'}">${results.dns ? results.dns + 'ms' : 'N/A'}</div>
+          </div>
+          <div class="audit-result-card">
+            <div class="arc-label">HTTPS</div>
+            <div class="arc-value ${results.https ? 'arc-ok' : 'arc-fail'}">${results.https ? 'Secure' : 'Insecure'}</div>
+          </div>
+          <div class="audit-result-card">
+            <div class="arc-label">Issues Found</div>
+            <div class="arc-value ${issues.length === 0 ? 'arc-ok' : 'arc-warn'}">${issues.length}</div>
+          </div>
+        `;
+
+        auditResults.style.display = 'block';
+        auditResetBtn.style.display = 'inline-flex';
+      }, 600);
+    }
+
+    function resetAudit() {
+      auditBody.innerHTML = '<span class="audit-line audit-muted">Ready. Press "Run Network Check" to begin.</span>';
+      auditResults.style.display = 'none';
+      auditRunBtn.style.display = 'inline-flex';
+      auditResetBtn.style.display = 'none';
+    }
 
     // ── Scanline Section Entry Effect ──
     function triggerScanline(section) {
