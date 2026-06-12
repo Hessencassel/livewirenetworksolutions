@@ -1172,65 +1172,7 @@
       50% { opacity: 0; }
     }
 
-    /* ── Threat Alert Toast ── */
-    .threat-toast {
-      position: fixed;
-      bottom: 1.6rem;
-      left: 1.6rem;
-      background: rgba(5, 10, 14, 0.97);
-      border: 1px solid rgba(220,38,38,0.38);
-      border-radius: 12px;
-      padding: 0.88rem 1.1rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      max-width: 340px;
-      z-index: 9999;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.42s ease, transform 0.42s ease;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.65), 0 0 22px rgba(220,38,38,0.07);
-      pointer-events: none;
-    }
 
-    .threat-toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .threat-dot-pulse {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #dc2626;
-      flex-shrink: 0;
-      margin-top: 3px;
-      animation: threatRing 1.2s ease-out infinite;
-    }
-
-    @keyframes threatRing {
-      0%   { box-shadow: 0 0 0 0 rgba(220,38,38,0.8); }
-      70%  { box-shadow: 0 0 0 7px rgba(220,38,38,0); }
-      100% { box-shadow: 0 0 0 0 rgba(220,38,38,0); }
-    }
-
-    .threat-content-wrap { min-width: 0; }
-
-    .threat-header {
-      font-size: 0.7rem;
-      font-weight: 900;
-      color: #f87171;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      margin-bottom: 0.28rem;
-    }
-
-    .threat-body-text {
-      font-size: 0.77rem;
-      color: var(--muted);
-      font-family: 'Courier New', monospace;
-      line-height: 1.45;
-    }
 
     /* ── Scanline flash (GSAP-driven, no keyframes needed) ── */
     .scanline-bar {
@@ -1767,13 +1709,7 @@
 
   </main>
 
-  <div class="threat-toast" id="threatToast" role="status" aria-live="polite" aria-atomic="true">
-    <div class="threat-dot-pulse"></div>
-    <div class="threat-content-wrap">
-      <div class="threat-header">Threat Blocked</div>
-      <div class="threat-body-text" id="threatMsg">Unauthorized port scan detected and dropped. 192.168.0.0/24 secured.</div>
-    </div>
-  </div>
+
 
   <div class="success-message" id="successMessage">
     <h3>Thank You!</h3>
@@ -2221,25 +2157,7 @@
       }, 48);
     })();
 
-    // ── Threat Alert Toast ──
-    const THREAT_MSGS = [
-      'Unauthorized port scan detected and dropped. 192.168.0.0/24 secured.',
-      'Brute force login attempt blocked. SSH port 22 — 47 attempts dropped.',
-      'Suspicious outbound traffic blocked. 10.0.0.41 → unknown external IP.',
-      'ARP spoofing attempt detected. VLAN-10 isolation enforced automatically.',
-    ];
-    let threatIdx = 0;
-    const threatToast = document.getElementById('threatToast');
-    const threatMsg = document.getElementById('threatMsg');
 
-    function showThreat() {
-      threatMsg.textContent = THREAT_MSGS[threatIdx];
-      threatIdx = (threatIdx + 1) % THREAT_MSGS.length;
-      threatToast.classList.add('show');
-      setTimeout(() => threatToast.classList.remove('show'), 4000);
-    }
-
-    setTimeout(() => { showThreat(); setInterval(showThreat, 12000); }, 4500);
 
     // ── Scanline Section Entry Effect ──
     function triggerScanline(section) {
