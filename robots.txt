@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://livewirenetworksolutions.netlify.app/sitemap.xml
+Sitemap: https://livewirenetworksolutions.com/sitemap.xml
