@@ -1807,8 +1807,9 @@
             Examples:
             Squarespace form block, Formspree, Netlify Forms, HubSpot, or custom backend.
           -->
-          <form name="contact" method="post" netlify>
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="bot-field" />
             
             <div>
               <label for="name">Name</label>
@@ -1849,6 +1850,10 @@
               No spam. No sales pressure. We will respond within one business day.
             </p>
           </form>
+
+          <div class="success-message" id="successMessage" style="display:none">
+            <p>Thanks! We'll be in touch within one business day.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1856,11 +1861,6 @@
   </main>
 
 
-
-  <div class="success-message" id="successMessage">
-    <h3>Thank You!</h3>
-    <p>Your assessment request has been sent. We'll respond within one business day.</p>
-  </div>
 
   <footer>
     <div class="container footer-grid">
@@ -1914,18 +1914,17 @@
 
     // Form submission handler for Netlify
     document.querySelector('form[name="contact"]').addEventListener('submit', function(e) {
-      // Netlify will handle the actual submission
-      // Show success message after brief delay
-      setTimeout(() => {
-        const successMsg = document.getElementById('successMessage');
-        successMsg.classList.add('show');
-        
-        // Hide after 4 seconds
-        setTimeout(() => {
-          successMsg.classList.remove('show');
-          this.reset();
-        }, 4000);
-      }, 300);
+      e.preventDefault();
+      const form = this;
+      const data = new FormData(form);
+      fetch('/', { method: 'POST', body: data })
+        .then(() => {
+          form.style.display = 'none';
+          document.getElementById('successMessage').style.display = 'block';
+        })
+        .catch(() => {
+          form.submit();
+        });
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
