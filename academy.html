@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Security Academy — LiveWire Network Solutions</title>
-  <meta name="description" content="Free small business security education from LiveWire Network Solutions. Learn about phishing, social engineering, ransomware, firewalls, and how to protect your Fort Wayne business." />
+  <title>LiveWire Security Academy — Free Small Business Cybersecurity Education</title>
+  <meta name="description" content="Free small business cybersecurity education from LiveWire Network Solutions. Written by a network engineer with 15+ years experience. No jargon. No upselling. Just the truth about what protects your business." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,7 @@
       --accent-dark: #13a77e;
       --line: rgba(255,255,255,0.12);
       --warning: #ffd166;
+      --info: #93c5fd;
       --max: 1160px;
       --radius: 18px;
       --shadow: 0 20px 60px rgba(0,0,0,0.35);
@@ -48,7 +49,7 @@
       background: radial-gradient(circle, rgba(33,212,163,0.12) 0%, transparent 60%);
       pointer-events: none;
       z-index: -1;
-      transform: translate3d(-150px, -150px, 0);
+      transform: translate3d(-150px,-150px,0);
       transition: transform 0.22s ease-out;
       filter: blur(2px);
     }
@@ -97,7 +98,7 @@
     }
     @keyframes statusDotPulse {
       0%, 100% { box-shadow: 0 0 5px rgba(34,197,94,0.6); transform: scale(1); }
-      50% { box-shadow: 0 0 14px rgba(34,197,94,1); transform: scale(1.3); }
+      50%       { box-shadow: 0 0 14px rgba(34,197,94,1);  transform: scale(1.3); }
     }
 
     /* ── Header ── */
@@ -140,8 +141,8 @@
       box-shadow: 0 0 40px rgba(33,212,163,0.55), inset 0 0 10px rgba(33,212,163,0.35);
     }
     @keyframes brandPulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 24px rgba(33,212,163,0.18), 0 0 0 0 rgba(33,212,163,0.12); }
-      50% { transform: scale(1.03); box-shadow: 0 0 32px rgba(33,212,163,0.26), 0 0 24px 8px rgba(33,212,163,0.06); }
+      0%, 100% { transform: scale(1);    box-shadow: 0 0 24px rgba(33,212,163,0.18), 0 0 0 0 rgba(33,212,163,0.12); }
+      50%       { transform: scale(1.03); box-shadow: 0 0 32px rgba(33,212,163,0.26), 0 0 24px 8px rgba(33,212,163,0.06); }
     }
     .brand span {
       display: block;
@@ -150,12 +151,7 @@
       font-weight: 500;
       letter-spacing: 0;
     }
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      font-size: 0.95rem;
-    }
+    nav { display: flex; align-items: center; gap: 1.2rem; font-size: 0.95rem; }
     nav a { color: var(--muted); }
     nav a:hover { color: var(--text); }
     nav a.active { color: var(--accent); font-weight: 600; }
@@ -172,24 +168,13 @@
       cursor: pointer;
       transition: 0.2s ease;
       text-align: center;
+      font-family: inherit;
+      font-size: inherit;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #04100d;
-    }
-    .btn-primary:hover {
-      background: #5ce6c0;
-      transform: translateY(-1px);
-    }
-    .btn-secondary {
-      border-color: var(--line);
-      color: var(--text);
-      background: rgba(255,255,255,0.04);
-    }
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      transform: translateY(-1px);
-    }
+    .btn-primary { background: var(--accent); color: #04100d; }
+    .btn-primary:hover { background: #5ce6c0; transform: translateY(-1px); }
+    .btn-secondary { border-color: var(--line); color: var(--text); background: rgba(255,255,255,0.04); }
+    .btn-secondary:hover { border-color: var(--accent); transform: translateY(-1px); }
     .mobile-toggle {
       display: none;
       border: 1px solid var(--line);
@@ -198,25 +183,24 @@
       border-radius: 10px;
       padding: 0.55rem 0.7rem;
       font-size: 1rem;
+      cursor: pointer;
     }
 
     /* ── Hero ── */
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 6.5rem 0 5rem;
+      padding: 7rem 0 5.5rem;
       background:
         radial-gradient(circle at top right, rgba(33,212,163,0.34), transparent 22%),
-        radial-gradient(circle at 12% 22%, rgba(13,126,101,0.16), transparent 18%),
+        radial-gradient(circle at 12% 22%,   rgba(13,126,101,0.16), transparent 18%),
         linear-gradient(180deg, #040a10 0%, #08131b 100%);
       clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
       text-align: center;
     }
     .hero::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+      position: absolute; inset: 0; z-index: 0;
       background-image:
         linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
@@ -236,12 +220,13 @@
       pointer-events: none;
     }
     @keyframes heroPulse {
-      0% { left: -30%; opacity: 0; }
-      20% { opacity: 0.8; }
-      50% { left: 55%; opacity: 0.3; }
+      0%   { left: -30%; opacity: 0; }
+      20%  { opacity: 0.8; }
+      50%  { left: 55%;  opacity: 0.3; }
       100% { left: 105%; opacity: 0; }
     }
 
+    /* ── Typography ── */
     .eyebrow {
       color: var(--accent);
       font-weight: 800;
@@ -250,51 +235,56 @@
       font-size: 0.78rem;
       margin-bottom: 1rem;
     }
-
     h1, h2, h3 { line-height: 1.12; margin: 0; }
     h1 {
-      font-size: clamp(2.45rem, 5vw, 4.8rem);
-      letter-spacing: -0.055em;
-      max-width: 820px;
+      font-size: clamp(2.45rem, 5vw, 4.4rem);
+      letter-spacing: -0.05em;
+      max-width: 860px;
       margin: 0 auto;
     }
     h2 {
-      font-size: clamp(2rem, 3.5vw, 3.1rem);
+      font-size: clamp(1.9rem, 3.2vw, 2.9rem);
       letter-spacing: -0.04em;
       text-shadow: 0 0 20px rgba(33,212,163,0.16);
     }
     h3 { font-size: 1.25rem; }
 
-    .hero p {
+    .hero p.hero-sub {
       color: var(--muted);
-      font-size: 1.15rem;
-      max-width: 680px;
-      margin: 1.35rem auto 0;
+      font-size: 1.1rem;
+      max-width: 720px;
+      margin: 1.5rem auto 0;
+      line-height: 1.75;
     }
 
-    .hero-badges {
+    /* Hero stats row */
+    .hero-stats {
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       justify-content: center;
-      margin-top: 2rem;
       flex-wrap: wrap;
+      margin-top: 2.2rem;
     }
-    .hero-badge {
+    .hero-stat {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
       background: rgba(33,212,163,0.09);
       border: 1px solid rgba(33,212,163,0.28);
       border-radius: 999px;
-      padding: 0.62rem 1.3rem;
+      padding: 0.6rem 1.2rem;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       color: var(--accent);
+      white-space: nowrap;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 2.2rem;
     }
 
-    /* ── Shared section / band ── */
-    section { padding: 4.5rem 0; }
-
+    /* ── Sections ── */
+    section { padding: 5rem 0; }
     .dark-band {
       background: #061015;
       border-top: 1px solid var(--line);
@@ -302,24 +292,127 @@
       padding: 5rem 0;
     }
 
-    /* ── Intro strip ── */
-    .intro-strip {
-      padding: 3rem 0;
+    /* ── How It Works strip ── */
+    .works-head {
       text-align: center;
+      margin-bottom: 3rem;
     }
-    .intro-strip p {
-      color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 680px;
-      margin: 0 auto;
-      line-height: 1.75;
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
+    .works-item {
+      text-align: center;
+      padding: 0 0.5rem;
+    }
+    .works-icon {
+      width: 58px; height: 58px;
+      background: rgba(33,212,163,0.09);
+      border: 1px solid rgba(33,212,163,0.22);
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      margin: 0 auto 1.2rem;
+    }
+    .works-icon svg { width: 26px; height: 26px; }
+    .works-item h3 { font-size: 1.1rem; margin-bottom: 0.65rem; }
+    .works-item p { color: var(--muted); font-size: 0.93rem; line-height: 1.65; margin: 0; }
 
-    /* ── Tier headings ── */
-    .tier-head {
-      max-width: 760px;
-      margin: 0 auto 3rem;
+    /* ── Learning path ── */
+    .path-section { padding: 5rem 0; }
+    .path-head { text-align: center; margin-bottom: 3.5rem; }
+    .path-head p { color: var(--muted); font-size: 1rem; margin: 0.8rem auto 0; max-width: 560px; }
+
+    .path-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+      gap: 1rem;
+    }
+    .path-track::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 12.5%;
+      width: 75%;
+      height: 2px;
+      background: linear-gradient(
+        to right,
+        var(--accent) 0%,
+        var(--accent) 33.33%,
+        rgba(255,255,255,0.13) 33.4%,
+        rgba(255,255,255,0.13) 100%
+      );
+      z-index: 0;
+    }
+    .path-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .stage-dot {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+    .stage-dot.start-stage {
+      background: rgba(255,255,255,0.07);
+      border: 2px solid rgba(255,255,255,0.15);
+      color: var(--muted);
+    }
+    .stage-dot.goal-stage {
+      background: linear-gradient(135deg, var(--accent), #4cc9f0);
+      color: #04100d;
+      box-shadow: 0 0 28px rgba(33,212,163,0.4);
+    }
+    .stage-dot.locked-stage {
+      background: rgba(255,255,255,0.04);
+      border: 2px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.25);
+    }
+    .stage-dot svg { width: 22px; height: 22px; }
+
+    .stage-label {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .stage-label.muted-label { color: var(--muted); }
+    .stage-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+
+    .path-note {
+      margin: 2.5rem auto 0;
+      max-width: 620px;
+      background: rgba(33,212,163,0.06);
+      border: 1px solid rgba(33,212,163,0.2);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+    .path-note strong { color: var(--accent); }
+
+    /* ── Tier sections ── */
+    .tier-head { text-align: center; margin-bottom: 1.2rem; }
+    .tier-intro {
+      text-align: center;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
     }
 
     /* ── Cards ── */
@@ -328,9 +421,6 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 1.45rem;
-    }
-    .card p { color: var(--muted); margin-bottom: 0; }
-    .card {
       position: relative;
       overflow: hidden;
       transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
@@ -351,55 +441,81 @@
       box-shadow: 0 0 18px rgba(33,212,163,0.45);
     }
     .card:hover {
-      transform: perspective(800px) var(--card-tilt, translateY(-6px)) translateY(-6px);
-      border-color: rgba(33,212,163,0.55);
-      box-shadow: 0 24px 60px rgba(33,212,163,0.14);
+      transform: perspective(800px) var(--card-tilt, translateY(-5px)) translateY(-5px);
+      border-color: rgba(33,212,163,0.5);
+      box-shadow: 0 24px 60px rgba(33,212,163,0.12);
     }
 
     /* ── Lesson grid ── */
     .lesson-grid {
       display: grid;
-      gap: 1.4rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      align-items: start;
     }
-    .lesson-grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .lesson-grid-2 { grid-template-columns: repeat(2, 1fr); }
 
     /* ── Lesson card ── */
     .lesson-card {
       display: flex;
       flex-direction: column;
-      padding: 1.75rem;
+      padding: 1.8rem;
     }
     .lesson-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       gap: 0.75rem;
-      margin-bottom: 1.1rem;
+      margin-bottom: 1rem;
     }
-    .lesson-icon {
-      width: 46px; height: 46px;
+    .lesson-icon-wrap {
+      width: 50px; height: 50px;
       background: rgba(33,212,163,0.09);
       border: 1px solid rgba(33,212,163,0.22);
-      border-radius: 12px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
       color: var(--accent);
       flex-shrink: 0;
     }
-    .lesson-icon svg { width: 22px; height: 22px; }
+    .lesson-icon-wrap svg { width: 24px; height: 24px; }
+    .lesson-tags {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.4rem;
+    }
+    .read-time { font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+    .lesson-num {
+      font-size: 0.63rem;
+      font-weight: 800;
+      color: rgba(33,212,163,0.5);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .lesson-card h3 {
+      font-size: 1.1rem;
+      margin: 0 0 0.9rem;
+      color: var(--text);
+      line-height: 1.38;
+    }
+    .lesson-desc {
+      color: var(--muted);
+      font-size: 0.91rem;
+      line-height: 1.73;
+      margin: 0 0 0.9rem;
+    }
 
+    /* Difficulty badges */
     .difficulty-badge {
       display: inline-block;
-      padding: 0.22rem 0.72rem;
+      padding: 0.22rem 0.7rem;
       border-radius: 999px;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       white-space: nowrap;
-      flex-shrink: 0;
-      margin-top: 2px;
     }
     .difficulty-badge.beginner {
       background: rgba(34,197,94,0.1);
@@ -417,41 +533,122 @@
       border: 1px solid rgba(33,212,163,0.25);
     }
 
-    .lesson-card h3 {
-      font-size: 1.08rem;
-      margin: 0 0 0.8rem;
-      color: var(--text);
-      line-height: 1.38;
-    }
-    .lesson-card > p {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.72;
-      margin: 0 0 1.2rem;
-      flex: 1;
-    }
-
-    .key-takeaway {
-      background: rgba(33,212,163,0.05);
-      border-left: 3px solid var(--accent);
+    /* Content boxes inside lesson cards */
+    .content-box {
       border-radius: 0 10px 10px 0;
       padding: 0.85rem 1rem;
-      margin-top: auto;
+      margin-top: 0.8rem;
     }
-    .key-takeaway strong {
-      display: block;
-      color: var(--accent);
-      font-size: 0.7rem;
+    .example-box  { background: rgba(255,209,102,0.06); border-left: 3px solid var(--warning); }
+    .takeaway-box { background: rgba(33,212,163,0.06);  border-left: 3px solid var(--accent); }
+    .action-box   { background: rgba(147,197,253,0.06); border-left: 3px solid var(--info); }
+
+    .box-label {
+      font-size: 0.67rem;
       font-weight: 800;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 0.42rem;
+      margin-bottom: 0.45rem;
     }
-    .key-takeaway p {
-      color: var(--muted);
+    .example-box  .box-label { color: var(--warning); }
+    .takeaway-box .box-label { color: var(--accent); }
+    .action-box   .box-label { color: var(--info); }
+
+    .content-box p {
       font-size: 0.88rem;
-      line-height: 1.6;
+      line-height: 1.65;
       margin: 0;
+      color: var(--muted);
+    }
+
+    /* ── Premium teaser ── */
+    .premium-section {
+      position: relative;
+      background: #061015;
+      padding: 6rem 0;
+    }
+    .premium-section::before,
+    .premium-section::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+    }
+    .premium-section::before {
+      top: 0;
+      background: linear-gradient(90deg, transparent, rgba(33,212,163,0.5), transparent);
+    }
+    .premium-section::after {
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(33,212,163,0.5), transparent);
+    }
+    .premium-content {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .premium-content > p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin: 1.2rem 0 2rem;
+    }
+    .premium-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.65rem;
+      margin: 0 auto 2.5rem;
+      text-align: left;
+    }
+    .premium-list-item {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      color: var(--muted);
+      font-size: 0.91rem;
+      line-height: 1.45;
+    }
+    .premium-list-item .plcheck {
+      color: var(--accent);
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .premium-list-item strong { color: var(--text); font-weight: 600; }
+
+    /* Waitlist form */
+    .waitlist-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .waitlist-form {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .waitlist-form input[type="email"] {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid var(--line);
+      background: #08161c;
+      color: var(--text);
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      font: inherit;
+      outline: none;
+      font-size: 0.95rem;
+    }
+    .waitlist-form input[type="email"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(33,212,163,0.12);
+    }
+    .waitlist-form input[type="email"]::placeholder { color: var(--muted); opacity: 0.7; }
+    .waitlist-note {
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin: 1rem 0 0;
+      opacity: 0.7;
+      text-align: center;
     }
 
     /* ── CTA section ── */
@@ -462,16 +659,17 @@
     .cta-section h2 { margin-bottom: 1.2rem; }
     .cta-section > .container > p {
       color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 640px;
+      font-size: 1.08rem;
+      max-width: 620px;
       margin: 0 auto 2.2rem;
+      line-height: 1.7;
     }
     .cta-note {
       display: block;
       color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 1.25rem;
-      opacity: 0.65;
+      font-size: 0.88rem;
+      margin-top: 1.2rem;
+      opacity: 0.6;
     }
 
     /* ── Footer ── */
@@ -501,8 +699,11 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .lesson-grid-3,
-      .lesson-grid-2 { grid-template-columns: 1fr; }
+      .lesson-grid,
+      .works-grid,
+      .premium-list { grid-template-columns: 1fr; }
+      .path-track { grid-template-columns: repeat(2, 1fr); }
+      .path-track::before { display: none; }
       .mobile-toggle { display: inline-block; }
       nav {
         display: none;
@@ -513,6 +714,10 @@
       }
       nav.open { display: flex; }
       .nav { flex-wrap: wrap; }
+    }
+    @media (max-width: 560px) {
+      .path-track { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
@@ -554,236 +759,561 @@
   <main>
     <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-    <!-- ── Hero ── -->
-    <section class="hero">
+    <!-- ─────────────────────────── HERO ─────────────────────────── -->
+    <section class="hero" id="top">
       <div class="hero-pulse-line" aria-hidden="true"></div>
       <div class="container">
-        <div class="eyebrow">Free Education</div>
-        <h1>Know the threats. Protect your business.</h1>
-        <p>Most small business attacks succeed because of things the owner didn't know. These short lessons fix that. No technical background required.</p>
-        <div class="hero-badges">
-          <div class="hero-badge">13 Free Lessons</div>
-          <div class="hero-badge">Plain English — No Jargon</div>
+        <div class="eyebrow">LiveWire Security Academy</div>
+        <h1>The cybersecurity education your business actually needs.</h1>
+        <p class="hero-sub">Most small business owners discover they had a serious security problem the hard way. These lessons exist so you don't have to. Written by a network engineer with 15+ years in the field. No jargon. No upselling. Just the truth about what protects your business and what doesn't.</p>
+        <div class="hero-stats">
+          <span class="hero-stat">20+ Free Lessons</span>
+          <span class="hero-stat">15+ Years Field Experience</span>
+          <span class="hero-stat">Plain English Only</span>
+          <span class="hero-stat">Fort Wayne &amp; Beyond</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#foundation" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2.2rem;">Start Learning →</a>
         </div>
       </div>
     </section>
 
-    <!-- ── Intro strip ── -->
-    <div class="dark-band intro-strip">
+    <!-- ─────────────────────── HOW IT WORKS ─────────────────────── -->
+    <div class="dark-band">
       <div class="container">
-        <p>These lessons are written for business owners, not IT people. Each one takes under 5 minutes to read and ends with one action you can take today.</p>
+        <div class="works-head">
+          <div class="eyebrow">How This Academy Works</div>
+          <h2>Built for owners, not IT professionals.</h2>
+        </div>
+        <div class="works-grid">
+          <div class="works-item">
+            <div class="works-icon"><i data-lucide="shield"></i></div>
+            <h3>Free Lessons</h3>
+            <p>Every lesson on this page is completely free. Read at your own pace, share with your staff, print them out. No login required and no strings attached.</p>
+          </div>
+          <div class="works-item">
+            <div class="works-icon"><i data-lucide="book-open"></i></div>
+            <h3>Real World Focus</h3>
+            <p>These are not textbook definitions. Every lesson comes from real situations we have seen in Fort Wayne businesses — and the mistakes that made them vulnerable.</p>
+          </div>
+          <div class="works-item">
+            <div class="works-icon"><i data-lucide="lock"></i></div>
+            <h3>Premium Content Coming</h3>
+            <p>Deeper dives, video walkthroughs, live Q&amp;A, and certification are coming for members. Join the waitlist below to get early access and a discount.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- ── Tier 1: Beginner ── -->
-    <section>
+    <!-- ─────────────────────── LEARNING PATH ────────────────────── -->
+    <section class="path-section">
+      <div class="container">
+        <div class="path-head">
+          <div class="eyebrow">Your Learning Journey</div>
+          <h2>Where do you want to be?</h2>
+          <p>Most small business owners start at Unaware — not through negligence but through lack of exposure. Here is where these lessons take you.</p>
+        </div>
+
+        <div class="path-track" role="list">
+          <div class="path-stage" role="listitem">
+            <div class="stage-dot start-stage">1</div>
+            <div class="stage-label">Unaware</div>
+            <div class="stage-desc">You don't know what risks exist on your network. Most small businesses start here without realizing it.</div>
+          </div>
+          <div class="path-stage" role="listitem">
+            <div class="stage-dot goal-stage">✓</div>
+            <div class="stage-label">Informed</div>
+            <div class="stage-desc">You understand the core threats, recognize warning signs, and know what questions to ask your IT provider.</div>
+          </div>
+          <div class="path-stage" role="listitem">
+            <div class="stage-dot locked-stage"><i data-lucide="lock"></i></div>
+            <div class="stage-label muted-label">Protected</div>
+            <div class="stage-desc">You have implemented the right controls, tested them, documented your network, and have a written response plan.</div>
+          </div>
+          <div class="path-stage" role="listitem">
+            <div class="stage-dot locked-stage"><i data-lucide="lock"></i></div>
+            <div class="stage-label muted-label">Confident</div>
+            <div class="stage-desc">You can articulate your security posture with specifics, evaluate vendors, and lead your team with real authority.</div>
+          </div>
+        </div>
+
+        <div class="path-note">
+          <strong>These lessons take you from Unaware to Informed.</strong> Our paid program takes you the rest of the way.
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────── TIER 1 — FOUNDATION ──────────────────── -->
+    <section id="foundation" class="dark-band">
       <div class="container">
         <div class="tier-head">
-          <div class="eyebrow">Tier 1 — Beginner</div>
-          <h2>The Basics Every Business Owner Needs</h2>
+          <div class="eyebrow">Start Here</div>
+          <h2>Foundation — What every business owner must know.</h2>
         </div>
-        <div class="lesson-grid lesson-grid-3">
+        <p class="tier-intro">These six lessons cover the most critical concepts. If you read nothing else on this page, read these.</p>
 
+        <div class="lesson-grid">
+
+          <!-- Lesson 1 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="mail-x"></i></div>
-              <span class="difficulty-badge beginner">Beginner</span>
+              <div class="lesson-icon-wrap"><i data-lucide="mail-x"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge beginner">Beginner</span>
+                <span class="read-time">5 min read</span>
+              </div>
             </div>
+            <div class="lesson-num">Lesson 01</div>
             <h3>What Is Phishing and How to Spot It</h3>
-            <p>Phishing is when an attacker sends a fake email pretending to be someone you trust — your bank, Microsoft, a vendor, or even your boss. The goal is to get you to click a link, enter a password, or wire money. These emails look real. They use real logos, real names, and create urgency so you act before you think. In 2024, over 90% of cyberattacks started with a phishing email.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>Before clicking any link in an email, hover over it and look at the actual URL. If the domain looks wrong or unfamiliar, do not click it. When in doubt, go directly to the website by typing the address yourself.</p>
+            <p class="lesson-desc">Phishing is the single most common entry point for cyberattacks against small businesses. An attacker crafts an email that appears to come from a trusted source — your bank, Microsoft, QuickBooks, a vendor, or even your own boss. The goal is always the same: get you to click a link, enter credentials, download a file, or wire money before you realize what is happening. These emails have become extraordinarily convincing — they use real logos, real names pulled from LinkedIn, and create artificial urgency so you act before you think. In 2024, over 91% of all cyberattacks began with a phishing email. Small businesses are targeted more than enterprises because attackers know they have fewer defenses.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A Fort Wayne restaurant owner received an email appearing to be from their POS vendor saying their account would be suspended in 24 hours unless they verified their payment information. The email used the vendor's real logo and the owner's actual name. They clicked the link, entered their credentials, and within hours the attacker had accessed the POS system and exported three months of customer card data.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>Urgency is a weapon. Any email that demands immediate action, threatens consequences, or asks for credentials or payment is a red flag regardless of who it appears to come from.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Forward one suspicious email per week to your staff and walk through why it is or is not legitimate. Ten minutes of practice builds better instincts than any policy document.</p>
             </div>
           </article>
 
+          <!-- Lesson 2 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="users"></i></div>
-              <span class="difficulty-badge beginner">Beginner</span>
+              <div class="lesson-icon-wrap"><i data-lucide="users"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge beginner">Beginner</span>
+                <span class="read-time">6 min read</span>
+              </div>
             </div>
-            <h3>Social Engineering — Attacking People, Not Computers</h3>
-            <p>Social engineering is manipulation. An attacker calls your front desk pretending to be IT support, a vendor, or even a government official. They create urgency, build false trust, and get your employee to hand over access, passwords, or money. No hacking required. Kevin Mitnick, one of the most famous hackers in history, said he almost never needed to break into a computer — people just let him in.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>Create a simple rule for your business: no one gives out passwords, access, or makes wire transfers based on a phone call or email alone — always verify through a second channel.</p>
+            <div class="lesson-num">Lesson 02</div>
+            <h3>Social Engineering — Humans Are the Vulnerability</h3>
+            <p class="lesson-desc">Social engineering is the art of manipulating people into giving up access, information, or money without ever touching a computer. Attackers study their targets, build false trust, create urgency, and exploit natural human tendencies like helpfulness and fear of authority. It works on everyone — from front desk employees to CEOs. Kevin Mitnick, one of the most prolific hackers in history, built his entire career on social engineering rather than technical exploits. He said the human side of security is the easiest to breach and the hardest to patch. Common techniques include pretexting (inventing a scenario), vishing (voice phishing by phone), smishing (phishing by text message), and impersonation in person.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>An attacker called a small accounting firm in Indiana posing as their IT support company. They said there was an urgent security update needed and asked the receptionist to read them the temporary access code that appeared on her screen. She did. The attacker used that code to access the firm's remote desktop system and spent two weeks quietly exfiltrating client tax records before anyone noticed.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>Create a verification rule: no passwords, no access codes, no wire transfers, and no sensitive information changes hands based on a phone call or email alone — always verify through a second channel using contact information you already have on file.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Write a one-paragraph policy for your business today: "Any request for passwords, financial transfers, or system access must be verified by calling back on a known number." Post it near every phone in the office.</p>
             </div>
           </article>
 
+          <!-- Lesson 3 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="wifi-off"></i></div>
-              <span class="difficulty-badge beginner">Beginner</span>
+              <div class="lesson-icon-wrap"><i data-lucide="shield-off"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge beginner">Beginner</span>
+                <span class="read-time">4 min read</span>
+              </div>
             </div>
-            <h3>Why Your ISP Router Is Not a Firewall</h3>
-            <p>When your internet provider installed your service, they left behind a router — a white or black plastic box that blinks. That router connects you to the internet. What it does not do is protect you from the internet. A real firewall inspects traffic, blocks threats, enforces rules, and logs what comes and goes. Your ISP router does none of that. It is a door with no lock.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>If the only device between your business and the internet is the box your ISP gave you, you have no real network security. A business-grade firewall is the single most important security investment you can make.</p>
+            <div class="lesson-num">Lesson 03</div>
+            <h3>Your ISP Router Is Not a Firewall</h3>
+            <p class="lesson-desc">When your internet provider installed your service they left behind a device — usually a white or black plastic box with blinking lights. That device is a modem-router combo. It connects your business to the internet and handles basic traffic routing. What it does not do is inspect traffic for threats, enforce security rules, log suspicious activity, block malicious connections, or give you any visibility into what is happening on your network. A real business-grade firewall does all of those things and more. The gap between an ISP-provided router and a proper firewall is not a small gap — it is the difference between an open door and a staffed security checkpoint.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A Fort Wayne retail shop was breached through their ISP router. The router had a known vulnerability that had been publicly disclosed for eight months. Because the ISP never pushed a firmware update and the owner did not know to check, the router was running vulnerable software that an automated scanner found and exploited in under three minutes. The attacker used it as a pivot point to access the point-of-sale system.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>If the only device between your business and the internet is the box your ISP gave you, you have no real network security. That box was designed to connect you to the internet, not to protect you from it.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Look at the device your ISP installed. Find the model number and search for "[model name] vulnerabilities" online. If you find results from the last two years you have a problem worth addressing immediately.</p>
             </div>
           </article>
 
+          <!-- Lesson 4 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="shield"></i></div>
-              <span class="difficulty-badge beginner">Beginner</span>
+              <div class="lesson-icon-wrap"><i data-lucide="network"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge beginner">Beginner</span>
+                <span class="read-time">5 min read</span>
+              </div>
             </div>
-            <h3>What a Firewall Actually Does</h3>
-            <p>A firewall is a gatekeeper between your network and the internet. It inspects every packet of data going in and out, compares it against a set of rules, and decides whether to allow or block it. Modern firewalls also do intrusion detection, application filtering, and VPN termination. The difference between a $60 consumer router and a $600 business firewall is not speed — it is visibility, control, and protection.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>A firewall is not optional for a business. It is the foundation everything else is built on. Without it, everything on your network is exposed.</p>
+            <div class="lesson-num">Lesson 04</div>
+            <h3>VLANs — Why Your Network Needs Walls</h3>
+            <p class="lesson-desc">A VLAN is a Virtual Local Area Network — a way to logically divide one physical network into separate isolated segments that cannot communicate with each other without explicit permission. Think of your business network as a building. Without VLANs, every room is connected to every other room with no doors and no locks. Your point-of-sale system can see your cameras. Your cameras can see your file server. Your guest Wi-Fi can reach your accounting software. With VLANs, each segment is its own locked floor with controlled access between them. This is not a luxury for large enterprises — it is a basic necessity for any business that processes payments, stores customer data, or has security cameras.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A small dental practice had their patient management system, X-ray workstations, guest Wi-Fi, and front desk computers all on the same flat network. A patient connected to the guest Wi-Fi and used a simple network scanning tool out of curiosity. They could see every device on the network including the patient management server. They reported it to the practice — but a malicious actor would not have.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>Every business should have at minimum four separate network segments: one for business computers, one for point-of-sale or payment systems, one for cameras and IoT devices, and one for guest Wi-Fi. These should not be able to reach each other without a firewall rule explicitly allowing it.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Ask whoever manages your network one question: "Can you show me our network diagram and explain which VLANs we have?" If they cannot answer or you do not have a network diagram, you do not know what you have.</p>
             </div>
           </article>
 
+          <!-- Lesson 5 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="network"></i></div>
-              <span class="difficulty-badge beginner">Beginner</span>
+              <div class="lesson-icon-wrap"><i data-lucide="wifi"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge beginner">Beginner</span>
+                <span class="read-time">4 min read</span>
+              </div>
             </div>
-            <h3>VLANs — Why Your Network Should Be Divided</h3>
-            <p>A VLAN is a Virtual Local Area Network — a way to divide one physical network into separate isolated segments. Think of it like floors in a building with locked stairwells between them. Your point-of-sale system should be on its own VLAN. Your cameras should be on their own VLAN. Your guest Wi-Fi should be completely isolated. Without VLANs, everything on your network can see everything else — and so can an attacker who gets in.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>If your cameras, registers, employee computers, and guest Wi-Fi are all on the same network, a compromise of any one of them is a compromise of all of them.</p>
+            <div class="lesson-num">Lesson 05</div>
+            <h3>Guest Wi-Fi Done Wrong — The Most Common Mistake</h3>
+            <p class="lesson-desc">Offering guest Wi-Fi is good customer service. Offering it incorrectly is an open door into your business. The most common mistake is creating a separate Wi-Fi password on the same router without any network isolation. A customer connected to your guest network can still see and potentially reach devices on your main business network because they are on the same underlying subnet. Proper guest Wi-Fi requires a separate SSID, a dedicated VLAN, and firewall rules that allow the guest network to reach the internet only — nothing on the inside. This requires a business-grade access point and a proper firewall, not a consumer router with a guest password option.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A coffee shop offered free guest Wi-Fi. Their network printer, point-of-sale iPad, and back-office computer were all reachable from the guest network. A regular customer who happened to be a network engineer pointed this out after being able to see the printer and connect to it from his laptop while ordering a latte. The owner had no idea.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>If your guest Wi-Fi and your business systems are managed by the same consumer router, they are not actually isolated — regardless of what the settings page says.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Connect a personal device to your own guest Wi-Fi and open a network scanning app like Fing (free on iOS and Android). If you can see your business devices from the guest network, your isolation is not working.</p>
             </div>
           </article>
 
+          <!-- Lesson 6 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="wifi"></i></div>
-              <span class="difficulty-badge beginner">Beginner</span>
+              <div class="lesson-icon-wrap"><i data-lucide="key"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge beginner">Beginner</span>
+                <span class="read-time">5 min read</span>
+              </div>
             </div>
-            <h3>Guest Wi-Fi Done Wrong</h3>
-            <p>Almost every small business offers guest Wi-Fi. Almost none of them set it up correctly. Guest Wi-Fi that runs on the same network as your business systems is not guest Wi-Fi — it is an open door to everything you own. A customer on your guest network should only be able to reach the internet, nothing else. No printers, no registers, no servers, no cameras. This requires proper VLAN configuration and a firewall — not just a separate password on the same router.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>Ask your IT person or internet provider one question: is the guest Wi-Fi on a completely separate VLAN from our business systems? If they hesitate or say yes without being able to explain it, you have a problem.</p>
+            <div class="lesson-num">Lesson 06</div>
+            <h3>Password Security — What Actually Works</h3>
+            <p class="lesson-desc">Most password advice is wrong. Requiring complex passwords with symbols and numbers that change every 90 days actually makes security worse because people write them down, reuse them across sites, or make predictable substitutions. What actually works according to NIST — the National Institute of Standards and Technology — is length over complexity, no forced rotation unless a breach is suspected, and checking passwords against lists of known compromised credentials. A 20-character passphrase like "coffee-fort-wayne-network" is stronger than "P@ssw0rd1!" and far easier to remember. The other thing that actually works is multi-factor authentication — requiring a second form of verification in addition to a password.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A small logistics company in Indiana was breached through a reused password. An employee used the same password for their work email and a fitness app. The fitness app was breached in 2022 and the credentials were sold on the dark web. An attacker used those credentials to log into the company's email system nine months later and spent three weeks reading emails and forwarding financial communications to an external address before anyone noticed.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>Password length beats complexity. Multi-factor authentication beats both. Enable MFA on every business account that offers it — email, banking, accounting software, and remote access — today.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Go to haveibeenpwned.com right now and enter your business email address. It will tell you if your credentials have appeared in any known data breaches. It is free and takes 10 seconds.</p>
             </div>
           </article>
 
-        </div>
+        </div><!-- /lesson-grid tier 1 -->
       </div>
     </section>
 
-    <!-- ── Tier 2: Intermediate ── -->
-    <section class="dark-band">
+    <!-- ──────────────────── TIER 2 — INTERMEDIATE ───────────────── -->
+    <section id="intermediate">
       <div class="container">
         <div class="tier-head">
-          <div class="eyebrow">Tier 2 — Intermediate</div>
-          <h2>Go Deeper — Common Attack Scenarios</h2>
+          <div class="eyebrow">Go Deeper</div>
+          <h2>Intermediate — Common attack scenarios and how they work.</h2>
         </div>
-        <div class="lesson-grid lesson-grid-2">
+        <p class="tier-intro">You know the basics. Now learn how real attacks unfold — step by step — so you can recognize them before they reach your business.</p>
 
+        <div class="lesson-grid">
+
+          <!-- Lesson 7 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="lock"></i></div>
-              <span class="difficulty-badge intermediate">Intermediate</span>
+              <div class="lesson-icon-wrap"><i data-lucide="skull"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge intermediate">Intermediate</span>
+                <span class="read-time">7 min read</span>
+              </div>
             </div>
-            <h3>Ransomware — What Actually Happens Step by Step</h3>
-            <p>Ransomware is malware that encrypts your files and demands payment to restore them. But it does not happen instantly. An attacker typically gets in through a phishing email or unpatched vulnerability, then spends days or weeks quietly moving through your network before triggering the encryption. By the time you see the ransom note, your backups may already be compromised. The average ransom demand for small businesses in 2024 was over $200,000.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>The best ransomware defense is network segmentation, regular offline backups, and patched systems. If your backups are on the same network as your computers, they will be encrypted too.</p>
+            <div class="lesson-num">Lesson 07</div>
+            <h3>Ransomware — A Step by Step Breakdown</h3>
+            <p class="lesson-desc">Ransomware does not happen instantly. The visible moment — when your files are encrypted and the ransom note appears — is actually the end of a process that began days, weeks, or even months earlier. Phase one is initial access, typically through a phishing email, a vulnerability in an internet-facing service, or compromised credentials. Phase two is persistence — the attacker installs tools to maintain access even if the original entry point is closed. Phase three is reconnaissance — they map your network, identify valuable data, and locate your backups. Phase four is lateral movement — they spread through your network to reach high-value targets. Phase five is exfiltration — they copy your data before encrypting it, giving them leverage even if you restore from backup. Phase six is encryption — only then do they trigger the ransomware. By the time you see the note, your backups may already be compromised and your data may already be sold.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A Midwest manufacturing company paid $340,000 in ransom in 2023 after attackers spent 23 days inside their network before triggering encryption. The initial entry point was a phishing email opened by an accounts payable employee. The attackers moved to the domain controller, disabled antivirus across the network, encrypted both primary storage and backup drives, and exfiltrated 40GB of financial data before triggering the payload.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>Ransomware defense is not about antivirus. It is about network segmentation that limits lateral movement, offline backups that cannot be reached from the network, and rapid detection of unusual internal traffic.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Ask yourself: if your primary server was encrypted right now, where is your most recent backup and is it accessible from the network? If the answer is yes, your backup will be encrypted too.</p>
             </div>
           </article>
 
+          <!-- Lesson 8 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="camera-off"></i></div>
-              <span class="difficulty-badge intermediate">Intermediate</span>
+              <div class="lesson-icon-wrap"><i data-lucide="camera-off"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge intermediate">Intermediate</span>
+                <span class="read-time">5 min read</span>
+              </div>
             </div>
-            <h3>Why Security Cameras Are a Security Risk</h3>
-            <p>Security cameras are supposed to protect your business. But most small business camera installations connect the cameras directly to the main business network with no isolation. IP cameras are notoriously insecure — many run outdated firmware with known vulnerabilities and default passwords that were never changed. An attacker who compromises a camera on your main network now has a foothold inside your business. In 2021, a hacker accessed 150,000 cameras across hospitals, jails, and businesses through a single vendor's weak credentials.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>Cameras should always be on their own isolated VLAN with no access to the rest of your network. They should reach the internet only if remote viewing is required, and only through a controlled path.</p>
+            <div class="lesson-num">Lesson 08</div>
+            <h3>Why IP Cameras Are a Security Risk</h3>
+            <p class="lesson-desc">IP cameras are the most commonly overlooked security vulnerability in small business networks. Most are installed by low-bid security companies that connect them directly to the main business network, never change the default credentials, and never update the firmware. IP cameras run embedded Linux with a web server and often have remote access capabilities — which means they are internet-facing computers with known vulnerabilities running on your internal network. Mirai, one of the largest botnets in history, was built almost entirely from compromised IP cameras and DVRs. In 2021, a hacker accessed 150,000 cameras at Verkada — a major security company — through a single set of stolen credentials.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A small Fort Wayne manufacturer installed eight IP cameras for facility security. The installer connected all cameras to the main business network and left the default admin password of "admin" on every camera. Eighteen months later a routine security scan found that two cameras had been compromised and were being used as part of a botnet — generating outbound traffic to command and control servers 24 hours a day. The business had been unknowingly participating in cyberattacks against other organizations.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>Cameras must be on their own isolated VLAN with no ability to reach business systems. Default credentials must be changed on every device. Firmware must be updated regularly. Remote viewing should go through a VPN, not a direct port forward.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Find your camera system's DVR or NVR and try logging in with the username "admin" and password "admin" or "12345." If it works, your system has default credentials that need to be changed immediately.</p>
             </div>
           </article>
 
+          <!-- Lesson 9 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="user-x"></i></div>
-              <span class="difficulty-badge intermediate">Intermediate</span>
+              <div class="lesson-icon-wrap"><i data-lucide="users-2"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge intermediate">Intermediate</span>
+                <span class="read-time">6 min read</span>
+              </div>
             </div>
-            <h3>Vendor Access — The Hidden Risk</h3>
-            <p>Your HVAC company needs to check the thermostat. Your POS vendor needs remote access to run an update. Your cleaning crew knows your Wi-Fi password. Every person you give network access to is a potential entry point — not because they are malicious, but because their devices, accounts, and credentials may be compromised without their knowledge. The Target breach in 2013, which exposed 40 million credit cards, started through a heating and air conditioning vendor.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>Vendors should never be on your main business network. Create a separate isolated VLAN for vendor access or use a temporary guest credential that expires after their visit.</p>
+            <div class="lesson-num">Lesson 09</div>
+            <h3>Vendor Access — The Hidden Threat Inside Your Network</h3>
+            <p class="lesson-desc">Third party vendor access is one of the most underestimated risks in small business security. Your HVAC technician needs building access. Your POS vendor needs remote access for updates. Your accountant needs access to financial files. Your cleaning crew works alone after hours and knows your Wi-Fi password. Each of these access points represents a potential entry vector — not because these people are malicious but because their own systems, credentials, and practices may be compromised. The 2013 Target breach that exposed 40 million credit cards started through a heating and air conditioning vendor who had network access for remote monitoring. The vendor was compromised and that access was used to reach Target's POS systems.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A small law firm gave their IT vendor persistent VPN access for remote support. When that IT vendor was acquired by a larger company, the VPN credentials were transferred to a new team. A disgruntled employee at the acquiring company used those credentials to access the law firm's file server and exfiltrated client documents. The law firm did not know their vendor had changed ownership and had no process for reviewing or rotating third party credentials.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>Every vendor access credential should be documented, time-limited, and reviewed quarterly. Vendors should be on isolated network segments. When a vendor relationship ends, their access must be revoked immediately.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Make a list right now of every person or company that has access to your network — physically or remotely. For each one, ask: do they still need this access, when did we last review it, and what can they actually reach?</p>
             </div>
           </article>
 
+          <!-- Lesson 10 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="mail-warning"></i></div>
-              <span class="difficulty-badge intermediate">Intermediate</span>
+              <div class="lesson-icon-wrap"><i data-lucide="mail-warning"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge intermediate">Intermediate</span>
+                <span class="read-time">6 min read</span>
+              </div>
             </div>
-            <h3>How to Read a Suspicious Email</h3>
-            <p>The from name in an email can say anything — attackers set it to whatever they want. What matters is the actual sending domain. Look at the address in angle brackets, not just the display name. A fake email might show "Microsoft Support" as the name but send from support@micros0ft-help.ru. Other red flags include urgency and threats, requests for passwords or wire transfers, links that do not match the supposed sender, and attachments you were not expecting.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>Check the actual sending domain, not the display name. Hover over links before clicking. When in doubt, call the sender directly using a number you already know — not one from the email.</p>
+            <div class="lesson-num">Lesson 10</div>
+            <h3>How to Analyze a Suspicious Email</h3>
+            <p class="lesson-desc">Display names in email mean nothing. An attacker can set the display name to "Microsoft Support" or "Your Bank" or even your CEO's name while sending from any address they control. What matters is the actual sending domain — the part after the @ symbol in the real address, not the display name. Beyond the sending address, look at the reply-to address which may differ from the from address, hover over all links to see the actual destination URL before clicking, check whether the email was authenticated using SPF, DKIM, and DMARC by viewing the full headers, and look for subtle domain spoofing like micros0ft.com with a zero instead of an o or paypa1.com with a one instead of an l. Legitimate organizations will never ask for your password, send unexpected attachments, or demand immediate action to avoid account termination.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>An office manager received an email appearing to be from the company's owner asking her to purchase $2,000 in Google Play gift cards for a client gift and email the codes immediately. The display name showed the owner's name. The actual sending address was from a Gmail account with a slight variation of the owner's name. The urgency and the owner's authority overrode her instincts. She purchased the cards and sent the codes before calling to verify.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>Any request involving money, gift cards, wire transfers, or credential changes that comes through email should be verified by calling the requester directly on a number you already have — never using contact information from the email itself.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Open any email in your inbox and find how to view the full headers — in Gmail click the three dots and select "Show original." Look at the "From" field in the raw headers versus what displays in your inbox. Practice reading the actual sending domain.</p>
             </div>
           </article>
 
-        </div>
+          <!-- Lesson 11 -->
+          <article class="card lesson-card">
+            <div class="lesson-header">
+              <div class="lesson-icon-wrap"><i data-lucide="activity"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge intermediate">Intermediate</span>
+                <span class="read-time">6 min read</span>
+              </div>
+            </div>
+            <div class="lesson-num">Lesson 11</div>
+            <h3>Network Traffic — What Normal Looks Like and What Doesn't</h3>
+            <p class="lesson-desc">Most small business networks have never been baselined — meaning no one has ever documented what normal traffic looks like so that abnormal traffic can be detected. On a healthy network, traffic patterns are predictable: business hours show activity to known cloud services, file servers, email, and the internet. After-hours traffic should drop to near zero except for scheduled backups and updates. Red flags include large outbound data transfers at unusual hours, connections to foreign IP addresses or unfamiliar cloud services, internal devices scanning other internal devices, DNS requests to unusual domains, and traffic on ports that should not be in use. A business-grade firewall logs all of this. A consumer router logs none of it.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A small CPA firm's firewall logs showed a consistent 2GB outbound transfer every night at 2am for three weeks before anyone noticed. Investigation revealed that a workstation had been compromised with data exfiltration malware that had been quietly copying client tax files to a cloud storage service in Eastern Europe every night while the office was empty.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>You cannot detect what you cannot see. If your network has no logging, no firewall, and no monitoring, you have no way of knowing whether you are currently being compromised.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Ask your IT provider to show you last week's firewall logs. If they cannot produce them or you have no firewall generating logs, you have no visibility into your own network.</p>
+            </div>
+          </article>
+
+        </div><!-- /lesson-grid tier 2 -->
       </div>
     </section>
 
-    <!-- ── Tier 3: Advanced ── -->
-    <section>
+    <!-- ─────────────────── TIER 3 — ADVANCED ────────────────────── -->
+    <section id="advanced" class="dark-band">
       <div class="container">
         <div class="tier-head">
-          <div class="eyebrow">Tier 3 — Advanced</div>
-          <h2>Business Owner Essentials</h2>
+          <div class="eyebrow">Critical Knowledge</div>
+          <h2>Advanced — What business owners must know to make informed decisions.</h2>
         </div>
-        <div class="lesson-grid lesson-grid-3">
+        <p class="tier-intro">These lessons cover topics that most IT people never explain to business owners. Understanding them helps you ask better questions, make better decisions, and hold your vendors accountable.</p>
 
+        <div class="lesson-grid">
+
+          <!-- Lesson 12 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="credit-card"></i></div>
-              <span class="difficulty-badge advanced">Advanced</span>
+              <div class="lesson-icon-wrap"><i data-lucide="credit-card"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge advanced">Advanced</span>
+                <span class="read-time">7 min read</span>
+              </div>
             </div>
-            <h3>PCI DSS Basics — What Card-Processing Businesses Must Know</h3>
-            <p>If your business accepts credit or debit cards, you are required to comply with PCI DSS — the Payment Card Industry Data Security Standard. This is not optional. It requires that your card-processing systems be isolated from the rest of your network, that you use strong encryption, that you maintain logs, and that you regularly test your security. Non-compliance can result in fines, lost ability to accept cards, and liability for fraudulent charges after a breach.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>Your point-of-sale system must be on its own isolated network segment. If it shares a network with your guest Wi-Fi, cameras, or employee computers, you are likely out of PCI compliance right now.</p>
+            <div class="lesson-num">Lesson 12</div>
+            <h3>PCI DSS — What Card-Processing Businesses Are Required to Do</h3>
+            <p class="lesson-desc">PCI DSS — the Payment Card Industry Data Security Standard — is a set of security requirements that apply to any business that accepts, processes, stores, or transmits credit or debit card data. This is not a government regulation but it is contractually required by your payment processor and the card brands. Non-compliance can result in monthly fines from your processor, loss of the ability to accept cards, and direct liability for fraudulent charges following a breach. The standard has 12 core requirements covering network security, access control, encryption, logging, vulnerability management, and regular testing. For small businesses the most critical requirements are network segmentation of cardholder data environments, strong access controls, encryption of card data in transit, and annual self-assessment questionnaires.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A small restaurant was found non-compliant after a card breach that exposed 800 customer cards. Their processor charged them $25,000 in non-compliance fines, required a forensic investigation at their expense ($15,000), and held back $40,000 in processing reserves pending the investigation. The root cause was their POS system being on the same network as their guest Wi-Fi — a basic segmentation failure that would have cost under $1,000 to fix properly.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>If you process credit cards and your POS system shares a network with anything else — guest Wi-Fi, cameras, employee computers — you are almost certainly out of PCI compliance right now and exposed to significant financial liability in the event of a breach.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Contact your payment processor and ask them to send you your current PCI compliance status and your required Self-Assessment Questionnaire type. If you have never completed one, you are non-compliant.</p>
             </div>
           </article>
 
+          <!-- Lesson 13 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="clock"></i></div>
-              <span class="difficulty-badge advanced">Advanced</span>
+              <div class="lesson-icon-wrap"><i data-lucide="clock"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge advanced">Advanced</span>
+                <span class="read-time">7 min read</span>
+              </div>
             </div>
-            <h3>Incident Response — The First 60 Minutes</h3>
-            <p>When a breach happens, most businesses waste the most critical time because they have no plan. The first 60 minutes determine whether an incident becomes a disaster. Step one is isolation — disconnect affected systems from the network immediately. Step two is documentation — take photos of error messages, do not delete anything. Step three is notification — contact your IT provider, your bank if financial accounts may be involved, and your cyber insurance provider if you have one. Do not pay a ransom without legal and insurance consultation.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>Write a one-page incident response plan before you need it. It should include who to call, how to isolate systems, and what not to do. A plan made in a crisis is not a plan.</p>
+            <div class="lesson-num">Lesson 13</div>
+            <h3>Incident Response — The First 60 Minutes of a Breach</h3>
+            <p class="lesson-desc">The decisions made in the first 60 minutes of discovering a breach determine whether an incident becomes a manageable problem or a catastrophic disaster. Most businesses make critical mistakes in this window because they have no plan and panic drives the response. The most common mistakes are: continuing to use compromised systems which allows attackers to observe your response, deleting files or logs in an attempt to clean up which destroys forensic evidence, paying a ransom without legal and insurance consultation, and failing to notify stakeholders in a timely manner which can create additional legal liability. A proper incident response follows a documented plan: isolate, document, notify, investigate, remediate, and review.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A small manufacturing company discovered ransomware on a Monday morning. With no incident response plan, the owner spent three hours trying to remove the malware himself, inadvertently destroying forensic evidence. He then paid the ransom without consulting his cyber insurance carrier — which voided his claim. He spent $47,000 in ransom and recovery costs that would have been largely covered by his policy if he had called his insurer first.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>The two most important calls in the first 60 minutes of a breach are to your IT provider and your cyber insurance carrier — in that order. Do not pay ransom, do not delete files, and do not continue using compromised systems until you have professional guidance.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Write a one-page incident response plan this week. It should include: who to call (IT provider, cyber insurance, legal), how to isolate systems (physically unplug from network), what not to do (delete files, pay ransom without consultation), and where your most recent backup is located.</p>
             </div>
           </article>
 
+          <!-- Lesson 14 -->
           <article class="card lesson-card">
             <div class="lesson-header">
-              <div class="lesson-icon"><i data-lucide="shield-check"></i></div>
-              <span class="difficulty-badge advanced">Advanced</span>
+              <div class="lesson-icon-wrap"><i data-lucide="shield-check"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge advanced">Advanced</span>
+                <span class="read-time">6 min read</span>
+              </div>
             </div>
-            <h3>How to Know If Your Network Is Actually Secure</h3>
-            <p>Most small business owners assume their network is secure because nothing bad has happened yet. That is not security — that is luck. A truly secure network has a business-grade firewall with active rules, VLANs separating critical systems, documented credentials stored securely, regular firmware updates on all devices, and someone who can answer detailed questions about the configuration. If your IT person cannot show you a network diagram and a firewall rule summary, you do not know what you have.</p>
-            <div class="key-takeaway">
-              <strong>Key Takeaway</strong>
-              <p>Security is not a product you buy once. It is a configuration you maintain. Schedule an annual review of your network the same way you schedule an annual review of your finances.</p>
+            <div class="lesson-num">Lesson 14</div>
+            <h3>How to Evaluate Your IT Provider's Security Work</h3>
+            <p class="lesson-desc">Most small business owners have no way to evaluate whether their IT provider is doing a good job because they do not know what good looks like. This is by design — complexity keeps clients dependent. A competent IT provider who has properly secured your network should be able to immediately produce: a current network diagram showing all devices and segments, a firewall rule summary explaining what is allowed and why, documentation of all credentials and where they are stored, a log of recent changes made to the network, and a summary of known vulnerabilities and remediation status. If your IT provider cannot produce any of these on request, you do not know what you have and neither do they.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A business owner hired a new IT provider after feeling uncertain about their current one. The new provider asked for the network documentation from the previous vendor. The previous vendor produced a single Word document with a hand-drawn network diagram that was three years out of date, no firewall rule documentation, and a sticky note with the admin password. The business had been paying $800 per month for managed IT services for four years.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>You are paying for a result, not just activity. Ask for documentation. Ask for explanations. If your IT provider cannot explain what they have done and why in plain English, demand better or find someone who can.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Email your current IT provider today and ask for three things: a current network diagram, a summary of your firewall rules, and a list of any outstanding security issues. The response — or lack of response — will tell you everything.</p>
             </div>
           </article>
 
-        </div>
+          <!-- Lesson 15 -->
+          <article class="card lesson-card">
+            <div class="lesson-header">
+              <div class="lesson-icon-wrap"><i data-lucide="file-check"></i></div>
+              <div class="lesson-tags">
+                <span class="difficulty-badge advanced">Advanced</span>
+                <span class="read-time">5 min read</span>
+              </div>
+            </div>
+            <div class="lesson-num">Lesson 15</div>
+            <h3>What a Proper Network Documentation Package Looks Like</h3>
+            <p class="lesson-desc">Network documentation is the difference between a business that can recover from a disaster in hours and one that takes weeks. Proper documentation includes a physical and logical network diagram showing every device, IP address, VLAN, and connection; a credential inventory stored securely with role-based access; a firewall rule log with the business justification for each rule; ISP circuit information including account numbers and support contacts; hardware inventory with serial numbers, purchase dates, and warranty status; and a change log recording every modification made to the network. Without this documentation, every technician who touches your network starts from scratch, every outage takes longer to resolve, and every vendor transition is a crisis.</p>
+            <div class="content-box example-box">
+              <div class="box-label">▸ Real World Example</div>
+              <p>A business owner whose IT person left unexpectedly spent three weeks and $8,000 in emergency consulting fees to reverse-engineer their own network because there was no documentation. They discovered two forgotten servers, a misconfigured firewall rule that had been exposing a database port to the internet for two years, and three vendor VPN connections whose owners could not be identified.</p>
+            </div>
+            <div class="content-box takeaway-box">
+              <div class="box-label">✓ Key Takeaway</div>
+              <p>Network documentation is not something you create after something goes wrong. It is something you maintain continuously so that you are never dependent on any single person's knowledge of your systems.</p>
+            </div>
+            <div class="content-box action-box">
+              <div class="box-label">→ Action Item</div>
+              <p>Ask for a copy of your network documentation today. If it does not exist, make creating it a condition of your next IT contract renewal. LiveWire includes a complete documentation package with every project we complete.</p>
+            </div>
+          </article>
+
+        </div><!-- /lesson-grid tier 3 -->
       </div>
     </section>
 
-    <!-- ── Bottom CTA ── -->
+    <!-- ──────────────────── PREMIUM TEASER ──────────────────────── -->
+    <div class="premium-section" id="waitlist">
+      <div class="container">
+        <div class="premium-content">
+          <div class="eyebrow">Coming Soon</div>
+          <h2>Ready to go beyond the basics?</h2>
+          <p>These 15 lessons are the foundation. The LiveWire Security Academy premium program goes much deeper — video walkthroughs of real firewall configurations, live network scanning demonstrations, downloadable policy templates, incident response playbooks, vendor evaluation scorecards, and direct Q&amp;A with a working network engineer. This is not a generic online course. It is built from 15 years of real small business network work in the field.</p>
+
+          <div class="premium-list">
+            <div class="premium-list-item"><span class="plcheck">✓</span><span><strong>Video:</strong> How to read your firewall logs in real time</span></div>
+            <div class="premium-list-item"><span class="plcheck">✓</span><span><strong>Video:</strong> Live network scan demonstration — see what attackers see</span></div>
+            <div class="premium-list-item"><span class="plcheck">✓</span><span><strong>Template:</strong> Vendor access policy for small businesses</span></div>
+            <div class="premium-list-item"><span class="plcheck">✓</span><span><strong>Template:</strong> Incident response plan — fill in the blank</span></div>
+            <div class="premium-list-item"><span class="plcheck">✓</span><span><strong>Checklist:</strong> PCI DSS self-assessment for small businesses</span></div>
+            <div class="premium-list-item"><span class="plcheck">✓</span><span><strong>Checklist:</strong> 47-point network security audit you can do yourself</span></div>
+            <div class="premium-list-item"><span class="plcheck">✓</span><span>Live Q&amp;A sessions with a working network engineer</span></div>
+            <div class="premium-list-item"><span class="plcheck">✓</span><span>Certificate of completion for staff training documentation</span></div>
+          </div>
+
+          <div class="waitlist-wrap">
+            <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="waitlistForm">
+              <input type="hidden" name="form-name" value="waitlist" />
+              <p style="display:none"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+              <div class="waitlist-form">
+                <input type="email" name="email" placeholder="Your business email address" required />
+                <button type="submit" class="btn btn-primary">Join the Waitlist — It's Free</button>
+              </div>
+            </form>
+            <div id="waitlistSuccess" style="display:none;color:var(--accent);font-weight:700;font-size:1rem;margin-top:1rem;">✓ You're on the list. We'll be in touch when the program launches.</div>
+            <p class="waitlist-note">No spam. No sales calls. Just a notification when the program launches and an early access discount for waitlist members.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ────────────────────── BOTTOM CTA ────────────────────────── -->
     <div class="dark-band cta-section">
       <div class="container">
         <h2>Now you know what to look for.</h2>
@@ -822,67 +1352,106 @@
       smoothTouch: true,
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
 
-    // Cursor glow
+    // Smooth scroll for in-page anchors
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const target = document.querySelector(link.hash);
+        if (target) {
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -84, duration: 1.2 });
+          document.getElementById('navMenu').classList.remove('open');
+        }
+      });
+    });
+
+    // ── Cursor glow ──
     const cursorGlow = document.getElementById('cursorGlow');
-    let cursorX = window.innerWidth / 2, cursorY = window.innerHeight / 2;
-    let glowX = cursorX, glowY = cursorY;
-    window.addEventListener('mousemove', (e) => { cursorX = e.clientX; cursorY = e.clientY; });
+    let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    let gx = cx, gy = cy;
+    window.addEventListener('mousemove', (e) => { cx = e.clientX; cy = e.clientY; });
     function animateGlow() {
-      glowX += (cursorX - glowX) * 0.18;
-      glowY += (cursorY - glowY) * 0.18;
-      cursorGlow.style.transform = `translate3d(${glowX - 150}px, ${glowY - 150}px, 0)`;
+      gx += (cx - gx) * 0.18;
+      gy += (cy - gy) * 0.18;
+      cursorGlow.style.transform = `translate3d(${gx - 150}px, ${gy - 150}px, 0)`;
       requestAnimationFrame(animateGlow);
     }
     animateGlow();
 
-    // Hero entrance
+    // ── Hero entrance ──
     gsap.timeline()
-      .from('.hero .eyebrow', { opacity: 0, y: 16, duration: 0.65, ease: 'power3.out' })
-      .from('.hero h1',       { opacity: 0, y: 40, duration: 0.85, ease: 'power3.out' }, '-=0.35')
-      .from('.hero p',        { opacity: 0, y: 24, duration: 0.75, ease: 'power3.out' }, '-=0.45')
-      .from('.hero-badge',    { opacity: 0, y: 20, duration: 0.65, ease: 'power3.out', stagger: 0.1 }, '-=0.5');
+      .from('.hero .eyebrow',  { opacity: 0, y: 16, duration: 0.65, ease: 'power3.out' })
+      .from('.hero h1',        { opacity: 0, y: 40, duration: 0.85, ease: 'power3.out' }, '-=0.35')
+      .from('.hero .hero-sub', { opacity: 0, y: 24, duration: 0.75, ease: 'power3.out' }, '-=0.45')
+      .from('.hero-stat',      { opacity: 0, y: 20, duration: 0.65, ease: 'power3.out', stagger: 0.08 }, '-=0.5')
+      .from('.hero-actions',   { opacity: 0, y: 16, duration: 0.6,  ease: 'power3.out' }, '-=0.45');
 
-    // Section h2 fade-up on scroll
+    // ── Section h2 headings ──
     gsap.utils.toArray('h2').forEach((el) => {
       gsap.from(el, {
-        opacity: 0, y: 30, duration: 0.8, ease: 'power3.out',
+        opacity: 0, y: 28, duration: 0.8, ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 95%', once: true },
       });
     });
 
-    // 3D card tilt
+    // ── Works items stagger ──
+    gsap.from('.works-item', {
+      opacity: 0, y: 28, duration: 0.75, stagger: 0.14, ease: 'power3.out',
+      scrollTrigger: { trigger: '.works-grid', start: 'top 90%', once: true },
+    });
+
+    // ── Path stages stagger ──
+    gsap.from('.path-stage', {
+      opacity: 0, y: 22, duration: 0.7, stagger: 0.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.path-track', start: 'top 90%', once: true },
+    });
+    gsap.from('.path-note', {
+      opacity: 0, y: 16, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '.path-note', start: 'top 95%', once: true },
+    });
+
+    // ── Tier intros ──
+    gsap.utils.toArray('.tier-intro').forEach((el) => {
+      gsap.from(el, {
+        opacity: 0, y: 18, duration: 0.65, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 95%', once: true },
+      });
+    });
+
+    // ── Lesson cards (ScrollTrigger) ──
+    gsap.utils.toArray('.lesson-card').forEach((card) => {
+      gsap.from(card, {
+        opacity: 0, y: 30, duration: 0.85, ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 92%', once: true },
+      });
+    });
+
+    // ── Premium list items ──
+    gsap.from('.premium-list-item', {
+      opacity: 0, y: 16, duration: 0.6, stagger: 0.06, ease: 'power3.out',
+      scrollTrigger: { trigger: '.premium-list', start: 'top 90%', once: true },
+    });
+
+    gsap.from('.waitlist-wrap', {
+      opacity: 0, y: 20, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: '.waitlist-wrap', start: 'top 92%', once: true },
+    });
+
+    // ── 3D card tilt ──
     document.querySelectorAll('.card').forEach((card) => {
       card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width  - 0.5;
         const py = (e.clientY - r.top)  / r.height - 0.5;
-        card.style.setProperty('--card-tilt', `rotateX(${-py * 8}deg) rotateY(${px * 8}deg)`);
+        card.style.setProperty('--card-tilt', `rotateX(${-py * 7}deg) rotateY(${px * 7}deg)`);
       });
       card.addEventListener('mouseleave', () => card.style.removeProperty('--card-tilt'));
     });
 
-    // Lesson cards — set invisible, reveal via IntersectionObserver (threshold 0.1) + GSAP
-    gsap.set('.lesson-card', { opacity: 0, y: 28 });
-
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          gsap.to(entry.target, { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' });
-          cardObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.lesson-card').forEach((card) => cardObserver.observe(card));
-
-    // Scanline section entry effect
-    document.querySelectorAll('section, .dark-band, .intro-strip').forEach((section) => {
+    // ── Scanline section entry effect ──
+    document.querySelectorAll('section, .dark-band, .premium-section').forEach((el) => {
       let fired = false;
       const obs = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -893,7 +1462,7 @@
             document.body.appendChild(bar);
             const rect = entry.target.getBoundingClientRect();
             gsap.fromTo(bar,
-              { top: rect.top, opacity: 1 },
+              { top: rect.top,  opacity: 1 },
               { top: rect.top + rect.height, opacity: 0, duration: 0.32, ease: 'none',
                 onComplete: () => bar.remove() }
             );
@@ -901,8 +1470,27 @@
           }
         });
       }, { threshold: 0.08 });
-      obs.observe(section);
+      obs.observe(el);
     });
+
+    // ── Waitlist form ──
+    const waitlistForm = document.getElementById('waitlistForm');
+    if (waitlistForm) {
+      waitlistForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = new FormData(this);
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data).toString(),
+        }).then(() => {
+          waitlistForm.style.display = 'none';
+          document.getElementById('waitlistSuccess').style.display = 'block';
+        }).catch(() => {
+          waitlistForm.submit();
+        });
+      });
+    }
 
     lucide.createIcons();
   </script>
