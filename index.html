@@ -1338,6 +1338,152 @@
         margin-top: 1.5rem;
       }
     }
+
+    .quiz-outer {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .quiz-progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .quiz-progress-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .quiz-q {
+      background: var(--card-bg, rgba(255,255,255,0.04));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .quiz-q.q-yes {
+      border-color: #21d4a3;
+      background: rgba(33,212,163,0.06);
+    }
+    .quiz-q.q-no {
+      border-color: #e05c5c;
+      background: rgba(224,92,92,0.06);
+    }
+    .quiz-q-num {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 3px;
+      font-family: var(--mono, monospace);
+      letter-spacing: 0.04em;
+    }
+    .quiz-q-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      flex: 1;
+    }
+    .quiz-btn-group {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .quiz-btn {
+      padding: 5px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border, rgba(255,255,255,0.15));
+      background: rgba(255,255,255,0.06);
+      color: var(--text, #f4f7f8);
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+    .quiz-btn:hover { background: rgba(255,255,255,0.12); }
+    .quiz-btn.btn-yes-active {
+      background: #21d4a3;
+      color: #0a1a14;
+      border-color: #21d4a3;
+    }
+    .quiz-btn.btn-no-active {
+      background: #e05c5c;
+      color: #fff;
+      border-color: #e05c5c;
+    }
+    .quiz-result {
+      display: none;
+      background: var(--card-bg, rgba(255,255,255,0.04));
+      border: 1px solid var(--border, rgba(255,255,255,0.08));
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .quiz-result-score {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .quiz-result-label {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .quiz-result-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+    }
+    .quiz-risk-box {
+      text-align: left;
+      background: rgba(224,92,92,0.06);
+      border: 1px solid rgba(224,92,92,0.2);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .quiz-risk-heading {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .quiz-risk-item {
+      font-size: 0.85rem;
+      color: #e05c5c;
+      padding: 3px 0;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.45;
+    }
+    .quiz-risk-item::before { content: "⚠"; flex-shrink: 0; }
+    .quiz-reset-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      cursor: pointer;
+      margin-top: 12px;
+      text-decoration: underline;
+    }
   </style>
 </head>
 
@@ -1369,7 +1515,7 @@
         <a href="#services">Services</a>
         <a href="#fit">Who We Help</a>
         <a href="#security">Security</a>
-        <a href="#audit">Network Check</a>
+        <a href="#quiz">Risk Quiz</a>
         <a href="academy.html">Academy</a>
         <a href="#faq">FAQ</a>
         <a href="#contact" class="btn btn-primary">Free Assessment</a>
@@ -1811,41 +1957,43 @@
       </div>
     </section>
 
-    <!-- ── Network Health Check Tool ── -->
-    <section id="audit" class="dark-band">
+    <!-- ── Network Risk Quiz ── -->
+    <section id="quiz" class="dark-band">
       <div class="container">
         <div class="section-head">
-          <div class="eyebrow">Free Tool</div>
-          <h2>Run a free network health check.</h2>
+          <div class="eyebrow">Free Self-Assessment</div>
+          <h2>Is your network at risk?</h2>
           <p style="color:var(--muted);font-size:1.05rem;max-width:620px;margin:1rem auto 0;">
-            This browser-based tool runs real checks on your connection — no software to install, nothing downloaded to your device. Results appear in real time below.
+            Answer 10 yes-or-no questions — no technical knowledge required. Your
+            answers stay in your browser. Takes about two minutes.
           </p>
         </div>
 
-        <div class="audit-wrap">
-          <div class="audit-terminal" id="auditTerminal">
-            <div class="audit-bar">
-              <span class="audit-dot" style="background:#ff5f57"></span>
-              <span class="audit-dot" style="background:#febc2e"></span>
-              <span class="audit-dot" style="background:#28c840"></span>
-              <span class="audit-title">network@livewire:~ — health check</span>
-            </div>
-            <div class="audit-body" id="auditBody">
-              <div class="audit-line audit-muted">Ready. Press "Run Network Check" to begin.</div>
-            </div>
+        <div class="quiz-outer">
+
+          <div class="quiz-progress-label">
+            <span id="quizProgressText">0 of 10 answered</span>
+            <span id="quizProgressPct">0%</span>
+          </div>
+          <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quizProgressFill"></div>
           </div>
 
-          <div class="audit-controls">
-            <button class="btn btn-primary" id="auditRunBtn" onclick="runAudit()">▶ Run Network Check</button>
-            <button class="btn btn-secondary" id="auditResetBtn" onclick="resetAudit()" style="display:none">↺ Run Again</button>
+          <div id="quizQuestions"></div>
+
+          <div class="quiz-result" id="quizResult">
+            <div class="quiz-result-score" id="quizResultScore"></div>
+            <div class="quiz-result-label" id="quizResultLabel"></div>
+            <div class="quiz-result-desc" id="quizResultDesc"></div>
+            <div class="quiz-risk-box" id="quizRiskBox" style="display:none;">
+              <div class="quiz-risk-heading">Gaps we found</div>
+              <div id="quizRiskList"></div>
+            </div>
+            <a href="#contact" class="btn btn-primary">Talk to an engineer about my results</a>
+            <br>
+            <button class="quiz-reset-btn" onclick="resetQuiz()">Start over</button>
           </div>
 
-          <div class="audit-results" id="auditResults" style="display:none">
-            <div class="audit-summary" id="auditSummary"></div>
-            <div style="text-align:center;margin-top:1.5rem;">
-              <a href="#contact" class="btn btn-primary">Get a Full On-Site Audit — Free</a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -2285,248 +2433,154 @@
 
 
 
-    // ── Network Health Check Tool ──
-    const auditBody = document.getElementById('auditBody');
-    const auditRunBtn = document.getElementById('auditRunBtn');
-    const auditResetBtn = document.getElementById('auditResetBtn');
-    const auditResults = document.getElementById('auditResults');
-    const auditSummary = document.getElementById('auditSummary');
+    // ── Network Risk Quiz ──
+    const quizQuestions = [
+      {
+        text: "Do you have a dedicated firewall — not just the router your ISP provided?",
+        risk: "No dedicated firewall — your ISP router has almost no real security configuration."
+      },
+      {
+        text: "Do your employees and guests connect to completely separate WiFi networks?",
+        risk: "No network separation — guests can potentially reach your business devices and data."
+      },
+      {
+        text: "Do you know exactly which devices are connected to your network right now?",
+        risk: "No device visibility — unauthorized devices could already be on your network."
+      },
+      {
+        text: "Have the default passwords on all your routers, switches, and cameras been changed?",
+        risk: "Default credentials are publicly documented — a common first step in any attack."
+      },
+      {
+        text: "Do your remote employees access company resources through a secure, verified connection — such as a VPN, Zero Trust Network Access (ZTNA), or similar solution?",
+        risk: "No verified remote access — employees may be connecting over unencrypted or unmanaged connections, exposing credentials and data."
+      },
+      {
+        text: "Has your network had a professional security assessment in the last 12 months?",
+        risk: "No recent security assessment — vulnerabilities accumulate over time undetected."
+      },
+      {
+        text: "Do you know whether your business is subject to HIPAA, PCI-DSS, or other compliance requirements?",
+        risk: "Compliance requirements are unknown — potential fines and liability exposure."
+      },
+      {
+        text: "Are your point-of-sale systems on a separate network from everything else?",
+        risk: "POS systems unsegmented — payment card data on the same network as general traffic."
+      },
+      {
+        text: "Do you have documented network diagrams showing what is connected and where?",
+        risk: "No documentation — troubleshooting and auditing are significantly slower and riskier."
+      },
+      {
+        text: "Would you know within 24 hours if someone added an unauthorized device to your network?",
+        risk: "No alerting — unauthorized access could go undetected indefinitely."
+      }
+    ];
 
-    function addLine(text, cls, delay) {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          const el = document.createElement('span');
-          el.className = 'audit-line ' + (cls || 'audit-muted');
-          el.textContent = text;
-          auditBody.appendChild(el);
-          auditBody.scrollTop = auditBody.scrollHeight;
-          resolve();
-        }, delay);
+    const quizLevels = [
+      {
+        min: 0, max: 3,
+        label: "Critical exposure",
+        color: "#e05c5c",
+        desc: "Your network has serious unaddressed vulnerabilities. A motivated attacker — or even an automated scan — could find multiple entry points. This isn't a future concern; it's a current one."
+      },
+      {
+        min: 4, max: 6,
+        label: "Moderate risk",
+        color: "#e0a84a",
+        desc: "You have some protections in place, but significant gaps remain. The controls you're missing are the ones attackers specifically look for in small business environments."
+      },
+      {
+        min: 7, max: 9,
+        label: "Low risk — a few gaps",
+        color: "#21d4a3",
+        desc: "You're in better shape than most small businesses, but the remaining gaps are worth closing. A few targeted fixes could get you to a well-protected baseline."
+      },
+      {
+        min: 10, max: 10,
+        label: "Well protected",
+        color: "#21d4a3",
+        desc: "Strong foundation. You've covered the basics that most businesses miss. A professional assessment can verify these controls are implemented correctly and find anything that wasn't on this list."
+      }
+    ];
+
+    const quizAnswers = new Array(10).fill(null);
+
+    function renderQuiz() {
+      const container = document.getElementById('quizQuestions');
+      if (!container) return;
+      container.innerHTML = '';
+      quizQuestions.forEach((q, i) => {
+        const a = quizAnswers[i];
+        const div = document.createElement('div');
+        div.className = 'quiz-q' + (a === true ? ' q-yes' : a === false ? ' q-no' : '');
+        div.innerHTML =
+          '<div>' +
+            '<div class="quiz-q-num">Question ' + (i + 1) + '</div>' +
+            '<div class="quiz-q-text">' + q.text + '</div>' +
+          '</div>' +
+          '<div class="quiz-btn-group">' +
+            '<button class="quiz-btn' + (a === true ? ' btn-yes-active' : '') + '" onclick="quizAnswer(' + i + ', true)">Yes</button>' +
+            '<button class="quiz-btn' + (a === false ? ' btn-no-active' : '') + '" onclick="quizAnswer(' + i + ', false)">No</button>' +
+          '</div>';
+        container.appendChild(div);
       });
+      updateQuizProgress();
     }
 
-    function updateLine(el, text, cls) {
-      el.textContent = text;
-      el.className = 'audit-line ' + cls;
+    function updateQuizProgress() {
+      const done = quizAnswers.filter(a => a !== null).length;
+      const pct = Math.round((done / 10) * 100);
+      const pt = document.getElementById('quizProgressText');
+      const pp = document.getElementById('quizProgressPct');
+      const pf = document.getElementById('quizProgressFill');
+      if (pt) pt.textContent = done + ' of 10 answered';
+      if (pp) pp.textContent = pct + '%';
+      if (pf) pf.style.width = pct + '%';
     }
 
-    function addSpinnerLine(text, delay) {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          const el = document.createElement('span');
-          el.className = 'audit-line audit-cmd';
-          el.innerHTML = '<span class="audit-spinner">◌</span> ' + text;
-          auditBody.appendChild(el);
-          auditBody.scrollTop = auditBody.scrollHeight;
-          resolve(el);
-        }, delay);
-      });
+    function quizAnswer(i, val) {
+      quizAnswers[i] = val;
+      renderQuiz();
+      if (quizAnswers.every(a => a !== null)) showQuizResult();
     }
 
-    async function testLatency() {
-      const times = [];
-      for (let i = 0; i < 3; i++) {
-        const t = performance.now();
-        try {
-          await fetch('https://www.cloudflare.com/cdn-cgi/trace?nocache=' + Math.random(), { mode: 'no-cors', cache: 'no-store' });
-        } catch(e) {}
-        times.push(Math.round(performance.now() - t));
+    function showQuizResult() {
+      const score = quizAnswers.filter(a => a === true).length;
+      const level = quizLevels.find(l => score >= l.min && score <= l.max);
+      const card = document.getElementById('quizResult');
+      const scoreEl = document.getElementById('quizResultScore');
+      const labelEl = document.getElementById('quizResultLabel');
+      const descEl = document.getElementById('quizResultDesc');
+      const riskBox = document.getElementById('quizRiskBox');
+      const riskList = document.getElementById('quizRiskList');
+      if (!card) return;
+      scoreEl.textContent = score + '/10';
+      scoreEl.style.color = level.color;
+      labelEl.textContent = level.label;
+      labelEl.style.color = level.color;
+      descEl.textContent = level.desc;
+      const gaps = quizQuestions.filter((q, i) => quizAnswers[i] === false);
+      if (gaps.length > 0 && riskBox && riskList) {
+        riskBox.style.display = 'block';
+        riskList.innerHTML = gaps.map(g =>
+          '<div class="quiz-risk-item">' + g.risk + '</div>'
+        ).join('');
       }
-      return Math.min(...times);
+      card.style.display = 'block';
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    async function testDNS() {
-      const t = performance.now();
-      try {
-        await fetch('https://cloudflare-dns.com/dns-query?name=google.com&type=A', {
-          headers: { 'Accept': 'application/dns-json' }
-        });
-        return Math.round(performance.now() - t);
-      } catch(e) {
-        return null;
-      }
+    function resetQuiz() {
+      quizAnswers.fill(null);
+      const card = document.getElementById('quizResult');
+      const riskBox = document.getElementById('quizRiskBox');
+      if (card) card.style.display = 'none';
+      if (riskBox) riskBox.style.display = 'none';
+      renderQuiz();
     }
 
-    async function testDownloadSpeed() {
-      const url = 'https://speed.cloudflare.com/__down?bytes=5000000&nocache=' + Math.random();
-      const t = performance.now();
-      try {
-        const res = await fetch(url, { cache: 'no-store' });
-        await res.blob();
-        const duration = (performance.now() - t) / 1000;
-        const mbps = ((5000000 * 8) / duration / 1000000).toFixed(1);
-        return mbps;
-      } catch(e) {
-        return null;
-      }
-    }
-
-    function checkHTTPS() {
-      return location.protocol === 'https:';
-    }
-
-    function checkBrowser() {
-      const ua = navigator.userAgent;
-      if (ua.includes('Chrome') && !ua.includes('Edg')) return 'Chrome';
-      if (ua.includes('Firefox')) return 'Firefox';
-      if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari';
-      if (ua.includes('Edg')) return 'Edge';
-      return 'Unknown';
-    }
-
-    function getConnectionType() {
-      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      if (conn) {
-        if (conn.effectiveType) return conn.effectiveType.toLowerCase();
-        if (conn.type) return conn.type.toLowerCase();
-      }
-      return 'unknown';
-    }
-
-    function formatConnectionType(raw) {
-      switch (raw) {
-        case '4g':      return 'Broadband / Fiber';
-        case '3g':      return '3G Cellular — may be slow';
-        case '2g':
-        case 'slow-2g': return 'Slow Cellular — expect issues';
-        case 'wifi':    return 'Wi-Fi';
-        default:        return 'Wired or Wi-Fi';
-      }
-    }
-
-    async function runAudit() {
-      auditRunBtn.style.display = 'none';
-      auditBody.innerHTML = '';
-      auditResults.style.display = 'none';
-      auditSummary.innerHTML = '';
-
-      const results = {};
-
-      await addLine('> initializing network health check...', 'audit-cmd', 0);
-      await addLine('  LiveWire Network Solutions — browser diagnostics v1.0', 'audit-muted', 300);
-      await addLine('', 'audit-muted', 500);
-
-      // HTTPS Check
-      let l = await addSpinnerLine('Checking connection security (HTTPS)...', 600);
-      await new Promise(r => setTimeout(r, 900));
-      const isHTTPS = checkHTTPS();
-      results.https = isHTTPS;
-      updateLine(l, isHTTPS
-        ? '[OK]  Connection is encrypted (HTTPS) — secure'
-        : '[FAIL] Connection is NOT encrypted — running over HTTP. Data is exposed.',
-        isHTTPS ? 'audit-ok' : 'audit-fail');
-
-      // Browser check
-      l = await addSpinnerLine('Detecting browser and device info...', 200);
-      await new Promise(r => setTimeout(r, 600));
-      const browser = checkBrowser();
-      const platform = navigator.platform || 'Unknown';
-      results.browser = browser;
-      updateLine(l, '[INFO] Browser: ' + browser + '  |  Platform: ' + platform, 'audit-info');
-
-      // Connection type
-      l = await addSpinnerLine('Detecting connection type...', 200);
-      await new Promise(r => setTimeout(r, 700));
-      const connType = getConnectionType();
-      results.connType = connType;
-      const connLabel = formatConnectionType(connType);
-      const connClass = connType === '4g' || connType === 'wifi' ? 'audit-ok' : connType === '3g' ? 'audit-warn' : connType === '2g' || connType === 'slow-2g' ? 'audit-fail' : 'audit-info';
-      updateLine(l, '[INFO] Connection type: ' + connLabel, connClass);
-
-      // Latency test
-      l = await addSpinnerLine('Testing network latency (3 pings to Cloudflare)...', 200);
-      const latency = await testLatency();
-      results.latency = latency;
-      const latClass = latency < 50 ? 'audit-ok' : latency < 120 ? 'audit-warn' : 'audit-fail';
-      const latMsg = latency < 50 ? 'Excellent' : latency < 120 ? 'Acceptable — some lag possible' : 'High latency — network issue likely';
-      updateLine(l, '[' + (latency < 50 ? 'OK  ' : latency < 120 ? 'WARN' : 'FAIL') + '] Latency: ' + latency + 'ms — ' + latMsg, latClass);
-
-      // DNS test
-      l = await addSpinnerLine('Testing DNS resolution speed...', 200);
-      const dns = await testDNS();
-      results.dns = dns;
-      if (dns !== null) {
-        const dnsClass = dns < 80 ? 'audit-ok' : dns < 200 ? 'audit-warn' : 'audit-fail';
-        const dnsMsg = dns < 80 ? 'Fast' : dns < 200 ? 'Moderate — consider faster DNS (1.1.1.1)' : 'Slow DNS — impacts all internet activity';
-        updateLine(l, '[' + (dns < 80 ? 'OK  ' : dns < 200 ? 'WARN' : 'FAIL') + '] DNS response: ' + dns + 'ms — ' + dnsMsg, dnsClass);
-      } else {
-        updateLine(l, '[INFO] DNS test skipped — blocked by network policy', 'audit-info');
-      }
-
-      // Download speed
-      l = await addSpinnerLine('Testing download bandwidth (5MB sample)...', 200);
-      const speed = await testDownloadSpeed();
-      results.speed = speed;
-      if (speed !== null) {
-        const spClass = parseFloat(speed) > 100 ? 'audit-ok' : parseFloat(speed) > 25 ? 'audit-warn' : 'audit-fail';
-        const spMsg = parseFloat(speed) > 100 ? 'Good' : parseFloat(speed) > 25 ? 'Acceptable' : 'Slow — significant bandwidth issue';
-        updateLine(l, '[' + (parseFloat(speed) > 100 ? 'OK  ' : parseFloat(speed) > 25 ? 'WARN' : 'FAIL') + '] Download: ' + speed + ' Mbps — ' + spMsg, spClass);
-      } else {
-        updateLine(l, '[INFO] Speed test unavailable from this network', 'audit-info');
-      }
-
-      // Cookie / privacy check
-      l = await addSpinnerLine('Checking browser privacy settings...', 200);
-      await new Promise(r => setTimeout(r, 500));
-      const cookiesEnabled = navigator.cookieEnabled;
-      results.cookies = cookiesEnabled;
-      updateLine(l, cookiesEnabled
-        ? '[INFO] Cookies enabled — normal for business browsing'
-        : '[INFO] Cookies disabled — enhanced privacy mode active',
-        'audit-info');
-
-      await addLine('', 'audit-muted', 200);
-      await addLine('> scan complete. Results summarized below.', 'audit-cmd', 300);
-
-      // Show summary cards
-      setTimeout(() => {
-        const issues = [];
-        if (!results.https) issues.push('No HTTPS encryption');
-        if (results.latency > 120) issues.push('High latency (' + results.latency + 'ms)');
-        if (results.dns > 200) issues.push('Slow DNS resolution');
-        if (results.speed && parseFloat(results.speed) < 25) issues.push('Low bandwidth (' + results.speed + ' Mbps)');
-
-        const scoreLabel = issues.length === 0 ? 'All Clear' : issues.length <= 2 ? 'Some Issues' : 'Needs Attention';
-        const scoreClass = issues.length === 0 ? 'arc-ok' : issues.length <= 2 ? 'arc-warn' : 'arc-fail';
-
-        auditSummary.innerHTML = `
-          <div class="audit-result-card">
-            <div class="arc-label">Overall Status</div>
-            <div class="arc-value ${scoreClass}">${scoreLabel}</div>
-          </div>
-          <div class="audit-result-card">
-            <div class="arc-label">Latency</div>
-            <div class="arc-value ${results.latency < 50 ? 'arc-ok' : results.latency < 120 ? 'arc-warn' : 'arc-fail'}">${results.latency}ms</div>
-          </div>
-          <div class="audit-result-card">
-            <div class="arc-label">Download Speed</div>
-            <div class="arc-value ${results.speed ? (parseFloat(results.speed) > 100 ? 'arc-ok' : parseFloat(results.speed) > 25 ? 'arc-warn' : 'arc-fail') : 'arc-info'}">${results.speed ? results.speed + ' Mbps' : 'N/A'}</div>
-          </div>
-          <div class="audit-result-card">
-            <div class="arc-label">DNS Speed</div>
-            <div class="arc-value ${results.dns ? (results.dns < 80 ? 'arc-ok' : results.dns < 200 ? 'arc-warn' : 'arc-fail') : 'arc-info'}">${results.dns ? results.dns + 'ms' : 'N/A'}</div>
-          </div>
-          <div class="audit-result-card">
-            <div class="arc-label">HTTPS</div>
-            <div class="arc-value ${results.https ? 'arc-ok' : 'arc-fail'}">${results.https ? 'Secure' : 'Insecure'}</div>
-          </div>
-          <div class="audit-result-card">
-            <div class="arc-label">Issues Found</div>
-            <div class="arc-value ${issues.length === 0 ? 'arc-ok' : 'arc-warn'}">${issues.length}</div>
-          </div>
-        `;
-
-        auditResults.style.display = 'block';
-        auditResetBtn.style.display = 'inline-flex';
-      }, 600);
-    }
-
-    function resetAudit() {
-      auditBody.innerHTML = '<span class="audit-line audit-muted">Ready. Press "Run Network Check" to begin.</span>';
-      auditResults.style.display = 'none';
-      auditRunBtn.style.display = 'inline-flex';
-      auditResetBtn.style.display = 'none';
-    }
+    renderQuiz();
 
     // ── Scanline Section Entry Effect ──
     function triggerScanline(section) {
