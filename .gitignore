@@ -1,0 +1,20 @@
+# Claude Code local config
+.claude/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Netlify local
+.netlify/
+
+# Logs / env
+*.log
+.env
+.env.*
